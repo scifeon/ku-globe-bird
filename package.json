@@ -1,0 +1,16 @@
+{
+  "name": "app",
+  "displayName": "KU-GLOBE Bird",
+  "namespace": "dk.ku.globe",
+  "version": "1.0.0",
+  "author": "Scifeon <support@scifeon.com>",
+  "description": "KU-GLOBE Bird",
+  "scifeon": {
+    "runtimeVersion": "<%build_version_from_vsts%>",
+    "appDependencies": []
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@scifeon/sdk": "^0.74.0"
+  }
+}

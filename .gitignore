@@ -1,0 +1,10 @@
+node_modules
+runtime
+temp
+test/e2e-key.config
+test/reports
+test/screenshots
+.vscode/chrome
+Logs
+package-lock.json
+scifeon.db

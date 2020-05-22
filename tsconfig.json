@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es6",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "../../../node_modules/*",
+        "../../../SPA/node_modules/*"
+      ],
+      "@scifeon/*": [
+        "runtime/scifeon/generated/@types/@scifeon/packages/*",
+        "../../../packages/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "../../../node_modules/@types",
+      "../../../SPA/node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "runtime",
+    "node_modules",
+    "temp"
+  ]
+}
