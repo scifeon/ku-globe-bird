@@ -1,7 +1,8 @@
 import { DataModel, Dataset, Entity } from "@scifeon/core";
 import { SpreadsheetUtils } from "@scifeon/data";
 import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeon/plugins";
-import { WorkBook } from "@scifeon/plugins/src/xlsx-types";
+import { WorkBook, WorkSheet } from "@scifeon/plugins/src/xlsx-types";
+import { B10K } from "../b10k";
 
 const match = (context: IDataLoaderContext) => {
     // only allow loading from module/data-upload
@@ -41,14 +42,27 @@ export class LoadB10KTableS1 implements DataLoaderPlugin {
         //this.readFields(spreadsheet);
 
         this.genomeInfos = [];
-        for (let xlRow = 2; xlRow < SpreadsheetUtils.getXlrowMax(sheet); xlRow++) {
+        for (let xlRow = 3; xlRow < SpreadsheetUtils.getXlrowMax(sheet); xlRow++) {
             if (!sheet["A" + xlRow]) continue;
 
-            this.genomeInfos.push({
+            const gi = {
                 b10kID: sheet["A" + xlRow].v,
                 values: {}
-            });
+            };
+            this.readRow(gi, sheet, xlRow);
+
+            this.genomeInfos.push(gi);
         }
+    }
+
+    readRow(gi: any, sheet: WorkSheet, xlRow: number) {
+        for (let iCol = 0; iCol < B10K.fields.length; iCol++) {
+            const xlCol = iCol + 1;
+            const field = B10K.fields[iCol];
+            gi.values[field.name] = sheet[SpreadsheetUtils.columnToLabel(iCol) + xlRow]?.v;
+        }
+
+
     }
 
     public entitiesView = () => `
