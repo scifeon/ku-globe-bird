@@ -1,4 +1,4 @@
-import { DataModel, Dataset, Entity } from "@scifeon/core";
+import { DataModel, Dataset, Entity, ServerAPI } from "@scifeon/core";
 import { SpreadsheetUtils } from "@scifeon/data";
 import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeon/plugins";
 import { WorkBook, WorkSheet } from "@scifeon/plugins/src/xlsx-types";
@@ -27,31 +27,54 @@ interface GenomeInfo {
     rank: 1,
 })
 export class LoadB10KTableS1 implements DataLoaderPlugin {
-    constructor(private datamodel: DataModel) { }
+    constructor(private server: ServerAPI, private datamodel: DataModel) { }
 
     workbook: WorkBook;
-    entities: Entity[];
-    genomeInfos: GenomeInfo[];
+    entities: Entity[] = [];
+    genomeInfos: GenomeInfo[] = [];
 
     public init(context: IDataLoaderContext) {
         this.workbook = context.fileInfos[0].wb;
     }
 
-    public readFiles() {
+    public async readFiles() {
+        const ds = await this.server.datasetQuery([
+            { eClass: "Genome", collection: "genomes" },
+        ]);
+
         const sheet = this.workbook.Sheets["Sheet1"];
         //this.readFields(spreadsheet);
 
-        this.genomeInfos = [];
         for (let xlRow = 3; xlRow < SpreadsheetUtils.getXlrowMax(sheet); xlRow++) {
             if (!sheet["A" + xlRow]) continue;
 
-            const gi = {
+            const gi: GenomeInfo = {
                 b10kID: sheet["A" + xlRow].v,
                 values: {}
             };
             this.readRow(gi, sheet, xlRow);
 
+            gi.genome = ds.genomes.find(g => g.name === gi.b10kID);
+            if (!gi.genome) throw new Error("Missing genome: " + gi.b10kID);
+
             this.genomeInfos.push(gi);
+        }
+
+        this.entities.push({
+            eClass: "ResultSet",
+            id: "#idRS",
+            type: "TableS1",
+            originID: "-",
+        });
+        for (const gi of this.genomeInfos) {
+            this.entities.push({
+                eClass: "ResultFlex",
+                resultSetID: "#idRS",
+                name: gi.b10kID,
+                subjectClass: "Genome",
+                subjectID: gi.genome.id,
+                results: gi.values,
+            });
         }
     }
 
