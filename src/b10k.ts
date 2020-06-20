@@ -42,7 +42,6 @@ export class B10K {
         { name: "cgContent_pct", label: "CG content(%)", group: "Assembly" },
         { name: "depth", label: "Depth", group: "Assembly" },
         { name: "nGenes", label: "Number of total gene", group: "Gene annotations" },
-        { name: "nGenes", label: "Number of total gene", group: "Gene annotations" },
         { name: "meanGeneLength_bp", label: "Mean Gene Length (bp)", group: "Gene annotations" },
         { name: "meanCDSLength_bp", label: "Mean CDS Length(bp)", group: "Gene annotations" },
         { name: "meanExonNumber", label: "Mean Exon Number", group: "Gene annotations" },
