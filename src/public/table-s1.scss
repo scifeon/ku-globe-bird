@@ -1,0 +1,13 @@
+@import "@scifeon";
+
+.table-s1 {
+    sci-collapsible {
+        margin-bottom: $padding-default;
+    }
+
+    groups {
+        display: grid;
+        grid-template-columns: 20px, auto;
+        column-gap: $padding-default;
+    }
+}

@@ -1,16 +1,37 @@
 <template>
-    <page-with-header>
-        <page-header><h1>Table S1</h1></page-header>
+    <page-with-header class="table-s1">
+        <page-header>
+            <h1>Table S1</h1>
+        </page-header>
 
         <page-content>
             <panel>
                 <panel-body>
+                    <sci-collapsible active="true">
+                        <sci-collapsible-header>
+                            <h4>Group Selector</h4>
+                        </sci-collapsible-header>
+
+                        <sci-collapsible-body>
+                            <groups>
+                                <group repeat.for="group of groups">
+                                    <input type="checkbox"
+                                           checked.bind="group.selected"
+                                           value.bind="group.selected"
+                                           change.delegate="groupChanged()" />
+                                    <label>${group.label}</label>
+                                </group>
+                            </groups>
+                        </sci-collapsible-body>
+                    </sci-collapsible>
+
                     <sci-list-view config.bind="listViewConfig"
-                                   records.bind="records"
-                    ></sci-list-view>
+                                   data-source.two-way="dataSource"
+                                   records.bind="records">
+                    </sci-list-view>
                 </panel-body>
             </panel>
-            <panel>
+            <!-- <panel>
                 <panel-body>
                     <table>
                         <tr>
@@ -20,11 +41,12 @@
                             <th repeat.for="f of fields">${f.label}</th>
                         </tr>
                         <tr repeat.for="ri of rowInfos">
-                            <td style="max-width: 200px;" repeat.for="f of fields">${ri.rFlex.results[f.name]}</td>
+                            <td style="max-width: 200px;"
+                                repeat.for="f of fields">${ri.rFlex.results[f.name]}</td>
                         </tr>
                     </table>
                 </panel-body>
-            </panel>
+            </panel> -->
         </page-content>
     </page-with-header>
 </template>
