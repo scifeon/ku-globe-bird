@@ -5,6 +5,13 @@
         <page-content>
             <panel>
                 <panel-body>
+                    <sci-list-view config.bind="listViewConfig"
+                                   records.bind="records"
+                    ></sci-list-view>
+                </panel-body>
+            </panel>
+            <panel>
+                <panel-body>
                     <table>
                         <tr>
                             <th repeat.for="f of fields">${f.group}</th>
