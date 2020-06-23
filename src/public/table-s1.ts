@@ -14,6 +14,7 @@ interface IGroup {
     title: "TableS1",
 })
 export class TableS1 {
+    public loading = false;
     public listViewConfig: IListViewConfig = {
         fields: B10K.FIELDS,
     };
@@ -29,6 +30,8 @@ export class TableS1 {
     }
 
     public async init() {
+        this.loading = true;
+
         const ds = await this.server.datasetQuery([
             { eClass: "Genome", collection: "genomes", sortings: [{ field: "Name" }] },
             { eClass: "ResultFlex", collection: "results" },
@@ -39,6 +42,8 @@ export class TableS1 {
 
             this.records.push(record);
         }
+
+        this.loading = false;
     }
 
     public attached() {
@@ -46,15 +51,18 @@ export class TableS1 {
     }
 
     public groupChanged() {
+        this.loading = true;
+
         const selectedGroups = this.groups.filter(group => group.selected);
 
-        console.log(this.listViewConfig)
         for (const ci of this.listViewConfig.columnInfos) {
             ci.column.selected = !!selectedGroups.find(group => group.label === ci.column.field.group);
         }
 
         this.selectedColumnInfos.splice(0, this.selectedColumnInfos.length);
         this.selectedColumnInfos.push(...this.listViewConfig.columnInfos);
+
+        this.loading = false;
     }
 
     private compileGroups() {
