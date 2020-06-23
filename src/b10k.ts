@@ -1,6 +1,8 @@
+// tslint:disable: max-line-length no-duplicate-string
+
 import { DataType } from "@scifeon/core";
 export class B10K {
-    public static fields = [
+    public static FIELDS = [
         { name: "name", label: "B10K ID", group: "" },
         { name: "taxOrder", label: "Order", group: "Taxonomy" },
         { name: "family", label: "Family", group: "Taxonomy" },
@@ -68,6 +70,5 @@ export class B10K {
         { name: "nRRNAOnLargestContig", label: "Largest contig rRNA gene number", group: "Mitochondrial genome assembly & annotation", type: DataType.INT },
         { name: "publicshedMTSequence", label: "Published mt-sequence", group: "Mitochondrial genome assembly & annotation" },
         { name: "mtAccession", label: "MT_Accesion", group: "Mitochondrial genome assembly & annotation" },
-
     ];
 }

@@ -26,27 +26,11 @@
                     </sci-collapsible>
 
                     <sci-list-view config.bind="listViewConfig"
-                                   data-source.two-way="dataSource"
+                                   selected-column-infos.two-way="selectedColumnInfos"
                                    records.bind="records">
                     </sci-list-view>
                 </panel-body>
             </panel>
-            <!-- <panel>
-                <panel-body>
-                    <table>
-                        <tr>
-                            <th repeat.for="f of fields">${f.group}</th>
-                        </tr>
-                        <tr>
-                            <th repeat.for="f of fields">${f.label}</th>
-                        </tr>
-                        <tr repeat.for="ri of rowInfos">
-                            <td style="max-width: 200px;"
-                                repeat.for="f of fields">${ri.rFlex.results[f.name]}</td>
-                        </tr>
-                    </table>
-                </panel-body>
-            </panel> -->
         </page-content>
     </page-with-header>
 </template>

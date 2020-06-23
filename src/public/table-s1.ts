@@ -1,13 +1,13 @@
 import { DatamodelUtils, ServerAPI } from "@scifeon/core";
 import { scifeonRoute } from "@scifeon/plugins";
-import { IDataSource, IListViewConfig } from "@scifeon/ui";
+import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
 import { B10K } from "../b10k";
 import "./table-s1.scss";
 
 interface IGroup {
     selected: boolean;
     label: string;
-};
+}
 
 @scifeonRoute({
     route: "b10k/tableS1",
@@ -15,13 +15,12 @@ interface IGroup {
 })
 export class TableS1 {
     public listViewConfig: IListViewConfig = {
-        fields: B10K.fields,
+        fields: B10K.FIELDS,
     };
 
-    public dataSource: IDataSource<any>;
+    public selectedColumnInfos: IListViewColumnInfo[];
 
-    // public rowInfos: any[] = [];
-    public fields = B10K.fields;
+    public fields = B10K.FIELDS;
     public records = [];
     public groups: IGroup[] = [];
 
@@ -36,13 +35,6 @@ export class TableS1 {
         ]);
 
         for (const genome of ds.genomes) {
-            // this.rowInfos.push(
-            //     {
-            //         genome,
-            //         rFlex: ds.results.find(r => r.subjectID === genome.id),
-            //     },
-            // );
-
             const record = ds.results.find(r => r.subjectID === genome.id).results;
 
             this.records.push(record);
@@ -56,13 +48,13 @@ export class TableS1 {
     public groupChanged() {
         const selectedGroups = this.groups.filter(group => group.selected);
 
+        console.log(this.listViewConfig)
         for (const ci of this.listViewConfig.columnInfos) {
             ci.column.selected = !!selectedGroups.find(group => group.label === ci.column.field.group);
         }
 
-        console.log("TableS1 -> groupChanged -> this.listViewConfig", this.listViewConfig)
-
-        this.dataSource.refresh();
+        this.selectedColumnInfos.splice(0, this.selectedColumnInfos.length);
+        this.selectedColumnInfos.push(...this.listViewConfig.columnInfos);
     }
 
     private compileGroups() {
