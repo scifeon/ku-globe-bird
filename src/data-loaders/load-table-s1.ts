@@ -14,7 +14,7 @@ const match = (context: IDataLoaderContext) => {
     return context.fileInfos[0].filename === "b10k-table-s1.xlsx";
 };
 
-interface GenomeInfo {
+interface IGenomeInfo {
     b10kID: string;
     genome?: any;
     values: {};
@@ -31,7 +31,7 @@ export class LoadB10KTableS1 implements DataLoaderPlugin {
 
     workbook: WorkBook;
     entities: Entity[] = [];
-    genomeInfos: GenomeInfo[] = [];
+    genomeInfos: IGenomeInfo[] = [];
 
     public init(context: IDataLoaderContext) {
         this.workbook = context.fileInfos[0].wb;
@@ -48,7 +48,7 @@ export class LoadB10KTableS1 implements DataLoaderPlugin {
         for (let xlRow = 3; xlRow < SpreadsheetUtils.getXlrowMax(sheet); xlRow++) {
             if (!sheet["A" + xlRow]) continue;
 
-            const gi: GenomeInfo = {
+            const gi: IGenomeInfo = {
                 b10kID: sheet["A" + xlRow].v,
                 values: {}
             };
@@ -79,13 +79,11 @@ export class LoadB10KTableS1 implements DataLoaderPlugin {
     }
 
     readRow(gi: any, sheet: WorkSheet, xlRow: number) {
-        for (let iCol = 0; iCol < B10K.fields.length; iCol++) {
+        for (let iCol = 0; iCol < B10K.FIELDS.length; iCol++) {
             const xlCol = iCol + 1;
-            const field = B10K.fields[iCol];
+            const field = B10K.FIELDS[iCol];
             gi.values[field.name] = sheet[SpreadsheetUtils.columnToLabel(iCol) + xlRow]?.v;
         }
-
-
     }
 
     public entitiesView = () => `
