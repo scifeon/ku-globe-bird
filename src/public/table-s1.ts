@@ -19,7 +19,7 @@ export class TableS1 {
         fields: B10K.FIELDS,
     };
 
-    public selectedColumnInfos: IListViewColumnInfo[];
+    public selectedColumnInfos: IListViewColumnInfo[] = [];
 
     public fields = B10K.FIELDS;
     public records = [];
