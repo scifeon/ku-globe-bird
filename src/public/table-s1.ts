@@ -77,7 +77,6 @@ export class TableS1 {
     }
 
     public biosampleID(record) {
-        console.log("HER", record)
         const term = record.biosample.slice(4);
         return +term.toString();
     }
