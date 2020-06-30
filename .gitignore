@@ -8,3 +8,4 @@ test/screenshots
 Logs
 package-lock.json
 scifeon.db
+tsconfig.temp.json
