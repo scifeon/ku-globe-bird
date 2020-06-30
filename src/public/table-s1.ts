@@ -75,4 +75,10 @@ export class TableS1 {
             this.groups.push({ selected: true, label: groupName });
         }
     }
+
+    public biosampleID(record) {
+        console.log("HER", record)
+        const term = record.biosample.slice(4);
+        return +term.toString();
+    }
 }
