@@ -1,4 +1,4 @@
-import { DatamodelUtils, ResultFlex, ServerAPI } from "@scifeon/core";
+import { DatamodelUtils, LoadingSpinner, ResultFlex, ServerAPI } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
 import { B10K } from "../b10k";
@@ -15,7 +15,6 @@ interface IGroup {
     type: PAGE_TYPE.PUBLIC,
 })
 export class TableS1 {
-    public loading = false;
     public listViewConfig: IListViewConfig = {
         fields: B10K.FIELDS,
     };
@@ -31,7 +30,7 @@ export class TableS1 {
     }
 
     public async attached() {
-        this.loading = true;
+        LoadingSpinner.show();
 
         const ds: {
             results: ResultFlex[];
@@ -47,11 +46,11 @@ export class TableS1 {
 
         this.compileGroups();
 
-        this.loading = false;
+        LoadingSpinner.hide();
     }
 
     public groupChanged() {
-        this.loading = true;
+        LoadingSpinner.show();
 
         const selectedGroups = this.groups.filter(group => group.selected);
 
@@ -62,7 +61,7 @@ export class TableS1 {
         this.selectedColumnInfos.splice(0, this.selectedColumnInfos.length);
         this.selectedColumnInfos.push(...this.listViewConfig.columnInfos);
 
-        this.loading = false;
+        LoadingSpinner.hide();
     }
 
     private compileGroups() {
