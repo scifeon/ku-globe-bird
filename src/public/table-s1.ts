@@ -77,6 +77,8 @@ export class TableS1 {
     }
 
     public biosampleID(record) {
+        if (!record.biosample) return;
+
         const term = record.biosample.slice(4);
         return +term.toString();
     }
