@@ -1,6 +1,7 @@
-import { DatamodelUtils, LoadingSpinner, ResultFlex, ServerAPI } from "@scifeon/core";
+import { DatamodelUtils, ResultFlex, ServerAPI } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
+import { TaskQueue } from 'aurelia-framework';
 import { B10K } from "../b10k";
 import "./table-s1.scss";
 
@@ -15,6 +16,9 @@ interface IGroup {
     type: PAGE_TYPE.PUBLIC,
 })
 export class TableS1 {
+    public groupsReady = false;
+    public recordsReady = false;
+
     public listViewConfig: IListViewConfig = {
         fields: B10K.FIELDS,
     };
@@ -25,13 +29,14 @@ export class TableS1 {
     public records = [];
     public groups: IGroup[] = [];
 
-    constructor(private server: ServerAPI) {
+    constructor(
+        private server: ServerAPI,
+        private taskQueue: TaskQueue,
+    ) {
         this.fields.forEach(field => DatamodelUtils.patchField(field));
     }
 
     public async attached() {
-        LoadingSpinner.show();
-
         const ds: {
             results: ResultFlex[];
         } = await this.server.datasetQuery([{
@@ -45,12 +50,10 @@ export class TableS1 {
         }
 
         this.compileGroups();
-
-        LoadingSpinner.hide();
     }
 
     public groupChanged() {
-        LoadingSpinner.show();
+        this.recordsReady = false;
 
         const selectedGroups = this.groups.filter(group => group.selected);
 
@@ -61,7 +64,7 @@ export class TableS1 {
         this.selectedColumnInfos.splice(0, this.selectedColumnInfos.length);
         this.selectedColumnInfos.push(...this.listViewConfig.columnInfos);
 
-        LoadingSpinner.hide();
+        this.recordsReady = true;
     }
 
     private compileGroups() {
@@ -73,6 +76,10 @@ export class TableS1 {
             if (groupName === "") continue;
             this.groups.push({ selected: true, label: groupName });
         }
+
+        this.groupsReady = true;
+
+        this.taskQueue.queueTask(() => this.recordsReady = true);
     }
 
     public biosampleID(record) {
