@@ -1,5 +1,5 @@
-import { DatamodelUtils, ServerAPI } from "@scifeon/core";
-import { scifeonRoute } from "@scifeon/plugins";
+import { DatamodelUtils, LoadingSpinner, ResultFlex, ServerAPI } from "@scifeon/core";
+import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
 import { B10K } from "../b10k";
 import "./table-s1.scss";
@@ -12,9 +12,9 @@ interface IGroup {
 @scifeonRoute({
     route: "b10k/tableS1",
     title: "TableS1",
+    type: PAGE_TYPE.PUBLIC,
 })
 export class TableS1 {
-    public loading = false;
     public listViewConfig: IListViewConfig = {
         fields: B10K.FIELDS,
     };
@@ -29,29 +29,28 @@ export class TableS1 {
         this.fields.forEach(field => DatamodelUtils.patchField(field));
     }
 
-    public async init() {
-        this.loading = true;
+    public async attached() {
+        LoadingSpinner.show();
 
-        const ds = await this.server.datasetQuery([
-            { eClass: "Genome", collection: "genomes", sortings: [{ field: "Name" }] },
-            { eClass: "ResultFlex", collection: "results" },
-        ]);
+        const ds: {
+            results: ResultFlex[];
+        } = await this.server.datasetQuery([{
+            view: "B10K_GenomeResults",
+            collection: "results",
+            sortings: [{ field: "GenomeName" }],
+        }]);
 
-        for (const genome of ds.genomes) {
-            const record = ds.results.find(r => r.subjectID === genome.id).results;
-
-            this.records.push(record);
+        for (const result of ds.results) {
+            this.records.push(JSON.parse(result.results));
         }
 
-        this.loading = false;
-    }
-
-    public attached() {
         this.compileGroups();
+
+        LoadingSpinner.hide();
     }
 
     public groupChanged() {
-        this.loading = true;
+        LoadingSpinner.show();
 
         const selectedGroups = this.groups.filter(group => group.selected);
 
@@ -62,7 +61,7 @@ export class TableS1 {
         this.selectedColumnInfos.splice(0, this.selectedColumnInfos.length);
         this.selectedColumnInfos.push(...this.listViewConfig.columnInfos);
 
-        this.loading = false;
+        LoadingSpinner.hide();
     }
 
     private compileGroups() {
