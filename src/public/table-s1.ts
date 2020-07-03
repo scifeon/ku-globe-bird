@@ -1,7 +1,7 @@
-import { DatamodelUtils, ResultFlex, ServerAPI } from "@scifeon/core";
+import { DatamodelUtils, ResultFlex, ServerAPI, LoadingSpinner } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
-import { TaskQueue } from 'aurelia-framework';
+import { TaskQueue } from "aurelia-framework";
 import { B10K } from "../b10k";
 import "./table-s1.scss";
 
@@ -34,6 +34,8 @@ export class TableS1 {
         private taskQueue: TaskQueue,
     ) {
         this.fields.forEach(field => DatamodelUtils.patchField(field));
+        this.compileGroups();
+        this.setDefaultSelectedColumns();
     }
 
     public async attached() {
@@ -49,9 +51,13 @@ export class TableS1 {
             this.records.push(JSON.parse(result.results));
         }
 
-        this.compileGroups();
+        LoadingSpinner.hide();
     }
 
+    /**
+     * Event handler for changing a group of columns to be displayed in the
+     * table.
+     */
     public groupChanged() {
         this.recordsReady = false;
 
@@ -67,6 +73,22 @@ export class TableS1 {
         this.recordsReady = true;
     }
 
+    /**
+     * Exctract the numerical part of a biosample Id for use in external link.
+     * @example "ABCD0000123" -> "123".
+     * @param record Data record
+     */
+    public biosampleID(record): string {
+        if (!record.biosample) return;
+
+        const term = record.biosample.slice(4);
+        const num = +term;
+        return num.toString();
+    }
+
+    /**
+     * Compile a list of groups with label and selected state.
+     */
     private compileGroups() {
         const groups: Set<string> = new Set();
 
@@ -74,7 +96,12 @@ export class TableS1 {
 
         for (const groupName of groups) {
             if (groupName === "") continue;
-            this.groups.push({ selected: true, label: groupName });
+
+            if (groupName === "Taxonomy") {
+                this.groups.push({ selected: true, label: groupName });
+            } else {
+                this.groups.push({ selected: false, label: groupName });
+            }
         }
 
         this.groupsReady = true;
@@ -82,10 +109,23 @@ export class TableS1 {
         this.taskQueue.queueTask(() => this.recordsReady = true);
     }
 
-    public biosampleID(record) {
-        if (!record.biosample) return;
+    /**
+     * Set default selected columns based on selected groups.
+     */
+    private setDefaultSelectedColumns() {
+        const selected = [];
 
-        const term = record.biosample.slice(4);
-        return +term.toString();
+        for (const field of this.fields) {
+            const group = this.groups.find(g => g.label === field.group);
+
+            if (!group) continue;
+            if (!group.selected) continue;
+
+            selected.push(field);
+        }
+
+        if (!selected.length) return;
+
+        this.listViewConfig.selected = selected;
     }
 }
