@@ -58,11 +58,11 @@ export class TableS1 {
         const selectedGroups = this.groups.filter(group => group.selected);
 
         for (const ci of this.listViewConfig.columnInfos) {
-            ci.column.selected = !!selectedGroups.find(group => group.label === ci.column.field.group);
+            ci.column.selected = selectedGroups.some(group => group.label === ci.column.field.group);
         }
 
         this.selectedColumnInfos.splice(0, this.selectedColumnInfos.length);
-        this.selectedColumnInfos.push(...this.listViewConfig.columnInfos);
+        this.selectedColumnInfos.push(...this.listViewConfig.columnInfos.filter(ci => ci.column.selected));
 
         this.recordsReady = true;
     }
