@@ -1,7 +1,6 @@
-import { DatamodelUtils, ResultFlex, ServerAPI, LoadingSpinner } from "@scifeon/core";
+import { DatamodelUtils, LoadingSpinner, ResultFlex, ServerAPI } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
-import { TaskQueue } from "aurelia-framework";
 import { B10K } from "../b10k";
 import "./table-s1.scss";
 
@@ -31,7 +30,6 @@ export class TableS1 {
 
     constructor(
         private server: ServerAPI,
-        private taskQueue: TaskQueue,
     ) {
         this.fields.forEach(field => DatamodelUtils.patchField(field));
         this.compileGroups();
@@ -63,12 +61,24 @@ export class TableS1 {
 
         const selectedGroups = this.groups.filter(group => group.selected);
 
+        const selectedColumnInfos: IListViewColumnInfo[] = [];
+
         for (const ci of this.listViewConfig.columnInfos) {
-            ci.column.selected = selectedGroups.some(group => group.label === ci.column.field.group);
+            ci.column.selected = false;
+            const minWidth = ci.column.field.label.length * 10;
+            ci.column.width = ci.column.width || minWidth < 100 ? 100 : minWidth;
+            ci.minWidth = 100;
+        }
+
+        for (const group of selectedGroups) {
+            for (const ci of this.listViewConfig.columnInfos.filter(ci => ci.column.field.group === group.label)) {
+                ci.column.selected = true;
+                selectedColumnInfos.push(ci);
+            }
         }
 
         this.selectedColumnInfos.splice(0, this.selectedColumnInfos.length);
-        this.selectedColumnInfos.push(...this.listViewConfig.columnInfos.filter(ci => ci.column.selected));
+        this.selectedColumnInfos.push(...selectedColumnInfos);
 
         this.recordsReady = true;
     }
@@ -106,7 +116,7 @@ export class TableS1 {
 
         this.groupsReady = true;
 
-        this.taskQueue.queueTask(() => this.recordsReady = true);
+        this.recordsReady = true;
     }
 
     /**
