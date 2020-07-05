@@ -11,7 +11,7 @@ const match = (context: IDataLoaderContext) => {
     // there must be at least one spreadsheet
     if (!context.fileInfos.some(fi => fi.wb)) return false;
 
-    return context.fileInfos[0].filename === "b10k-table-s1.xlsx";
+    return context.fileInfos[0].filename.toLowerCase().startsWith("b10k-table-s1");
 };
 
 interface IGenomeInfo {
