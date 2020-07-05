@@ -42,15 +42,14 @@ export class LoadB10KTableS1 implements DataLoaderPlugin {
             { eClass: "Genome", collection: "genomes" },
         ]);
 
-        const sheet = this.workbook.Sheets["Sheet1"];
-        //this.readFields(spreadsheet);
+        const sheet = this.workbook.Sheets.Sheet1;
 
         for (let xlRow = 3; xlRow < SpreadsheetUtils.getXlrowMax(sheet); xlRow++) {
             if (!sheet["A" + xlRow]) continue;
 
             const gi: IGenomeInfo = {
                 b10kID: sheet["A" + xlRow].v,
-                values: {}
+                values: {},
             };
             this.readRow(gi, sheet, xlRow);
 
@@ -66,6 +65,7 @@ export class LoadB10KTableS1 implements DataLoaderPlugin {
             type: "TableS1",
             originID: "-",
         });
+
         for (const gi of this.genomeInfos) {
             this.entities.push({
                 eClass: "ResultFlex",
@@ -80,7 +80,6 @@ export class LoadB10KTableS1 implements DataLoaderPlugin {
 
     readRow(gi: any, sheet: WorkSheet, xlRow: number) {
         for (let iCol = 0; iCol < B10K.FIELDS.length; iCol++) {
-            const xlCol = iCol + 1;
             const field = B10K.FIELDS[iCol];
             gi.values[field.name] = sheet[SpreadsheetUtils.columnToLabel(iCol) + xlRow]?.v;
         }

@@ -1,3 +1,10 @@
 {
-
+    "database": {
+        "prefix": "B10K",
+        "views": [{
+            "name": "GenomeResults",
+            "sql": "sql/GenomeResults.sql",
+            "accessScope": "Public"
+        }]
+    }
 }

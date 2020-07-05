@@ -2,12 +2,14 @@
     <page-with-header class="table-s1">
         <page-header>
             <h1>Table S1</h1>
+            <a href="/#/login">Login</a>
         </page-header>
 
         <page-content>
             <panel>
                 <panel-body>
-                    <sci-collapsible active="true">
+                    <sci-collapsible if.bind="groupsReady"
+                                     active="true">
                         <sci-collapsible-header>
                             <h4>Group Selector</h4>
                         </sci-collapsible-header>
@@ -25,8 +27,11 @@
                         </sci-collapsible-body>
                     </sci-collapsible>
 
-                    <sci-list-view config.bind="listViewConfig"
-                                   selected-column-infos.two-way="selectedColumnInfos"
+                    <loading-dots if.bind="!recordsReady || !groupsReady"></loading-dots>
+
+                    <sci-list-view if.bind="recordsReady"
+                                   config.bind="listViewConfig"
+                                   selected-column-infos.from-view="selectedColumnInfos"
                                    records.bind="records">
                     </sci-list-view>
                 </panel-body>

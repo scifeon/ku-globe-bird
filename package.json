@@ -11,6 +11,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@scifeon/sdk": "^0.75.0"
+    "@scifeon/sdk": "^0.76.0"
   }
 }
