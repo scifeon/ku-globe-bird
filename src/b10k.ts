@@ -3,12 +3,12 @@
 import { DataType } from "@scifeon/core";
 export class B10K {
     public static FIELDS = [
+        { name: "commonName", label: "Common name", group: "Taxonomy" },
+        { name: "latinName", label: "Latin name", group: "Taxonomy", ui: { style: "font-style: italic;"} },
+        { name: "subspecies", label: "Subspecies", group: "Taxonomy", ui: { style: "font-style: italic;"} },
         { name: "name", label: "B10K ID", group: "" },
         { name: "taxOrder", label: "Order", group: "Taxonomy" },
         { name: "family", label: "Family", group: "Taxonomy" },
-        { name: "latinName", label: "Latin name", group: "Taxonomy", ui: { style: "font-style: italic;"} },
-        { name: "commonName", label: "Common name", group: "Taxonomy" },
-        { name: "subspecies", label: "Subspecies", group: "Taxonomy", ui: { style: "font-style: italic;"} },
         { name: "iucn", label: "IUCN", group: "Taxonomy" },
         { name: "tissue", label: "Tissue", group: "Sample information" },
         { name: "bioprojectAssociation", label: "Bioproject accession", group: "Sample information", ui: { render: '<a href="https://www.ncbi.nlm.nih.gov/bioproject/${record.bioprojectAssociation}" target="_blank">${record.bioprojectAssociation}</a>'} },
