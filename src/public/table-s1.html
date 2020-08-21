@@ -11,9 +11,6 @@
         </header>
 
         <section class="sci-hero">
-            <article class="sci-hero-dna">
-                <!-- genome dna sequence -->
-            </article>
             <article class="sci-hero-intro">
                 <header class="sci-hero-intro-header">
                     <a class="sci-hero-logo-b10k" href="https://b10k.genomics.cn/" target="_blank">
@@ -80,22 +77,26 @@
                 <loading-dots class="sci-loading" if.bind="!recordsReady || !groupsReady"></loading-dots>
             </div>
         </section>
-        
-       
     </main>
     
-    <footer class="sci-footer">
-        <section class="sci-footer-content">
-            <a class="sci-footer-logo" href="https://scifeon.com/" target="_blank">
-                <img src="../assets/images/scifeon-logo.svg">
-            </a>
-            <article class="sci-footer-article">
-                <!-- <h3>Data is managed with Scifeon</h3> -->
-                <h3>Powered by Scifeon</h3>
-                <p>Scifeon provide scientists with data management systems and consulting for pharmaceutical and biotech research.</p>
-                <p>Scifeon offer agility, flexibility and convenience to make a alternative to Excel as your favorite research data management tool.</p>
-            </article>
-        </section>        
+    <section class="sci-persistent-branding">
+        <a class="sci-persistent-branding-logo" href="https://scifeon.com/" target="_blank">
+            <span class="sci-persistent-branding-logo-text">Powered by</span>
+            <img src="../assets/images/scifeon-logo.svg">
+        </a>
+    </section>
 
+    <footer class="sci-footer">
+        <a class="sci-footer-logo" href="https://scifeon.com/" target="_blank">
+            <img src="../assets/images/scifeon-logo-white.svg">
+        </a>
+        <article class="sci-footer-outro">
+            <h3>Data is managed with Scifeon</h3>
+            <p>
+                Scifeon provide scientists with data management systems and consulting for pharmaceutical and biotech research.<br>
+                Scifeon offer agility, flexibility and convenience to make a alternative to Excel as your favorite research data management tool.
+            </p>
+            <a href="https://scifeon.com/" target="_blank">https://scifeon.com</a>
+        </article>
     </footer>
 </template>
