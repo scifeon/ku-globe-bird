@@ -90,7 +90,6 @@ live-notifications {
         z-index: 1;
         padding: 0px 16px;
         background-color: $sci-primary-color;
-        background: -ms-linear-gradient(270deg, #0C6465 0%, #06323380 100%) 0% 0% no-repeat padding-box;
         background: transparent linear-gradient(270deg, #0C6465 0%, #06323380 100%) 0% 0% no-repeat padding-box;
     }
     &-heading {
@@ -445,10 +444,11 @@ live-notifications {
         padding: 0 40px;
         color: $white;
         background-color:$sci-primary-color;
-        background-image: url('../assets/images/dots.svg');
+        background-image: radial-gradient(ellipse at center, #4B8485 0%, #4B8485 30%, transparent 30%);
         background-repeat: repeat;
-        background-position: center center;
-        background-size: contain;
+        background-position: 0 0;
+        background-size: 64px 64px;
+
 
         &::after {
             content: "";
@@ -462,15 +462,16 @@ live-notifications {
         }
     }
     &-footer-logo {
+        height: 120px;
         margin-right: 32px;
 
         img {
-            height: 120px;
+            height: 100%;
         }
     }
     &-footer-outro {
         h3 {
-            margin: 0 8px;
+            margin: -4px 0 16px 0;
             color: $white;
             font-size: 24px;
             font-weight: 600;
