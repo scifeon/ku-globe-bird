@@ -294,7 +294,9 @@ live-notifications {
         background-color: $sci-primary-color;
         transition: $transition;
 
-        &:hover {
+        &:hover, 
+        &:focus, 
+        &:active {
             background-color: darken($sci-primary-color, 5%) !important;
         }
 
