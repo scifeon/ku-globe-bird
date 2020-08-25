@@ -3,6 +3,9 @@ import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
 import { B10K } from "../b10k";
 import "./table-s1.scss";
+import { autoinject } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
+import { StringUtils } from '../../../../../packages/core/src/utils/string-utils';
 
 interface IGroup {
     selected: boolean;
@@ -14,7 +17,10 @@ interface IGroup {
     title: "TableS1",
     type: PAGE_TYPE.PUBLIC,
 })
+@autoinject
 export class TableS1 {
+    private id: number = StringUtils.hash("" + +new Date());
+    private exporting: boolean = false;
     public groupsReady = false;
     public recordsReady = false;
 
@@ -30,26 +36,14 @@ export class TableS1 {
 
     constructor(
         private server: ServerAPI,
+        private eventAggregator: EventAggregator,
     ) {
         this.fields.forEach(field => DatamodelUtils.patchField(field));
         this.compileGroups();
         this.setDefaultSelectedColumns();
-    }
-
-    public async attached() {
-        const ds: {
-            results: ResultFlex[];
-        } = await this.server.datasetQuery([{
-            view: "B10K_GenomeResults",
-            collection: "results",
-            sortings: [{ field: "GenomeName" }],
-        }]);
-
-        for (const result of ds.results) {
-            this.records.push(JSON.parse(result.results));
-        }
-
-        LoadingSpinner.hide();
+        this.eventAggregator.subscribe('export.complete', ({ id }) => {
+            if (id === this.id) this.exporting = false;
+        });
     }
 
     /**
@@ -137,5 +131,34 @@ export class TableS1 {
         if (!selected.length) return;
 
         this.listViewConfig.selected = selected;
+    }
+
+    // event handlers
+    public contentScrollHandler() {
+        const targetElement = document.querySelector('.sci-content-body');
+        if (targetElement) targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+    public async exportEventHandler(format) {
+        if (this.exporting) return;
+
+        this.exporting = true;
+        this.eventAggregator.publish('export', { id: this.id, format });
+    }
+
+    // lifecycle hook(s)
+    public async attached() {
+        const ds: {
+            results: ResultFlex[];
+        } = await this.server.datasetQuery([{
+            view: "B10K_GenomeResults",
+            collection: "results",
+            sortings: [{ field: "GenomeName" }],
+        }]);
+
+        for (const result of ds.results) {
+            this.records.push(JSON.parse(result.results));
+        }
+
+        LoadingSpinner.hide();
     }
 }

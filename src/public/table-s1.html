@@ -31,7 +31,7 @@
         </section>
 
         <section class="sci-content">
-            <a class="sci-content-scroll" href="#">
+            <a class="sci-content-scroll" href="#" click.delegate="contentScrollHandler()">
                 <span class="sci-content-scroll-inner">
                     <img src="../assets/images/icon-scroll.svg" />
                 </span>
@@ -44,19 +44,19 @@
             <div class="sci-content-body">
                 <ul class="sci-content-actions">
                     <li class="sci-content-action">
-                        <button class="sci-content-action-button">
+                        <button class="sci-content-action-button" click.delegate="exportEventHandler('excel')">
                             <i class="fas fa-arrow-down"></i>
                             <span> Export as Excel</span>
                         </button>
                     </li>
                     <li class="sci-content-action">
-                        <button class="sci-content-action-button">
+                        <button class="sci-content-action-button" click.delegate="exportEventHandler('csv')">
                             <i class="fas fa-arrow-down"></i>
                             <span> Export as CSV</span>
                         </button>
                     </li>
                     <li class="sci-content-action">
-                        <button class="sci-content-action-button">
+                        <button class="sci-content-action-button" click.delegate="exportEventHandler('copy')">
                             <i class="far fa-copy"></i>
                             <span> Copy to clipboard</span>
                         </button>
