@@ -3,6 +3,8 @@
 $b10k-primary-color: #00A299;
 $sci-primary-color: #427F80;
 $sci-primary-faded-color: #C6D8D9;
+$sci-primary-color-10: #E4ECED;
+$sci-primary-color-5: #F5F8F9;
 $sci-list-row-color: rgba(198,216,217, 0.25);
 $sci-label-color: #333333;
 $sci-text-color: #707070;
@@ -22,7 +24,7 @@ body {
 body {
     background-color: transparent;
     background-image: url('../assets/images/nodes-bg.png');
-    background-position: center center;
+    background-position: 0 0;
     background-repeat: repeat;
     background-size: cover;
 
@@ -160,7 +162,7 @@ live-notifications {
             width: 2500px;
             height: 2500px;
             border-radius: 250px;
-            opacity: 0.7;
+            opacity: 0.5;
             transform: rotate(-45deg) translateY(-50%);
             background-color: white;
         }
@@ -233,6 +235,25 @@ live-notifications {
     }
     &-content-title {
         margin-bottom: 40px;
+    }
+    &-content-scroll {
+        display: block;
+        width: 135px;
+        height: 135px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 50%;
+        background-color: $sci-primary-color-5;
+        
+        &-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: $sci-primary-color-10;
+        }
     }
     &-content-body {
         position: relative;
