@@ -4,8 +4,6 @@ import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
 import { B10K } from "../b10k";
 import "./table-s1.scss";
 import { autoinject } from 'aurelia-framework';
-import { EventAggregator } from 'aurelia-event-aggregator';
-import { StringUtils } from '../../../../../packages/core/src/utils/string-utils';
 
 interface IGroup {
     selected: boolean;
@@ -19,10 +17,9 @@ interface IGroup {
 })
 @autoinject
 export class TableS1 {
-    private id: number = StringUtils.hash("" + +new Date());
-    private exporting: boolean = false;
     public groupsReady = false;
     public recordsReady = false;
+    public scilistview;
 
     public listViewConfig: IListViewConfig = {
         fields: B10K.FIELDS,
@@ -34,16 +31,10 @@ export class TableS1 {
     public records = [];
     public groups: IGroup[] = [];
 
-    constructor(
-        private server: ServerAPI,
-        private eventAggregator: EventAggregator,
-    ) {
+    constructor(private server: ServerAPI) {
         this.fields.forEach(field => DatamodelUtils.patchField(field));
         this.compileGroups();
         this.setDefaultSelectedColumns();
-        this.eventAggregator.subscribe('export.complete', ({ id }) => {
-            if (id === this.id) this.exporting = false;
-        });
     }
 
     /**
@@ -134,15 +125,16 @@ export class TableS1 {
     }
 
     // event handlers
-    public contentScrollHandler() {
+    public contentScrollHandler(event) {
         const targetElement = document.querySelector('.sci-content-body');
-        if (targetElement) targetElement.scrollIntoView({ behavior: "smooth" });
+        if (targetElement) {
+            event.target.classList.remove('bounce');
+            targetElement.scrollIntoView({ behavior: "smooth" });
+
+        }
     }
     public async exportEventHandler(format) {
-        if (this.exporting) return;
-
-        this.exporting = true;
-        this.eventAggregator.publish('export', { id: this.id, format });
+        this.scilistview.exportData(format);
     }
 
     // lifecycle hook(s)
