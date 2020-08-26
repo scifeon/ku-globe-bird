@@ -3,6 +3,7 @@ import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
 import { B10K } from "../b10k";
 import "./table-s1.scss";
+import { autoinject } from 'aurelia-framework';
 
 interface IGroup {
     selected: boolean;
@@ -14,9 +15,11 @@ interface IGroup {
     title: "TableS1",
     type: PAGE_TYPE.PUBLIC,
 })
+@autoinject
 export class TableS1 {
     public groupsReady = false;
     public recordsReady = false;
+    public scilistview;
 
     public listViewConfig: IListViewConfig = {
         fields: B10K.FIELDS,
@@ -28,28 +31,10 @@ export class TableS1 {
     public records = [];
     public groups: IGroup[] = [];
 
-    constructor(
-        private server: ServerAPI,
-    ) {
+    constructor(private server: ServerAPI) {
         this.fields.forEach(field => DatamodelUtils.patchField(field));
         this.compileGroups();
         this.setDefaultSelectedColumns();
-    }
-
-    public async attached() {
-        const ds: {
-            results: ResultFlex[];
-        } = await this.server.datasetQuery([{
-            view: "B10K_GenomeResults",
-            collection: "results",
-            sortings: [{ field: "GenomeName" }],
-        }]);
-
-        for (const result of ds.results) {
-            this.records.push(JSON.parse(result.results));
-        }
-
-        LoadingSpinner.hide();
     }
 
     /**
@@ -137,5 +122,35 @@ export class TableS1 {
         if (!selected.length) return;
 
         this.listViewConfig.selected = selected;
+    }
+
+    // event handlers
+    public contentScrollHandler(event) {
+        const targetElement = document.querySelector('.sci-content-body');
+        if (targetElement) {
+            event.target.classList.remove('bounce');
+            targetElement.scrollIntoView({ behavior: "smooth" });
+
+        }
+    }
+    public async exportEventHandler(format) {
+        this.scilistview.exportData(format);
+    }
+
+    // lifecycle hook(s)
+    public async attached() {
+        const ds: {
+            results: ResultFlex[];
+        } = await this.server.datasetQuery([{
+            view: "B10K_GenomeResults",
+            collection: "results",
+            sortings: [{ field: "GenomeName" }],
+        }]);
+
+        for (const result of ds.results) {
+            this.records.push(JSON.parse(result.results));
+        }
+
+        LoadingSpinner.hide();
     }
 }
