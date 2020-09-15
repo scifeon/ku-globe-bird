@@ -1,8 +1,8 @@
 // tslint:disable: max-line-length no-duplicate-string
 
-import { DataType } from "@scifeon/core";
+import { DataType, Field } from "@scifeon/core";
 export class B10K {
-    public static FIELDS = [
+    public static FIELDS: Field[] = [
         { name: "commonName", label: "Common name", group: "Taxonomy" },
         { name: "latinName", label: "Latin name", group: "Taxonomy", ui: { style: "font-style: italic;"} },
         { name: "subspecies", label: "Subspecies", group: "Taxonomy", ui: { style: "font-style: italic;"} },
@@ -12,7 +12,7 @@ export class B10K {
         { name: "iucn", label: "IUCN", group: "Taxonomy" },
         { name: "tissue", label: "Tissue", group: "Sample information" },
         { name: "bioprojectAssociation", label: "Bioproject accession", group: "Sample information", ui: { render: '<a href="https://www.ncbi.nlm.nih.gov/bioproject/${record.bioprojectAssociation}" target="_blank">${record.bioprojectAssociation}</a>'} },
-        { name: "biosample", label: "BioSample", group: "Sample information", ui: { render: '<a href="https://www.ncbi.nlm.nih.gov/biosample/?term=${$vm.biosampleID(record)}" target="_blank">${record.biosample}</a>'} },
+        { name: "biosample", label: "BioSample", accessor: "biosample", group: "Sample information", ui: { render: '<a href="https://www.ncbi.nlm.nih.gov/biosample/?term=${$vm.biosampleID(record)}" target="_blank">${record.biosample}</a>'} },
         { name: "sraAccession", label: "SRA Accession", group: "Sample information", ui: { render: '<a href="https://www.ncbi.nlm.nih.gov/sra/${record.sraAccession}" target="_blank">${record.sraAccession}</a>'} },
         { name: "genomeAccession", label: "Genome Accession", group: "Sample information", ui: { render: '<a href="https://www.ncbi.nlm.nih.gov/nuccore/${record.genomeAccession}" target="_blank">${record.genomeAccession}</a>'}},
         { name: "sourceInstitution", label: "Source institution", group: "Sample information" },
