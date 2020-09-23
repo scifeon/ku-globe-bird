@@ -9,7 +9,7 @@ import { LIST_VIEW_CONFIG } from "./static/birds.static";
  * Page for overview of the sequencing progress of bird genomes.
  */
 @autoinject
-@scifeonRoute({ title: "Bird", route: "b10k/birds" })
+@scifeonRoute({ title: "Birds", route: "b10k/birds" })
 export class BirdsPage {
     public listViewConfig: IListViewConfig = LIST_VIEW_CONFIG;
     public records: any[] = [];
