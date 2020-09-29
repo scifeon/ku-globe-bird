@@ -9,6 +9,8 @@ export default class BirdsDataAPI {
 
     /**
      * Get all records for displaying in the birds overview.
+     *
+     * @return list of taxonomy records.
      */
     public async getRecords(): Promise<ITaxonomyRecord[]> {
         const ds = await this.server.datasetQuery(DATASET_QUERIES);
@@ -36,6 +38,13 @@ export default class BirdsDataAPI {
         return records;
     }
 
+    /**
+     * Set the status of the given taxonomy record according to the status
+     * (completed or not) of the given steps.
+     *
+     * @param allSteps All steps from one experiemnt.
+     * @param record Taxonomy record.
+     */
     private setStatus(allSteps: Step[], record: ITaxonomyRecord) {
         const steps = allSteps.filter(s => s.experimentID === record.experiment?.id);
 
@@ -48,12 +57,26 @@ export default class BirdsDataAPI {
         }
     }
 
+    /**
+     * Check if the step with a given stepName is completed or not.
+     *
+     * @param steps Step list in which to find step with stepName.
+     * @param stepName StepName to find.
+     * @return true if step is completed, else false.
+     */
     private isStepCompleted(steps: Step[], stepName: string): boolean {
         const step = steps.find(s => s.name === stepName);
 
         return step.status === Status.COMPLETED;
     }
 
+    /**
+     * Compole the latin name from genus, species and subspecies of a given
+     * taxonomy record.
+     *
+     * @param record Taxonomy record.
+     * @return string with latin name.
+     */
     private compileLatinName(record: ITaxonomyRecord): string {
         return record.taxonomyItem.latinName = [
             record.taxonomyItem.genusName,

@@ -12,7 +12,7 @@ import { LIST_VIEW_CONFIG } from "./static/birds.static";
 @scifeonRoute({ title: "Birds", route: "b10k/birds" })
 export class BirdsPage {
     public listViewConfig: IListViewConfig = LIST_VIEW_CONFIG;
-    public records: ITaxonomyRecord[] = [];
+    public records: ITaxonomyRecord[];
 
     constructor(private data: BirdsDataAPI) {}
 
