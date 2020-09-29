@@ -2,7 +2,7 @@ import { scifeonRoute } from "@scifeon/plugins";
 import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import BirdsDataAPI from "./data/birds.data-api";
-import BirdsLogic from "./logic/birds.logic";
+import ITaxonomyRecord from "./interfaces/taxonomy-record.interface";
 import { LIST_VIEW_CONFIG } from "./static/birds.static";
 
 /**
@@ -12,18 +12,14 @@ import { LIST_VIEW_CONFIG } from "./static/birds.static";
 @scifeonRoute({ title: "Birds", route: "b10k/birds" })
 export class BirdsPage {
     public listViewConfig: IListViewConfig = LIST_VIEW_CONFIG;
-    public records: any[] = [];
+    public records: ITaxonomyRecord[] = [];
 
-    constructor(
-        private data: BirdsDataAPI,
-        private logic: BirdsLogic,
-    ) {}
+    constructor(private data: BirdsDataAPI) {}
 
     // life cycle hooks.
 
     public async init() {
         this.records = await this.data.getRecords();
-        this.logic.compileLatinNames(this.records);
         console.log("BirdsPage -> init -> this.records", this.records)
     }
 }
