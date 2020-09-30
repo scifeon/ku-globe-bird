@@ -71,8 +71,8 @@ export default class BirdsDataAPI {
     }
 
     /**
-     * Compole the latin name from genus, species and subspecies of a given
-     * taxonomy record.
+     * Compole the latin name from genus and species of a given taxonomy
+     * record.
      *
      * @param record Taxonomy record.
      * @return string with latin name.
@@ -81,7 +81,6 @@ export default class BirdsDataAPI {
         return record.taxonomyItem.latinName = [
             record.taxonomyItem.genusName,
             record.taxonomyItem.speciesName,
-            record.taxonomyItem.subSpeciesName,
         ].join(" ");
     }
 }
