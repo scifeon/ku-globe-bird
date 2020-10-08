@@ -18,6 +18,14 @@
                 "favorite": true,
                 "items": [
                     {
+                        "text": "SOPs",
+                        "url": "/#/data/sops/Experiments"
+                    },
+                    {
+                        "text": "Experiments",
+                        "url": "/#/entity/Experiment"
+                    },
+                    {
                         "text": "Overview",
                         "url": "/#/b10k/birds"
                     },
