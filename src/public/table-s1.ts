@@ -1,9 +1,9 @@
 import { DatamodelUtils, LoadingSpinner, ResultFlex, ServerAPI } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
+import { autoinject } from 'aurelia-framework';
 import { B10K } from "../b10k";
 import "./table-s1.scss";
-import { autoinject } from 'aurelia-framework';
 
 interface IGroup {
     selected: boolean;
@@ -139,6 +139,8 @@ export class TableS1 {
 
     // lifecycle hook(s)
     public async attached() {
+        document.body.classList.add("b10k-bg");
+
         const ds: {
             results: ResultFlex[];
         } = await this.server.datasetQuery([{
@@ -152,5 +154,9 @@ export class TableS1 {
         }
 
         LoadingSpinner.hide();
+    }
+
+    public detached() {
+        document.body.classList.remove("b10k-bg");
     }
 }
