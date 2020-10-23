@@ -18,8 +18,8 @@
                 "favorite": true,
                 "items": [
                     {
-                        "text": "SOPs",
-                        "url": "/#/data/sops/Experiments"
+                        "text": "Requests",
+                        "url": "/#/entity/Request"
                     },
                     {
                         "text": "Experiments",
