@@ -22,6 +22,10 @@
                         "url": "/#/entity/Request"
                     },
                     {
+                        "text": "SOPs",
+                        "url": "/#/data/sops/Experiments"
+                    },
+                    {
                         "text": "Experiments",
                         "url": "/#/entity/Experiment"
                     },
