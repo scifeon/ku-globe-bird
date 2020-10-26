@@ -3,13 +3,12 @@ import { IListViewConfig } from "@scifeon/ui";
 
 export const LIST_VIEW_CONFIG: IListViewConfig = {
     fields: [
-        { accessor: "taxonomyItem.description", label: "Common Name" },
-        { accessor: "taxonomyItem.orderName", label: "Order" },
+        { accessor: "taxonomyItem.name", label: "Latin Name" },
+        { accessor: "taxonomyItem.attributes.speciesEnglishName", label: "Common Name" },
         { accessor: "taxonomyItem.familyName", label: "Family" },
         { accessor: "taxonomyItem.genusName", label: "Genus" },
         { accessor: "taxonomyItem.speciesName", label: "Species" },
         { accessor: "taxonomyItem.subSpeciesName", label: "Sub Species" },
-        { accessor: "taxonomyItem.latinName", label: "Latin Name" },
         // { accessor: "experiment.name", label: "Experiment", ui: { render: '<a href="/#/eln/${record.experiment.id}">${record.experiment.name}</a>' } },
         { accessor: "experiment.name", label: "Experiment" },
         { accessor: "tissueSample", type: DataType.BOOLEAN },

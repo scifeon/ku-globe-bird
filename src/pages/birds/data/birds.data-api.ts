@@ -25,7 +25,7 @@ export default class BirdsDataAPI {
             record.taxonomyItem = taxonomyItem;
             record.sample = ds.samples.find(s => s.taxonomyItemID === record.taxonomyItem.id),
             record.animal = ds.animals.find(s => s.taxonomyItemID === record.taxonomyItem.id);
-            record.inputSample = ds.inputSamples.find(s => s.animalID === record.animal.id);
+            record.inputSample = ds.inputSamples.find(s => s.animalID === record.animal?.id);
             record.inputStep = ds.steps.find(s => s.id === record.inputSample?.stepID);
             record.experiment = ds.experiments.find(e => e.id === record.inputStep?.experimentID);
 
