@@ -1,4 +1,4 @@
-import { Dataset, DataType, Entity, TaxonomyItem } from "@scifeon/core";
+import { Dataset, DataType, Entity, Status, TaxonomyItem } from "@scifeon/core";
 import { PapaparseOutput } from "@scifeon/data";
 import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeon/plugins";
 import { IListViewConfig } from "@scifeon/ui";
@@ -66,6 +66,7 @@ export class DataLoaderHM4 implements DataLoaderPlugin  {
             const taxItem: TaxonomyItem = {
                 eClass: "TaxonomyItem",
                 type: "Bird",
+                status: Status.ACTIVE,
                 name: [...latinName, subSpeciesName].join(" "),
                 familyName: row.familyScientificName,
                 genusName: latinName[0],
