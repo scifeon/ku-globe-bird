@@ -6,6 +6,11 @@
                 "name": "GenomeResults",
                 "sql": "sql/GenomeResults.sql",
                 "accessScope": "Public"
+            },
+            {
+                "name": "TaxonomyItemOverview",
+                "sql": "sql/TaxonomyItemOverview.sql",
+                "accessScope": "All"
             }
         ]
     },

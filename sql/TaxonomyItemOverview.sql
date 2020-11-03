@@ -1,0 +1,64 @@
+SELECT
+	t.id AS TaxonomyItemID,
+	si.id AS SampleID,
+	a.id AS AnimalID,
+	e.id AS ExperimentID,
+	t.GenusName + ' ' + CAST(t.GenusNo AS VARCHAR) AS LatinName,
+	'' AS CommonName,
+	t.FamilyName,
+	t.GenusName,
+	t.SpeciesName,
+	t.SubSpeciesName,
+	e.name AS ExperimentName,
+	(
+	SELECT
+		status
+	FROM
+		WFM_Step
+	WHERE
+		ExperimentID = e.id
+		and name = 'Tissue Sample') AS TissueSampleStatus,
+	(
+	SELECT
+		status
+	FROM
+		WFM_Step
+	WHERE
+		ExperimentID = e.id
+		and name = 'Library Preparation') AS LibraryPreparationStatus,
+	(
+	SELECT
+		status
+	FROM
+		WFM_Step
+	WHERE
+		ExperimentID = e.id
+		AND name = 'Sequencing') AS SequencingStatus,
+	(
+	SELECT
+		status
+	FROM
+		WFM_Step
+	WHERE
+		ExperimentID = e.id
+		AND name = 'Bioinformatics') AS BioinformaticsStatus,
+	(
+	SELECT
+		status
+	FROM
+		WFM_Step
+	WHERE
+		ExperimentID = e.id
+		AND name = 'Validation') AS ValidationStatus
+FROM
+	Bio_TaxonomyItem t
+LEFT JOIN PnS_Animal a ON
+	a.TaxonomyItemID = t.id
+LEFT JOIN WFM_V_StepSampleInput si ON
+	si.AnimalID = a.ID
+	AND si.RequestID IS NOT NULL
+	AND InputPosition = 0
+LEFT JOIN WFM_Step st ON
+	st.ID = si.StepID
+LEFT JOIN WFM_Experiment e ON
+	e.ID = st.ExperimentID;
