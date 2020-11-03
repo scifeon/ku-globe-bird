@@ -1,4 +1,5 @@
 SELECT
+	t.id + '_' + si.id AS id,
 	t.id AS TaxonomyItemID,
 	t.name AS LatinName,
 	t.FamilyName,
