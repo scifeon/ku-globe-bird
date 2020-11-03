@@ -12,6 +12,7 @@ import { LIST_VIEW_CONFIG } from "./static/birds.static";
 @scifeonRoute({ title: "Birds", route: "b10k/birds" })
 export class BirdsPage {
     public listViewConfig: IListViewConfig = LIST_VIEW_CONFIG;
+
     public records: ITaxonomyRecord[];
 
     constructor(private data: BirdsDataAPI) {}
@@ -19,7 +20,7 @@ export class BirdsPage {
     // life cycle hooks.
 
     public async init() {
-        this.records = await this.data.getRecords();
-        console.log("BirdsPage -> init -> this.records", this.records)
+        // this.records = await this.data.getRecords();
+        // console.log("BirdsPage -> init -> this.records", this.records)
     }
 }

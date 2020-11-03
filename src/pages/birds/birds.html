@@ -6,12 +6,22 @@
 
         <page-panels>
             <panel>
+                <panel-header>View</panel-header>
+                <panel-body>
+                    <sci-entity-list-view config.bind="listViewConfig"
+                                          e-class="B10K_TaxonomyItemOverview">
+                    </sci-entity-list-view>
+                </panel-body>
+            </panel>
+
+            <!-- <panel>
+                <panel-header>Records</panel-header>
                 <panel-body>
                     <sci-list-view config.bind="listViewConfig"
                                    records.bind="records">
                     </sci-list-view>
                 </panel-body>
-            </panel>
+            </panel> -->
         </page-panels>
     </page-with-header>
 </template>
