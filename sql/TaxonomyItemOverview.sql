@@ -1,15 +1,15 @@
 SELECT
 	t.id AS TaxonomyItemID,
 	t.name AS LatinName,
+	t.FamilyName,
+	t.GenusName,
+	t.SpeciesName,
+	t.SubSpeciesName,
 	json_value(t.attributes, '$.speciesEnglishName') AS CommonName,
 	si.id AS SampleID,
 	a.id AS AnimalID,
 	e.id AS ExperimentID,
 	e.name AS ExperimentName,
-	t.FamilyName,
-	t.GenusName,
-	t.SpeciesName,
-	t.SubSpeciesName,
 	(
 	SELECT
 		status
