@@ -1,15 +1,15 @@
 SELECT
 	t.id AS TaxonomyItemID,
+	t.name AS LatinName,
+	json_value(t.attributes, '$.speciesEnglishName') AS CommonName,
 	si.id AS SampleID,
 	a.id AS AnimalID,
 	e.id AS ExperimentID,
-	t.GenusName + ' ' + CAST(t.GenusNo AS VARCHAR) AS LatinName,
-	'' AS CommonName,
+	e.name AS ExperimentName,
 	t.FamilyName,
 	t.GenusName,
 	t.SpeciesName,
 	t.SubSpeciesName,
-	e.name AS ExperimentName,
 	(
 	SELECT
 		status
@@ -17,7 +17,7 @@ SELECT
 		WFM_Step
 	WHERE
 		ExperimentID = e.id
-		and name = 'Tissue Sample') AS TissueSampleStatus,
+		AND name = 'Tissue Sample') AS TissueSampleStatus,
 	(
 	SELECT
 		status
@@ -25,7 +25,7 @@ SELECT
 		WFM_Step
 	WHERE
 		ExperimentID = e.id
-		and name = 'Library Preparation') AS LibraryPreparationStatus,
+		AND name = 'Library Preparation') AS LibraryPreparationStatus,
 	(
 	SELECT
 		status
