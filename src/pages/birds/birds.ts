@@ -4,6 +4,7 @@ import { autoinject } from "aurelia-framework";
 import BirdsDataAPI from "./data/birds.data-api";
 import ITaxonomyRecord from "./interfaces/taxonomy-record.interface";
 import { LIST_VIEW_CONFIG } from "./static/birds.static";
+import "./styles/birds.scss";
 
 /**
  * Page for overview of the sequencing progress of bird genomes.
