@@ -1,22 +1,20 @@
-import { DatasetQuery, DataType } from "@scifeon/core";
+import { DatasetQuery } from "@scifeon/core";
 import { IListViewConfig } from "@scifeon/ui";
 
 export const LIST_VIEW_CONFIG: IListViewConfig = {
     fields: [
-        // { name: "TaxonomyItemID" },
-        { accessor: "latinName" },
+        { accessor: "latinName", ui: { render: '<a href="/#/entity/TaxonomyItem/${record.taxonomyItemID}">${record.latinName}</a>' } },
         { accessor: "commonName", label: "Common Name" },
         { accessor: "familyName", label: "Family" },
         { accessor: "genusName", label: "Genus" },
         { accessor: "speciesName", label: "Species" },
         { accessor: "subSpeciesName", label: "Sub Species" },
-        // { accessor: "experiment.name", label: "Experiment", ui: { render: '<a href="/#/eln/${record.experiment.id}">${record.experiment.name}</a>' } },
-        { accessor: "experimentName", label: "Experiment" },
-        { accessor: "tissueSampleStatus" }, //, type: DataType.BOOLEAN },
-        { accessor: "libraryPrep", label: "Library Preparation", type: DataType.BOOLEAN },
-        { accessor: "sequencing", label: "Sequencing", type: DataType.BOOLEAN },
-        { accessor: "bioinformatics", label: "Bioinformatics", type: DataType.BOOLEAN },
-        { accessor: "validation", label: "Validation", type: DataType.BOOLEAN },
+        { accessor: "experimentName", label: "Experiment", ui: { render: '<a href="/#/eln/${record.experimentID}">${record.experimentName}</a>' } },
+        { accessor: "tissueSampleStatus" },
+        { accessor: "libraryPreparationStatus", label: "Library Preparation" },
+        { accessor: "sequencingStatus", label: "Sequencing" },
+        { accessor: "bioinformaticsStatus", label: "Bioinformatics" },
+        { accessor: "validationStatus", label: "Validation" },
     ],
 };
 
