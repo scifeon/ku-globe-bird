@@ -1,4 +1,3 @@
-import { DatasetQuery } from "@scifeon/core";
 import { IListViewConfig } from "@scifeon/ui";
 
 export const LIST_VIEW_CONFIG: IListViewConfig = {
@@ -17,43 +16,3 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         { accessor: "validationStatus", label: "Validation", ui: { render: '<span class="overview color-${record.validationStatus}">${record.validationStatus}</span>'} },
     ],
 };
-
-export const DATASET_QUERIES: DatasetQuery[] = [
-    {
-        eClass: "TaxonomyItem",
-        collection: "taxonomyItems",
-    },
-    {
-        eClass: "Animal",
-        collection: "animals",
-        filters: [
-            { field: "TaxonomyItemID", in: "taxonomyItems.id" },
-        ],
-    },
-    {
-        eClass: "Experiment",
-        collection: "experiments",
-    },
-    {
-        view: "StepSampleInput",
-        collection: "inputSamples",
-        filters: [
-            { field: "inputPosition", value: 0 },
-        ],
-    },
-    {
-        eClass: "Step",
-        collection: "steps",
-        filters: [
-            { field: "ID", in: "inputSamples.stepID" },
-            { field: "ExperimentID", in: "experiments.id" },
-        ],
-    },
-    {
-        eClass: "Sample",
-        collection: "samples",
-        filters: [
-            { field: "TaxonomyItemID", in: "taxonomyItems.id" },
-        ],
-    },
-];
