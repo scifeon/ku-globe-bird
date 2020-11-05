@@ -3,7 +3,7 @@ import { IListViewConfig } from "@scifeon/ui";
 
 export const LIST_VIEW_CONFIG: IListViewConfig = {
     fields: [
-        { accessor: "latinName", ui: { render: '<a href="/#/entity/TaxonomyItem/${record.taxonomyItemID}">${record.latinName}</a>' } },
+        { accessor: "latinName", ui: { render: '<a href="/#/entity/TaxonomyItem/${record.id}">${record.latinName}</a>' } },
         { accessor: "commonName", label: "Common Name" },
         { accessor: "familyName", label: "Family" },
         { accessor: "genusName", label: "Genus" },

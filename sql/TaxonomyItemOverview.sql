@@ -1,6 +1,5 @@
-SELECT
-	t.id + '_' + si.id AS id,
-	t.id AS TaxonomyItemID,
+SELECT DISTINCT
+	t.id,
 	t.name AS LatinName,
 	t.FamilyName,
 	t.GenusName,
