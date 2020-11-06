@@ -26,6 +26,9 @@
                     <a href="#" target="_blank">
                         <span>&gt; Visit the project's home page</span>
                     </a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdCUlK_NkO92COIJ3Weex2jb995y_re2oGf9S7eHQGwFzB7g/viewform" target="_blank">
+                        <span>&gt; Contribute to the project</span>
+                    </a>
                 </div>
             </article>
         </section>
@@ -81,12 +84,12 @@
                 </sci-collapsible>
 
                 <sci-list-view class="sci-list-view" view-model.ref="scilistview" if.bind="recordsReady" config.bind="listViewConfig" selected-column-infos.from-view="selectedColumnInfos" records.bind="records"></sci-list-view>
-                
+
                 <loading-dots class="sci-loading" if.bind="!recordsReady || !groupsReady"></loading-dots>
             </div>
         </section>
     </main>
-    
+
     <section class="sci-persistent-branding">
         <a class="sci-persistent-branding-logo" href="https://scifeon.com/" target="_blank">
             <span class="sci-persistent-branding-logo-text">Powered by</span>
