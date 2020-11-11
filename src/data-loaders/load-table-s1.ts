@@ -44,7 +44,7 @@ export class LoadB10KTableS1 implements DataLoaderPlugin {
 
         const sheet = this.workbook.Sheets.Sheet1;
 
-        for (let xlRow = 3; xlRow < SpreadsheetUtils.getXlrowMax(sheet); xlRow++) {
+        for (let xlRow = 3; xlRow <= SpreadsheetUtils.getXlrowMax(sheet); xlRow++) {
             if (!sheet["A" + xlRow]) continue;
 
             const gi: IGenomeInfo = {
