@@ -589,7 +589,7 @@ live-notifications {
     }
 }
 
-.b10k-bg + #scifeon-boot { overflow: hidden }
+.b10k-bg > #scifeon-boot { overflow: hidden; }
 
 @media(max-width: 767px) {
 	.sci-footer {
