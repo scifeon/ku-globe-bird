@@ -36,11 +36,9 @@ export class DataLoaderHM4 implements DataLoaderPlugin  {
             { accessor: "familyName" },
             { accessor: "genusName" },
             { accessor: "speciesName" },
-            { accessor: "subSpeciesName" },
             { accessor: "attributes.familyEnglishName", label: "Family English Name" },
             { accessor: "attributes.speciesEnglishName", label: "Species English Name" },
             { accessor: "attributes.row", label: "Row", type: DataType.INT, format: "0" },
-            { accessor: "attributes.group", label: "Group", type: DataType.INT, format: "0" },
         ],
     };
 
@@ -57,31 +55,33 @@ export class DataLoaderHM4 implements DataLoaderPlugin  {
     private processCSV(csv: PapaparseOutput) {
         this.entities = [];
         csv.data.shift();
+        const lookup = new Set();
 
         for (const csvRow of csv.data) {
             const row = this.createRowObject(csvRow);
+
+            if (lookup.has(row.speciesScientificName)) continue;
+
             const latinName = row.speciesScientificName.split(" ");
-            const subSpeciesName = row.subspeciesName;
 
             const taxItem: TaxonomyItem = {
                 eClass: "TaxonomyItem",
                 type: "Bird",
                 status: Status.ACTIVE,
-                name: [...latinName, subSpeciesName].join(" "),
+                name: row.speciesScientificName,
                 familyName: row.familyScientificName,
                 genusName: latinName[0],
                 speciesName: latinName[1],
-                subSpeciesName,
             };
 
             taxItem.attributes = {
                 row: row.row,
-                group: row.group,
                 familyEnglishName: row.familyEnglishName,
                 speciesEnglishName: row.speciesEnglishName,
             };
 
             this.entities.push(taxItem);
+            lookup.add(row.speciesScientificName);
         }
     }
 
@@ -93,8 +93,6 @@ export class DataLoaderHM4 implements DataLoaderPlugin  {
             genusName: row[3].trim(),
             speciesScientificName: row[4].trim(),
             speciesEnglishName: row[5].trim(),
-            subspeciesName: row[6].trim(),
-            group: row[7].trim(),
         };
     }
 
