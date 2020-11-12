@@ -4,7 +4,6 @@ SELECT DISTINCT
 	t.FamilyName,
 	t.GenusName,
 	t.SpeciesName,
-	t.SubSpeciesName,
 	json_value(t.attributes, '$.speciesEnglishName') AS CommonName,
 	si.id AS SampleID,
 	a.id AS AnimalID,

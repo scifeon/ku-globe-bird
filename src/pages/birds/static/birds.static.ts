@@ -7,7 +7,6 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         { accessor: "familyName", label: "Family" },
         { accessor: "genusName", label: "Genus" },
         { accessor: "speciesName", label: "Species" },
-        { accessor: "subSpeciesName", label: "Sub Species" },
         { accessor: "experimentName", label: "Experiment", ui: { render: '<a href="/#/eln/${record.experimentID}">${record.experimentName}</a>' } },
         { accessor: "tissueSampleStatus", label: "Tissue Sample", ui: { render: '<span class="overview color-${record.tissueSampleStatus}">${record.tissueSampleStatus}</span>'} },
         { accessor: "libraryPreparationStatus", label: "Library Preparation", ui: { render: '<span class="overview color-${record.libraryPreparationStatus}">${record.libraryPreparationStatus}</span>'} },
