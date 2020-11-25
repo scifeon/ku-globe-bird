@@ -1,10 +1,14 @@
-import { Sample } from "@scifeon/core";
+import { Sample, ServerAPI } from "@scifeon/core";
 import { DataRowUtil, EntityMapper, SpreadsheetUtils } from "@scifeon/data";
 import { WorkSheet } from "@scifeon/plugins/src/xlsx-types";
+import { autoinject } from "aurelia-framework";
 
+@autoinject
 export default class DataLoaderMasterListDataAPI {
     private dataRowUtil = new DataRowUtil();
     private entityMapper = new EntityMapper();
+
+    constructor(private server: ServerAPI) {}
 
     public getSamplesAll(sheet: WorkSheet, columnNames) {
         const samples: Sample[] = [];
@@ -20,6 +24,15 @@ export default class DataLoaderMasterListDataAPI {
         }
 
         return samples;
+    }
+
+    public async getSamplesByName(names: string[]): Promise<Sample[]> {
+        const response = await this.server.getEntities(
+            "Sample",
+            [{ field: "name", values: names }],
+        );
+
+        return response.data;
     }
 
     private mapJsonToSample(obj: any): Sample {

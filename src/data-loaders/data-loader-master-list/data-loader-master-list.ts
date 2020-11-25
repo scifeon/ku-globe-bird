@@ -1,9 +1,10 @@
 
-import { Dataset, Entity, ServerAPI } from "@scifeon/core";
+import { Dataset, Entity } from "@scifeon/core";
 import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
 import { IListViewConfig } from "../../../../../../packages/ui/src/sci-list-view-interfaces";
 import DataLoaderMasterListDataAPI from "./data/data-loader-master-list.data-api";
+import DataLoaderMasterListLogic from "./logic/data-loader-master-list.logic";
 
 /**
  * Data loader for reading an excel files with sample information and results
@@ -31,23 +32,23 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
 
     constructor(
         private data: DataLoaderMasterListDataAPI,
-        private server: ServerAPI,
+        private logic: DataLoaderMasterListLogic,
     ) { }
 
-    public readFiles() {
+    public async readFiles() {
         const fileInfo = this.context.fileInfos[0];
-
         const sheetAll = fileInfo.wb.Sheets["Report all"];
         const sheetSmithsonian = fileInfo.wb.Sheets["Report smithsonian"];
         const columnNames = ["NO", "Phase", "B10K ID"];
-
         const samplesAll = this.data.getSamplesAll(sheetAll, columnNames);
         const samplesSmithsonian = this.data.getSamplesAll(sheetSmithsonian, columnNames);
+        const b10kIds = this.logic.compileUniqueB10KIds([...samplesAll, ...samplesSmithsonian]);
+        const samples = await this.data.getSamplesByName(b10kIds);
+        const merge1 = this.logic.mergeEntityCollections(samples, samplesAll);
+        const merge2 = this.logic.mergeEntityCollections(merge1, samplesSmithsonian);
 
-        console.log("🚀 ~ file: data-loader-master-list.ts ~ line 41 ~ DataLoaderMasterList ~ readFiles ~ samplesAll", samplesAll)
-        console.log("🚀 ~ file: data-loader-master-list.ts ~ line 46 ~ DataLoaderMasterList ~ readFiles ~ samplesSmithsonian", samplesSmithsonian)
-
-        this.entities.push(...samplesAll, ...samplesSmithsonian);
+        // this.entities.push(...samplesAll, ...samplesSmithsonian);
+        this.entities.push(...merge2);
     }
 
     public getResult(): Dataset {
