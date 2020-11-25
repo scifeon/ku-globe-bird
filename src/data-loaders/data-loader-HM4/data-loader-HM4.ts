@@ -21,7 +21,7 @@ const match = (context: IDataLoaderContext) => {
  * @class DataLoaderHM4
  */
 @scifeonDataLoader({
-    name: "Howard & More v4",
+    name: "B10K Howard & More v4",
     description: "Load Howard-Moore_4th_checklist",
     match,
     rank: 1,
