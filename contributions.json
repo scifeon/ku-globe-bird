@@ -31,6 +31,14 @@
                         "url": "/#/data/sops/Experiments"
                     },
                     {
+                        "text": "Birds",
+                        "url": "/#/entity/Animal"
+                    },
+                    {
+                        "text": "Bird Samples",
+                        "url": "/#/entity/Sample"
+                    },
+                    {
                         "text": "Experiments",
                         "url": "/#/entity/Experiment"
                     },
