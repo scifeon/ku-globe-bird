@@ -40,15 +40,15 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
         const sheetAll = fileInfo.wb.Sheets["Report all"];
         const sheetSmithsonian = fileInfo.wb.Sheets["Report smithsonian"];
         const columnNames = ["NO", "Phase", "B10K ID"];
-        const samplesAll = this.data.getSamplesAll(sheetAll, columnNames);
-        const samplesSmithsonian = this.data.getSamplesAll(sheetSmithsonian, columnNames);
-        const b10kIds = this.logic.compileUniqueB10KIds([...samplesAll, ...samplesSmithsonian]);
-        const samples = await this.data.getSamplesByName(b10kIds);
+        const samples = await this.data.getSamples();
+        const nameSet = this.logic.compileNameSet(samples);
+        const samplesAll = this.data.getExcelSamples(sheetAll, columnNames);
+        const samplesSmithsonian = this.data.getExcelSamples(sheetSmithsonian, columnNames);
         const merge1 = this.logic.mergeEntityCollections(samples, samplesAll);
         const merge2 = this.logic.mergeEntityCollections(merge1, samplesSmithsonian);
+        const filtered = merge2.filter(sample => nameSet.has(sample.name));
 
-        // this.entities.push(...samplesAll, ...samplesSmithsonian);
-        this.entities.push(...merge2);
+        this.entities.push(...filtered);
     }
 
     public getResult(): Dataset {

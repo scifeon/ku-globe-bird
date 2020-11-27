@@ -1,14 +1,14 @@
 import { Entity, Sample } from "@scifeon/core";
 
 export default class DataLoaderMasterListLogic {
-    public compileUniqueB10KIds(samples: Sample[]) {
-        const sampleIds: Set<string> = new Set();
+    public compileNameSet(samples: Sample[]): Set<string> {
+        const sampleNames: Set<string> = new Set();
 
         for (const sample of samples) {
-            sampleIds.add(sample.name);
+            sampleNames.add(sample.name);
         }
 
-        return Array.from(sampleIds);
+        return sampleNames;
     }
 
     public mergeEntityCollections(collection1: Entity[], collection2: Entity[]): Entity[] {
@@ -22,8 +22,8 @@ export default class DataLoaderMasterListLogic {
             const entity1 = lookup[entity2.name];
 
             if (entity1) {
-                Object.assign(entity2, entity1);
                 Object.assign(entity1, entity2);
+                Object.assign(entity2, entity1);
             } else {
                 lookup[entity2.name] = entity2;
             }

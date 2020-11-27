@@ -14,8 +14,8 @@ describe("DataLoaderMasterListLogic", () => {
                     { name: "foo" },
                 ];
 
-                const uniqueNames = logic.compileUniqueB10KIds(samples);
-                const actual = JSON.stringify(uniqueNames);
+                const uniqueNames = logic.compileNameSet(samples);
+                const actual = JSON.stringify(Array.from(uniqueNames));
                 const expected = JSON.stringify(["foo", "bar"]);
 
                 assert.equal(actual, expected);

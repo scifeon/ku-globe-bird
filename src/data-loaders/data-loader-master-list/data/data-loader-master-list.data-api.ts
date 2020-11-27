@@ -10,7 +10,13 @@ export default class DataLoaderMasterListDataAPI {
 
     constructor(private server: ServerAPI) {}
 
-    public getSamplesAll(sheet: WorkSheet, columnNames) {
+    public async getSamples(): Promise<Sample[]> {
+        const response = await this.server.getEntities("Sample");
+
+        return response.data;
+    }
+
+    public getExcelSamples(sheet: WorkSheet, columnNames) {
         const samples: Sample[] = [];
 
         const headerRow = this.dataRowUtil.findRowWithKeys(sheet, columnNames);
@@ -24,15 +30,6 @@ export default class DataLoaderMasterListDataAPI {
         }
 
         return samples;
-    }
-
-    public async getSamplesByName(names: string[]): Promise<Sample[]> {
-        const response = await this.server.getEntities(
-            "Sample",
-            [{ field: "name", values: names }],
-        );
-
-        return response.data;
     }
 
     private mapJsonToSample(obj: any): Sample {
