@@ -23,10 +23,6 @@
                 "favorite": true,
                 "items": [
                     {
-                        "text": "Requests",
-                        "url": "/#/entity/Request"
-                    },
-                    {
                         "text": "SOPs",
                         "url": "/#/data/sops/Experiments"
                     },
