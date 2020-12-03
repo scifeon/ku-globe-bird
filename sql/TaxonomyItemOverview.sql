@@ -16,7 +16,15 @@ SELECT DISTINCT
 		WFM_Step
 	WHERE
 		ExperimentID = e.id
-		AND name = 'Tissue Sample') AS TissueSampleStatus,
+		AND name = 'DNA extraction') AS DNAExtractionStatus,
+	(
+	SELECT
+		status
+	FROM
+		WFM_Step
+	WHERE
+		ExperimentID = e.id
+		AND name = 'DNA quality testing') AS DNAQualityTestingStatus,
 	(
 	SELECT
 		status
@@ -40,7 +48,7 @@ SELECT DISTINCT
 		WFM_Step
 	WHERE
 		ExperimentID = e.id
-		AND name = 'Bioinformatics') AS BioinformaticsStatus,
+		AND name = 'Genome assembly') AS GenomeAssemblyStatus,
 	(
 	SELECT
 		status
@@ -48,7 +56,7 @@ SELECT DISTINCT
 		WFM_Step
 	WHERE
 		ExperimentID = e.id
-		AND name = 'Validation') AS ValidationStatus
+		AND name = 'Genome qualification') AS GenomeQualifationStatus
 FROM
 	Bio_TaxonomyItem t
 LEFT JOIN PnS_Animal a ON
