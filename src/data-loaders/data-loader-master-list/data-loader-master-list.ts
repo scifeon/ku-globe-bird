@@ -1,10 +1,9 @@
 
-import { Dataset, Entity } from "@scifeon/core";
+import { Dataset, Entity, ObjectUtils } from "@scifeon/core";
 import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
 import { IListViewConfig } from "../../../../../../packages/ui/src/sci-list-view-interfaces";
 import DataLoaderMasterListDataAPI from "./data/data-loader-master-list.data-api";
-import DataLoaderMasterListLogic from "./logic/data-loader-master-list.logic";
 
 /**
  * Data loader for reading an excel files with sample information and results
@@ -32,7 +31,6 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
 
     constructor(
         private data: DataLoaderMasterListDataAPI,
-        private logic: DataLoaderMasterListLogic,
     ) { }
 
     public async readFiles() {
@@ -44,8 +42,8 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
         const samplesAll = this.data.getExcelSamples(sheetAll, columnNames);
         const samplesSmithsonian = this.data.getExcelSamples(sheetSmithsonian, columnNames);
 
-        const merge1 = this.logic.mergeCollections(samples, samplesAll, "name");
-        const merge2 = this.logic.mergeCollections(merge1, samplesSmithsonian, "name");
+        const merge1 = ObjectUtils.mergeCollections(samples, samplesAll, "name");
+        const merge2 = ObjectUtils.mergeCollections(merge1, samplesSmithsonian, "name");
 
         this.entities.push(...Object.values(merge2));
     }
