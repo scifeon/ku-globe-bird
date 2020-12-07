@@ -39,11 +39,11 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
         const sheetSmithsonian = fileInfo.wb.Sheets["Report smithsonian"];
         const columnNames = ["NO", "Phase", "B10K ID"];
         const samples = await this.data.getSamples();
-        const samplesAll = this.data.getExcelSamples(sheetAll, columnNames);
-        const samplesSmithsonian = this.data.getExcelSamples(sheetSmithsonian, columnNames);
+        const samplesReportAll = this.data.getExcelSamples(sheetAll, columnNames);
+        const samplesReportSmithsonian = this.data.getExcelSamples(sheetSmithsonian, columnNames);
 
-        const merge1 = ObjectUtils.mergeCollections(samples, samplesAll, "name");
-        const merge2 = ObjectUtils.mergeCollections(merge1, samplesSmithsonian, "name");
+        const merge1 = ObjectUtils.mergeCollections(samples, samplesReportAll, "name");
+        const merge2 = ObjectUtils.mergeCollections(merge1, samplesReportSmithsonian, "name");
 
         this.entities.push(...Object.values(merge2));
     }
