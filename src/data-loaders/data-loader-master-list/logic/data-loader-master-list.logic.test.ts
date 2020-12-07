@@ -5,25 +5,7 @@ import DataLoaderMasterListLogic from "./data-loader-master-list.logic";
 const logic = new DataLoaderMasterListLogic();
 
 describe("DataLoaderMasterListLogic", () => {
-    describe("#compileUniqueB10KIds", () => {
-        describe("with sample list containing duplicate names", () => {
-            it("should return list of unique names", () => {
-                const samples = [
-                    { name: "foo" },
-                    { name: "bar" },
-                    { name: "foo" },
-                ];
-
-                const uniqueNames = logic.compileNameSet(samples);
-                const actual = JSON.stringify(Array.from(uniqueNames));
-                const expected = JSON.stringify(["foo", "bar"]);
-
-                assert.equal(actual, expected);
-            });
-        });
-    });
-
-    describe("#mergeEntityCollections", () => {
+    describe("#mergeCollections", () => {
         describe("with collections of different properties", () => {
             it("should return merged collection", () => {
                 const collection1 = [
@@ -34,7 +16,7 @@ describe("DataLoaderMasterListLogic", () => {
                     { name: "foo", prop2: "prop2" },
                 ];
 
-                const merged = logic.mergeEntityCollections(collection1, collection2);
+                const merged = logic.mergeCollections(collection1, collection2, "name");
                 const actual = JSON.stringify(merged);
                 const expected = JSON.stringify(
                     [
@@ -61,7 +43,7 @@ describe("DataLoaderMasterListLogic", () => {
                     { name: "foo", prop2: "prop2" },
                 ];
 
-                const merged = logic.mergeEntityCollections(collection1, collection2);
+                const merged = logic.mergeCollections(collection1, collection2, "name");
                 const actual = JSON.stringify(merged);
                 const expected = JSON.stringify(
                     [
@@ -92,7 +74,7 @@ describe("DataLoaderMasterListLogic", () => {
                     { name: "bar", prop3: "prop3" },
                 ];
 
-                const merged = logic.mergeEntityCollections(collection1, collection2);
+                const merged = logic.mergeCollections(collection1, collection2, "name");
                 const actual = JSON.stringify(merged);
                 const expected = JSON.stringify(
                     [
@@ -123,7 +105,7 @@ describe("DataLoaderMasterListLogic", () => {
                     { name: "bar", prop3: "prop3" },
                 ];
 
-                const merged = logic.mergeEntityCollections(collection1, collection2);
+                const merged = logic.mergeCollections(collection1, collection2, "name");
                 const actual = JSON.stringify(merged);
                 const expected = JSON.stringify(
                     [
@@ -156,7 +138,7 @@ describe("DataLoaderMasterListLogic", () => {
                     { name: "bar", prop3: "prop3" },
                 ];
 
-                const merged = logic.mergeEntityCollections(collection1, collection2);
+                const merged = logic.mergeCollections(collection1, collection2, "name");
                 const actual = JSON.stringify(merged);
                 const expected = JSON.stringify(
                     [
@@ -189,7 +171,7 @@ describe("DataLoaderMasterListLogic", () => {
                     { prop3: "prop3" },
                 ];
 
-                const merged = logic.mergeEntityCollections(collection1, collection2);
+                const merged = logic.mergeCollections(collection1, collection2, "name");
                 const actual = JSON.stringify(merged);
                 const expected = JSON.stringify(
                     [

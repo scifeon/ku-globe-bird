@@ -1,34 +1,42 @@
-import { Entity, Sample } from "@scifeon/core";
+import { ObjectUtils } from "@scifeon/core";
 
 export default class DataLoaderMasterListLogic {
-    public compileNameSet(samples: Sample[]): Set<string> {
-        const sampleNames: Set<string> = new Set();
+    /**
+     * Merge two given collections on a maching given key and return the
+     * merged collection.
+     *
+     * @param collection1 Collection1.
+     * @param collection2 Collectoin2.
+     * @returns Merged collection.
+     */
+    public mergeCollections(collection1: any[], collection2: any[], key: string): any[] {
+        const merged: any[] = ObjectUtils.cloneDeep(collection1);
+        const lookup = this.compileLookup(merged, key);
 
-        for (const sample of samples) {
-            sampleNames.add(sample.name);
-        }
-
-        return sampleNames;
-    }
-
-    public mergeEntityCollections(collection1: Entity[], collection2: Entity[]): Entity[] {
-        const lookup: { [key: string]: Entity } = {};
-
-        for (const entity of collection1) {
-            lookup[entity.name] = entity;
-        }
-
-        for (const entity2 of collection2) {
-            const entity1 = lookup[entity2.name];
-
-            if (entity1) {
-                Object.assign(entity1, entity2);
-                Object.assign(entity2, entity1);
+        for (const item of collection2) {
+            if (lookup[item[key]]) {
+                Object.assign(lookup[item[key]], item);
             } else {
-                lookup[entity2.name] = entity2;
+                merged.push(item);
             }
         }
 
-        return Object.values(lookup);
+        return merged;
+    }
+
+    /**
+     * Compile from a given collection of items a lookup hash map with a given
+     * key as key and the item as value.
+     *
+     * @param collection Collection.
+     * @param key Lookup key.
+     * @returns Lookup hash map.
+     */
+    private compileLookup(collection: any[], key: string): { [key: string]: any } {
+        const lookup = {};
+
+        collection.forEach(item => lookup[item[key]] = item);
+
+        return lookup;
     }
 }

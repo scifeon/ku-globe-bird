@@ -41,14 +41,13 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
         const sheetSmithsonian = fileInfo.wb.Sheets["Report smithsonian"];
         const columnNames = ["NO", "Phase", "B10K ID"];
         const samples = await this.data.getSamples();
-        const nameSet = this.logic.compileNameSet(samples);
         const samplesAll = this.data.getExcelSamples(sheetAll, columnNames);
         const samplesSmithsonian = this.data.getExcelSamples(sheetSmithsonian, columnNames);
-        const merge1 = this.logic.mergeEntityCollections(samples, samplesAll);
-        const merge2 = this.logic.mergeEntityCollections(merge1, samplesSmithsonian);
-        const filtered = merge2.filter(sample => nameSet.has(sample.name));
 
-        this.entities.push(...filtered);
+        const merge1 = this.logic.mergeCollections(samples, samplesAll, "name");
+        const merge2 = this.logic.mergeCollections(merge1, samplesSmithsonian, "name");
+
+        this.entities.push(...Object.values(merge2));
     }
 
     public getResult(): Dataset {
