@@ -20,7 +20,7 @@ export default class DataLoaderMasterListDataAPI {
         const samples: Sample[] = [];
 
         const headerRow = this.dataRowUtil.findRowWithKeys(sheet, columnNames);
-        const propertyNames = SpreadsheetUtils.readColTitles(sheet, headerRow, false, 30);
+        const propertyNames = SpreadsheetUtils.readColTitles(sheet, headerRow, true, 30);
 
         for (let i = headerRow + 1; i <= SpreadsheetUtils.getXlrowMax(sheet); i++) {
             const values = SpreadsheetUtils.readColTitles(sheet, i, true, 30);
@@ -33,7 +33,15 @@ export default class DataLoaderMasterListDataAPI {
     }
 
     private mapJsonToSample(obj: any): Sample {
-        delete obj[""];
+        const unwanted = Object.keys(obj).filter(key => key.match(/property\d+/));
+        unwanted.push("");
+        unwanted.forEach(u => delete obj[u]);
+
+        for (const [key, value] of Object.entries(obj)) {
+            if (value === undefined) {
+                obj[key] = null;
+            }
+        }
 
         return {
             eClass: "Sample",
