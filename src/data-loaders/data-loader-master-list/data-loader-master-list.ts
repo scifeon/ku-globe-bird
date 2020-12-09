@@ -51,7 +51,7 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
             const taxItem = taxItems.find(ti => ti.name === sample.attributes.speciesName);
 
             if (taxItem) {
-                sample.taxonomyItemId = sample.id;
+                sample.taxonomyItemId = taxItem.id;
             } else {
                 console.log("Could not link: ", sample.attributes.speciesName);
             }
