@@ -38,14 +38,26 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
         const sheetAll = fileInfo.wb.Sheets["Report all"];
         const sheetSmithsonian = fileInfo.wb.Sheets["Report smithsonian"];
         const columnNames = ["NO", "Phase", "B10K ID"];
-        const samples = await this.data.getSamples();
+        const samples = await this.data.getEntities("Sample");
         const samplesReportAll = this.data.getExcelSamples(sheetAll, columnNames);
         const samplesReportSmithsonian = this.data.getExcelSamples(sheetSmithsonian, columnNames);
 
         const merge1 = ObjectUtils.mergeCollections(samples, samplesReportAll, "name");
         const merge2 = ObjectUtils.mergeCollections(merge1, samplesReportSmithsonian, "name");
 
-        this.entities.push(...Object.values(merge2));
+        const taxItems = await this.data.getEntities("TaxonomyItem");
+
+        for (const sample of merge2) {
+            const taxItem = taxItems.find(ti => ti.name === sample.attributes.speciesName);
+
+            if (taxItem) {
+                sample.taxonomyItemId = sample.id;
+            } else {
+                console.log("Could not link: ", sample.attributes.speciesName);
+            }
+
+            this.entities.push(sample);
+        }
     }
 
     public getResult(): Dataset {

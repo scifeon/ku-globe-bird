@@ -1,4 +1,4 @@
-import { Sample, ServerAPI } from "@scifeon/core";
+import { Entity, Sample, ServerAPI } from "@scifeon/core";
 import { DataRowUtil, EntityMapper, SpreadsheetUtils } from "@scifeon/data";
 import { WorkSheet } from "@scifeon/plugins/src/xlsx-types";
 import { autoinject } from "aurelia-framework";
@@ -10,8 +10,9 @@ export default class DataLoaderMasterListDataAPI {
 
     constructor(private server: ServerAPI) {}
 
-    public async getSamples(): Promise<Sample[]> {
-        const response = await this.server.getEntities("Sample");
+    public async getEntities(eClass: string): Promise<Entity[]> {
+        const length = await this.server.getEntityCount(eClass);
+        const response = await this.server.getEntities(eClass, [], [], 0, length);
 
         return response.data;
     }
