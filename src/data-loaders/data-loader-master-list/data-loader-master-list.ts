@@ -1,8 +1,9 @@
 import { Dataset, Entity, ObjectUtils } from "@scifeon/core";
 import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeon/plugins";
-import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
+import DataLoaderVariousSamplesLogic from "../data-loader-various-samples/logic/data-loader-various-samples.logic";
 import DataLoaderMasterListDataAPI from "./data/data-loader-master-list.data-api";
+import { LISTVIEW_CONFIG_MATCHED, LISTVIEW_CONFIG_UNMATCHED } from "./static/data-loader-master-list.static";
 import "./styles/data-loader-master-list.scss";
 
 /**
@@ -18,21 +19,8 @@ import "./styles/data-loader-master-list.scss";
 })
 @autoinject
 export class DataLoaderMasterList implements DataLoaderPlugin {
-    public listViewConfigMatched: IListViewConfig = {
-        fields: [
-            { accessor: "name", label: "B10K ID" },
-            { accessor: "description", label: "Latin name" },
-        ],
-        height: 200,
-    };
-
-    public listViewConfigUnMatched: IListViewConfig = {
-        fields: [
-            { accessor: "name", label: "B10K ID" },
-            { accessor: "description", label: "Latin name" },
-        ],
-        height: 200,
-    };
+    public listViewConfigMatched = LISTVIEW_CONFIG_MATCHED;
+    public listViewConfigUnMatched = LISTVIEW_CONFIG_UNMATCHED;
 
     public entities: Entity[] = [];
     public unmatched: Entity[] = [];
@@ -41,6 +29,7 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
 
     constructor(
         private data: DataLoaderMasterListDataAPI,
+        private logic: DataLoaderVariousSamplesLogic,
     ) { }
 
     public async readFiles() {
@@ -57,17 +46,11 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
 
         const taxItems = await this.data.getEntities("TaxonomyItem");
 
-        for (const sample of merge2) {
-            const taxItem = taxItems.find(ti => ti.name === sample.attributes.speciesName);
-
-            if (taxItem) {
-                sample.taxonomyItemId = taxItem.id;
-            } else {
-                this.unmatched.push(sample);
-            }
-
-            this.entities.push(sample);
-        }
+        this.entities = this.logic.linkTaxAndSamples(taxItems, merge2);
+        this.unmatched = [
+            ...this.logic.compileUnmatched(taxItems, samplesReportAll),
+            ...this.logic.compileUnmatched(taxItems, samplesReportSmithsonian),
+        ];
     }
 
     public getResult(): Dataset {
