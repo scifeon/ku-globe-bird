@@ -173,24 +173,40 @@ export class B10KCustomFields {
                 label: "Common Name",
                 group: "taxonomy",
             },
+            // >>>>>>>>>>>>>>>>>>>>>>>> STATUS <<<<<<<<<<<<<<<<<<<<<<<<
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.status",
+                type: DataType.STRING,
+                label: "Status",
+                group: "status",
+            },
         ];
 
-        const bioinformaticsGroup: IFieldGroup = {
-            name: "bioinformatics",
-            label: "Bioinformatics",
-            fields: [],
-            displayFields: [],
-        };
+        const fieldGroups: IFieldGroup[] = [
+            {
+                name: "status",
+                label: "Status",
+                fields: [],
+                displayFields: [],
+            },
+            {
+                name: "bioinformatics",
+                label: "Bioinformatics",
+                fields: [],
+                displayFields: [],
+            },
+            {
+                name: "taxonomy",
+                label: "Taxonomy",
+                fields: [],
+                displayFields: [],
+            },
+        ];
 
-        const taxonomyGroup: IFieldGroup = {
-            name: "taxonomy",
-            label: "Taxonomy",
-            fields: [],
-            displayFields: [],
-        };
-
-        this.pluginManager.add(bioinformaticsGroup, [PLUGIN_TYPE.FIELD_GROUP_TEMPLATE]);
-        this.pluginManager.add(taxonomyGroup, [PLUGIN_TYPE.FIELD_GROUP_TEMPLATE]);
+        for (const fieldGroup of fieldGroups) {
+            this.pluginManager.add(fieldGroup, [PLUGIN_TYPE.FIELD_GROUP_TEMPLATE]);
+        }
 
         for (const field of fields) {
             this.pluginManager.add(field, [PLUGIN_TYPE.FIELD_TEMPLATE]);
