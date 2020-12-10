@@ -1,8 +1,7 @@
-
 import { Dataset, Entity, ObjectUtils } from "@scifeon/core";
 import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeon/plugins";
+import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
-import { IListViewConfig } from "../../../../../../packages/ui/src/sci-list-view-interfaces";
 import DataLoaderMasterListDataAPI from "./data/data-loader-master-list.data-api";
 
 /**
