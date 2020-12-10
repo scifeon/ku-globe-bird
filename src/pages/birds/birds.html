@@ -7,9 +7,15 @@
         <page-panels>
             <panel>
                 <panel-body>
-                    <sci-entity-list-view config.bind="listViewConfig"
+                    <!-- <sci-entity-list-view config.bind="listViewConfig"
                                           e-class="B10K_TaxonomyItemOverview">
-                    </sci-entity-list-view>
+                    </sci-entity-list-view> -->
+                    <loading-dots if.bind="loading">
+                    </loading-dots>
+                    <sci-list-view else
+                                   config.bind="listViewConfig"
+                                   records.bind="records">
+                    </sci-list-view>
                 </panel-body>
             </panel>
         </page-panels>
