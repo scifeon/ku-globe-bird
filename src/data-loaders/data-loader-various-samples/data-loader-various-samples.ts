@@ -3,6 +3,7 @@ import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeo
 import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import DataLoaderVariousSamplesDataAPI from "./data/data-loader-various-samples.data-api";
+import "./styles/data-loader-various-samples.scss";
 
 /**
  * Data loader for reading an excel files with sample information and results
@@ -17,14 +18,24 @@ import DataLoaderVariousSamplesDataAPI from "./data/data-loader-various-samples.
 })
 @autoinject
 export class DataLoaderVariousSamples implements DataLoaderPlugin {
-    public listViewConfig: IListViewConfig = {
+    public listViewConfigMatched: IListViewConfig = {
         fields: [
             { accessor: "name", label: "B10K ID" },
             { accessor: "description" },
         ],
+        height: 200,
+    };
+
+    public listViewConfigUnMatched: IListViewConfig = {
+        fields: [
+            { accessor: "name", label: "B10K ID" },
+            { accessor: "description" },
+        ],
+        height: 200,
     };
 
     public entities: Entity[] = [];
+    public unmatched: Entity[] = [];
 
     private context: IDataLoaderContext;
 
@@ -49,7 +60,7 @@ export class DataLoaderVariousSamples implements DataLoaderPlugin {
             if (taxItem) {
                 sample.taxonomyItemId = taxItem.id;
             } else {
-                console.log("Could not link: ", sample.attributes.speciesName);
+                this.unmatched.push(sample);
             }
 
             this.entities.push(sample);

@@ -1,5 +1,15 @@
 <template>
-    <sci-list-view config.bind="listViewConfig"
-                   records.bind="entities">
-    </sci-list-view>
+    <section class="entity-table">
+        <h3>Merged Samples</h3>
+        <sci-list-view config.bind="listViewConfigMatched"
+                       records.bind="entities">
+        </sci-list-view>
+    </section>
+
+    <section class="entity-table">
+        <h3>Samples where Species Name don't match HM4</h3>
+        <sci-list-view config.bind="listViewConfigUnMatched"
+                       records.bind="unmatched">
+        </sci-list-view>
+    </section>
 </template>
