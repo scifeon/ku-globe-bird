@@ -3,6 +3,7 @@ import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeo
 import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import DataLoaderMasterListDataAPI from "./data/data-loader-master-list.data-api";
+import "./styles/data-loader-master-list.scss";
 
 /**
  * Data loader for reading an excel files with sample information and results
@@ -17,14 +18,24 @@ import DataLoaderMasterListDataAPI from "./data/data-loader-master-list.data-api
 })
 @autoinject
 export class DataLoaderMasterList implements DataLoaderPlugin {
-    public listViewConfig: IListViewConfig = {
+    public listViewConfigMatched: IListViewConfig = {
         fields: [
             { accessor: "name", label: "B10K ID" },
-            { accessor: "description" },
+            { accessor: "description", label: "Latin name" },
         ],
+        height: 200,
+    };
+
+    public listViewConfigUnMatched: IListViewConfig = {
+        fields: [
+            { accessor: "name", label: "B10K ID" },
+            { accessor: "description", label: "Latin name" },
+        ],
+        height: 200,
     };
 
     public entities: Entity[] = [];
+    public unmatched: Entity[] = [];
 
     private context: IDataLoaderContext;
 
@@ -52,7 +63,7 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
             if (taxItem) {
                 sample.taxonomyItemId = taxItem.id;
             } else {
-                console.log("Could not link: ", sample.attributes.speciesName);
+                this.unmatched.push(sample);
             }
 
             this.entities.push(sample);

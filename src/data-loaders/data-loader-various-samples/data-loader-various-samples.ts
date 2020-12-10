@@ -21,7 +21,7 @@ export class DataLoaderVariousSamples implements DataLoaderPlugin {
     public listViewConfigMatched: IListViewConfig = {
         fields: [
             { accessor: "name", label: "B10K ID" },
-            { accessor: "description" },
+            { accessor: "description", label: "Latin name" },
         ],
         height: 200,
     };
@@ -29,7 +29,7 @@ export class DataLoaderVariousSamples implements DataLoaderPlugin {
     public listViewConfigUnMatched: IListViewConfig = {
         fields: [
             { accessor: "name", label: "B10K ID" },
-            { accessor: "description" },
+            { accessor: "description", label: "Latin name" },
         ],
         height: 200,
     };
