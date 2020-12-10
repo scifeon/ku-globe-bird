@@ -27,6 +27,9 @@ export default class DataLoaderVariousSamplesDataAPI {
             const values = SpreadsheetUtils.readColTitles(sheet, i, true, 30);
             const sampleObj = this.entityMapper.generateJSONObject(propertyNames, values);
             const sample = this.mapJsonToSample(sampleObj);
+
+            if (Object.values(sample.attributes).every(value => value === null)) continue;
+
             samples.push(sample);
         }
 
