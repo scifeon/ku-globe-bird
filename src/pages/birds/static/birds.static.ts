@@ -10,6 +10,6 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         { accessor: "taxonomyItem.speciesName", label: "Species" },
         { accessor: "sampleCount", type: DataType.INT },
         { accessor: "latestSample.name", label: "B10K ID", ui: { render: '<a href="/#/entity/Sample/${record.latestSample.id}">${record.latestSample.name}</a>'} },
-        { accessor: "latestSample.attributes.status", label: "Status" },
+        { accessor: "latestSample.attributes.sampleDataLevel", label: "Status" },
     ],
 };
