@@ -13,7 +13,7 @@ export default class DataLoaderVariousSamplesLogic {
         const newSamples: Sample[] = [];
 
         for (const sample of samples) {
-            const taxItem = taxItems.find(ti => ti.name === sample.attributes.speciesName);
+            const taxItem = taxItems.find(ti => ti.name === sample.attributes?.speciesName);
 
             if (taxItem) {
                 sample.taxonomyItemId = taxItem.id;
@@ -39,7 +39,7 @@ export default class DataLoaderVariousSamplesLogic {
         const unmatched: Sample[] = [];
 
         for (const sample of samples) {
-            const taxItem = taxItems.find(ti => ti.name === sample.attributes.speciesName);
+            const taxItem = taxItems.find(ti => ti.name === sample.attributes?.speciesName);
 
             if (taxItem) continue;
 
