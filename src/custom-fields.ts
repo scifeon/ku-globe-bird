@@ -176,9 +176,9 @@ export class B10KCustomFields {
             // >>>>>>>>>>>>>>>>>>>>>>>> STATUS <<<<<<<<<<<<<<<<<<<<<<<<
             {
                 match: { eClass: "Sample" },
-                accessor: "attributes.status",
+                accessor: "attributes.sampleDataLevel",
                 type: DataType.STRING,
-                label: "Status",
+                label: "Sample Data Level",
                 group: "status",
             },
         ];
