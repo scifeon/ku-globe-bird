@@ -34,15 +34,16 @@ export class DataLoaderVariousSamples implements DataLoaderPlugin {
 
     public async readFiles() {
         const fileInfo = this.context.fileInfos[0];
-        const sheetArk1 = fileInfo.wb.Sheets.Ark1;
+        if (!fileInfo.wb.Sheets.Birds) throw new Error("Please, make sure that the file contains a Birds worksheet");
+        const sheetBirds = fileInfo.wb.Sheets.Birds;
         const columnNames = ["Phase", "B10K ID", "BGI-ID"];
         const samples = await this.data.getEntities("Sample");
-        const samplesArk1 = this.data.getExcelSamples(sheetArk1, columnNames);
-        const mergedSamples = ObjectUtils.mergeCollections(samples, samplesArk1, "name");
+        const samplesBirds = this.data.getExcelSamples(sheetBirds, columnNames);
+        const mergedSamples = ObjectUtils.mergeCollections(samples, samplesBirds, "name");
         const taxItems = await this.data.getEntities("TaxonomyItem");
 
         this.entities = this.logic.linkTaxAndSamples(taxItems, mergedSamples);
-        this.unmatched = this.logic.compileUnmatched(taxItems, samplesArk1);
+        this.unmatched = this.logic.compileUnmatched(taxItems, samplesBirds);
     }
 
     public getResult(): Dataset {
