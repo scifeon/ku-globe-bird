@@ -36,7 +36,7 @@ export class DataLoaderVariousSamples implements DataLoaderPlugin {
         const fileInfo = this.context.fileInfos[0];
         if (!fileInfo.wb.Sheets.Birds) throw new Error("Please, make sure that the file contains a Birds worksheet");
         const sheetBirds = fileInfo.wb.Sheets.Birds;
-        const columnNames = ["Phase", "B10K ID", "BGI-ID"];
+        const columnNames = ["Phase", "B10K ID"];
         const samples = await this.data.getEntities("Sample");
         const samplesBirds = this.data.getExcelSamples(sheetBirds, columnNames);
         const mergedSamples = ObjectUtils.mergeCollections(samples, samplesBirds, "name");

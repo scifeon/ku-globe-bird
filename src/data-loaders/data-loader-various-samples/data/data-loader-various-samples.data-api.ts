@@ -17,10 +17,15 @@ export default class DataLoaderVariousSamplesDataAPI {
         return response.data;
     }
 
-    public getExcelSamples(sheet: WorkSheet, columnNames) {
+    public getExcelSamples(sheet: WorkSheet, columnNames: string[]) {
         const samples: Sample[] = [];
 
         const headerRow = this.dataRowUtil.findRowWithKeys(sheet, columnNames);
+
+        if (headerRow === -1) {
+            throw new Error("Could not find header row in Excel sheet. First values should be: " + columnNames.join(", "));
+        }
+
         const propertyNames = SpreadsheetUtils.readColTitles(sheet, headerRow, true, 30);
 
         for (let i = headerRow + 1; i <= SpreadsheetUtils.getXlrowMax(sheet); i++) {
