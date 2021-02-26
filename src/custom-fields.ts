@@ -181,6 +181,34 @@ export class B10KCustomFields {
                 label: "Sample Data Level",
                 group: "status",
             },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.sampleStatus",
+                type: DataType.STRING,
+                label: "Sample Staus",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.dnaStatus",
+                type: DataType.STRING,
+                label: "DNA Status",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.sequencingStatus",
+                type: DataType.STRING,
+                label: "Sequencing Status",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.assemblyStatus",
+                type: DataType.STRING,
+                label: "Assembly Status",
+                group: "status",
+            },
         ];
 
         const fieldGroups: IFieldGroup[] = [
