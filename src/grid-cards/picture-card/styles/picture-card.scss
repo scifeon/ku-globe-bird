@@ -1,0 +1,19 @@
+.picture-card {
+    .picture {
+        display: block;
+        display: flex;
+        justify-content: center;
+
+        img {
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    .update {
+        display: block;
+        display: flex;
+        justify-content: center;
+    }
+}
+
