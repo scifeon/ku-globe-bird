@@ -1,7 +1,9 @@
-import { TaxonomyItem } from "@scifeon/core";
+import { File, TaxonomyItem } from "@scifeon/core";
 import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
 import { Dialog } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
+import PictureCardData from "./data/picture-card.data";
+import PictureCardLogic from "./logic/picture-card.logic";
 import { ModalEditPicture } from "./modal-edit-picture/modal-edit-picture";
 import "./styles/picture-card.scss";
 
@@ -34,8 +36,13 @@ import "./styles/picture-card.scss";
 @autoinject
 export class PictureCard {
     private taxonomyItem: TaxonomyItem;
+    private imageFile: File;
 
-    constructor(private dialog: Dialog) {}
+    constructor(
+        private dialog: Dialog,
+        private data: PictureCardData,
+        private logic: PictureCardLogic
+        ) {}
 
     // Handlers.
 
@@ -48,7 +55,11 @@ export class PictureCard {
         }).whenClosed(result => {
             if (result.wasCancelled) return;
 
-            console.log("LIGE HER");
+            const file = result.output.file;
+
+            console.log(file, result)
+
+            this.data.saveImageFile(this.imageFile, file);
         });
     }
     // life cycle hooks.
@@ -59,5 +70,13 @@ export class PictureCard {
      */
     public async init(context: PanelContext) {
         this.taxonomyItem = context.entity;
+
+        const imageFiles = await this.data.getImageFiles(this.taxonomyItem);
+
+        console.log("HER", imageFiles)
+
+        this.imageFile = imageFiles[0] || this.logic.compileImageFile(this.taxonomyItem);
+
+        console.log("IMAGE FILE", this.imageFile)
     }
 }

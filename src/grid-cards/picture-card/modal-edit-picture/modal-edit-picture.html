@@ -17,7 +17,7 @@
         </ux-dialog-body>
 
         <ux-dialog-footer>
-            <button click.delegate="clickUpdateHandler()">Save</button>
+            <button disabled.bind="!file" click.delegate="clickUpdateHandler()">Save</button>
             <button click.delegate="dialog.cancel()"
                     class="cancel">Cancel</button>
         </ux-dialog-footer>

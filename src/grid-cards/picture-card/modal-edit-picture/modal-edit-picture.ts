@@ -1,32 +1,33 @@
-import { AlertManager, TaxonomyItem } from "@scifeon/core";
+import { AlertManager, File, TaxonomyItem } from "@scifeon/core";
 import { IDialogPlugin } from "@scifeon/plugins";
-import { Dialog, SavingSpinner } from "@scifeon/ui";
+import { Dialog } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import { Base64 } from "js-base64";
 import ModalEditSamplesDataAPI from "./data/modal-edit-picture.data";
-import ModalEditSamplesLogic from "./logic/modal-edit-picture.logic";
 
 @Dialog.template(require("./modal-edit-picture.html"))
 @autoinject
 export class ModalEditPicture implements IDialogPlugin {
     public taxonomyItem: TaxonomyItem;
-    public imageData: Base64;
 
-    private file: string;
+    private file: File;
 
     constructor(
         private dialog: Dialog,
         private alertManager: AlertManager,
-        private logic: ModalEditSamplesLogic,
         private data: ModalEditSamplesDataAPI,
     ) { }
+
+    public get imageData(): string {
+        if (!this.file) return;
+
+        return "data:image/jpeg;base64, " + this.file.content;
+    }
 
     // Handlers.
 
     public async dropFilesHandler(event: CustomEvent) {
         const file = event.detail.files[0];
-
-        console.log(file)
 
         if (!["image/jpeg", "image/png"].includes(file.type)) {
             this.alertManager.userError(
@@ -39,21 +40,22 @@ export class ModalEditPicture implements IDialogPlugin {
             return;
         }
 
-        this.imageData = "data:image/jpeg;base64, " + await this.data.loadImageFile(file)
+        this.file = {
+            eClass: "File",
+            content: await this.data.loadImageFile(file),
+            filename: file.name,
+            subjectClass: null,
+            subjectID: null,
+            mediaType: file.type || "text/plain",
+            size: file.size,
+        };
 
-        console.log("imageData", this.imageData)
-
-        this.file = file;
+        console.log("ASDFHASDHFASDF", this.file)
     }
 
     public async clickUpdateHandler() {
-        SavingSpinner.show(".edit-samples-dialog", "Saving...");
-
-        SavingSpinner.hide();
-
         this.dialog.ok({
             file: this.file,
-            imageData: this.imageData,
         });
     }
 
