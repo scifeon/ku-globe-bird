@@ -1,7 +1,11 @@
 <template>
     <article class="picture-card">
         <section class="picture">
-            <img src="../../assets/images/dodo.png" alt="Dodo">
+            <img if.bind="imageFile.content"
+                 src.bind="imageData"
+                 alt.bind="taxonomyItem.name">
+            <img else src="../../assets/images/dodo.png"
+                 alt.bind="Dodo">
         </section>
 
         <section class="update">

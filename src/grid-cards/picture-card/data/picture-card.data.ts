@@ -1,11 +1,16 @@
-import { ServerAPI, TaxonomyItem, File } from "@scifeon/core";
+import { File, ServerAPI, TaxonomyItem } from "@scifeon/core";
 import { autoinject } from "aurelia-framework";
-import { Base64 } from "js-base64";
 
 @autoinject
 export default class PictureCardData {
     constructor(private server: ServerAPI) {}
 
+    /**
+     * Get all image files with subject ID matching the given taxonomy item.
+     *
+     * @param taxonomyItem Taxonomy Item entity.
+     * @returns promise of File entities.
+     */
     public async getImageFiles(taxonomyItem: TaxonomyItem): Promise<File> {
         const response = await this.server.datasetQuery(
             [
@@ -24,11 +29,12 @@ export default class PictureCardData {
         return response.files;
     }
 
-    public async saveImageFile(oldFile: File, newFile: File) {
-        oldFile.filename = newFile.filename;
-        oldFile.content = newFile.content;
-        oldFile.mediaType = newFile.mediaType;
-
-        await this.server.save(oldFile);
+    /**
+     * Save the given file to the server.
+     *
+     * @param file File entity
+     */
+    public async saveImageFile(file: File) {
+        await this.server.save(file);
     }
 }

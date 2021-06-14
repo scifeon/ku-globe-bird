@@ -2,9 +2,11 @@ import { AlertManager, File, TaxonomyItem } from "@scifeon/core";
 import { IDialogPlugin } from "@scifeon/plugins";
 import { Dialog } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
-import { Base64 } from "js-base64";
 import ModalEditSamplesDataAPI from "./data/modal-edit-picture.data";
 
+/**
+ * Modal with dialog for uploading a new bird picture.
+ */
 @Dialog.template(require("./modal-edit-picture.html"))
 @autoinject
 export class ModalEditPicture implements IDialogPlugin {
@@ -18,6 +20,9 @@ export class ModalEditPicture implements IDialogPlugin {
         private data: ModalEditSamplesDataAPI,
     ) { }
 
+    /**
+     * @return image data to preview after selection of picture in the dropzone.
+     */
     public get imageData(): string {
         if (!this.file) return;
 
@@ -26,6 +31,12 @@ export class ModalEditPicture implements IDialogPlugin {
 
     // Handlers.
 
+    /**
+     * Event handler for files dropped in the dropzone.
+     *
+     * @param event Drop event.
+     * @raise userError if format not PNG or JPG.
+     */
     public async dropFilesHandler(event: CustomEvent) {
         const file = event.detail.files[0];
 
@@ -44,15 +55,18 @@ export class ModalEditPicture implements IDialogPlugin {
             eClass: "File",
             content: await this.data.loadImageFile(file),
             filename: file.name,
-            subjectClass: null,
-            subjectID: null,
+            name: this.taxonomyItem.name,
+            type: "BirdImage",
+            subjectClass: this.taxonomyItem.eClass,
+            subjectID: this.taxonomyItem.id,
             mediaType: file.type || "text/plain",
             size: file.size,
         };
-
-        console.log("ASDFHASDHFASDF", this.file)
     }
 
+    /**
+     * Event handler for clicking the Save button in the upload file dialog.
+     */
     public async clickUpdateHandler() {
         this.dialog.ok({
             file: this.file,

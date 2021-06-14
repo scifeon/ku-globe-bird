@@ -3,10 +3,13 @@ import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
 import { Dialog } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import PictureCardData from "./data/picture-card.data";
-import PictureCardLogic from "./logic/picture-card.logic";
 import { ModalEditPicture } from "./modal-edit-picture/modal-edit-picture";
 import "./styles/picture-card.scss";
 
+/**
+ * Grid card for showing the picture of a bird. Per default a default image is
+ * displayed, but this can be updated by uploading a new picture.
+ */
 @scifeonGridCard({
     id: "bird-picture",
     name: "Picture",
@@ -41,11 +44,21 @@ export class PictureCard {
     constructor(
         private dialog: Dialog,
         private data: PictureCardData,
-        private logic: PictureCardLogic
-        ) {}
+    ) {}
+
+    // Getters / setters.
+
+    public get imageData(): string {
+        if (!this.imageFile?.content) return;
+
+        return "data:image/jpeg;base64, " + this.imageFile.content;
+    }
 
     // Handlers.
 
+    /**
+     * Event handler for the clicking of the Update Picture button.
+     */
     public clickEditPictureHandler() {
         this.dialog.open({
             viewModel: ModalEditPicture,
@@ -57,26 +70,17 @@ export class PictureCard {
 
             const file = result.output.file;
 
-            console.log(file, result)
+            this.imageFile = file;
 
-            this.data.saveImageFile(this.imageFile, file);
+            this.data.saveImageFile(file);
         });
     }
-    // life cycle hooks.
 
-    /**
-     * Check if the Animal-table includes a FK to the current entity class and
-     * if so, load related animals.
-     */
+    // Life cycle hooks.
+
     public async init(context: PanelContext) {
         this.taxonomyItem = context.entity;
 
-        const imageFiles = await this.data.getImageFiles(this.taxonomyItem);
-
-        console.log("HER", imageFiles)
-
-        this.imageFile = imageFiles[0] || this.logic.compileImageFile(this.taxonomyItem);
-
-        console.log("IMAGE FILE", this.imageFile)
+        this.imageFile = await this.data.getImageFiles(this.taxonomyItem)[0];
     }
 }
