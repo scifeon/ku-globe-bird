@@ -1,8 +1,8 @@
 <template>
     <article class="picture-card">
         <section class="picture">
-            <img if.bind="imageFile.content"
-                 src.bind="imageData"
+            <img if.bind="imageFile.id"
+                 src="/api/file/${imageFile.id}"
                  alt.bind="taxonomyItem.name">
             <img else src="../../assets/images/dodo.png"
                  alt.bind="Dodo">
@@ -11,7 +11,7 @@
         <section class="update">
             <button class="primary"0
                     click.delegate="clickEditPictureHandler()">
-                Update Picture
+                Change Picture
             </button>
         </section>
     </article>

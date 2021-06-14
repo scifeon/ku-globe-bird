@@ -1,4 +1,4 @@
-import { File, TaxonomyItem } from "@scifeon/core";
+import { File, TaxonomyItem, ServerAPI } from "@scifeon/core";
 import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
 import { Dialog } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
@@ -46,14 +46,6 @@ export class PictureCard {
         private data: PictureCardData,
     ) {}
 
-    // Getters / setters.
-
-    public get imageData(): string {
-        if (!this.imageFile?.content) return;
-
-        return "data:image/jpeg;base64, " + this.imageFile.content;
-    }
-
     // Handlers.
 
     /**
@@ -81,6 +73,8 @@ export class PictureCard {
     public async init(context: PanelContext) {
         this.taxonomyItem = context.entity;
 
-        this.imageFile = await this.data.getImageFiles(this.taxonomyItem)[0];
+        const imageFiles = await this.data.getImageFiles(this.taxonomyItem);
+
+        this.imageFile = imageFiles.slice(-1)[0];
     }
 }
