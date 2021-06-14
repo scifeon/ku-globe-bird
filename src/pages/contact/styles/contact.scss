@@ -1,3 +1,21 @@
-.b10k_contact {
+@import "@scifeon";
 
+.b10k_contact {
+    panel-body {
+        display: flex;
+        justify-content: flex-start;
+
+        .left {
+            min-width: 500px;
+        }
+
+        .contact, .address {
+            padding-top: $padding-default;
+            line-height: 6px;
+        }
+
+        img {
+            height: 200px;;
+        }
+    }
 }

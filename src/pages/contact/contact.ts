@@ -1,6 +1,6 @@
 import { scifeonRoute } from "@scifeon/plugins";
-import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
+import "./styles/contact.scss";
 
 /**
  * Page for "contact us".
