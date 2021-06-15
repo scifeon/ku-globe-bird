@@ -1,8 +1,10 @@
 import { IApexChartConfig } from "@scifeon/ui";
 import ApexCharts from "apexcharts/dist/apexcharts.common.js";
-import { bindable, customElement } from "aurelia-framework";
+import { bindable, customElement, autoinject } from "aurelia-framework";
+import { Router } from "aurelia-router";
 
 @customElement("progress-chart")
+@autoinject
 export class ProgressChart {
     @bindable public readonly data: any;
 
@@ -11,8 +13,10 @@ export class ProgressChart {
             type: 'bar',
             height: 350,
             events: {
-                dataPointSelection: (event, chartContext, config) => {
-                    console.log("LIGE HER", chartContext, config, event);
+                dataPointSelection: (event, chartContext, options) => {
+                    const status = options.w.config.series[0].data[options.dataPointIndex].x
+
+                    this.router.navigate(`/entity/Sample?$filter=attributes.sampleDataLevel%20in%20('${status}')%20and%20status%20not_in%20('Canceled'%2C'Deleted'%2C'Discarded')&$select=Name%2CDescription%2CDateTaken%2Cattributes.sampleDataLevel%2CTaxonomyItemID`);
                 }
             },
             toolbar: {
@@ -62,6 +66,8 @@ export class ProgressChart {
     };
 
     public chart: ApexCharts;
+
+    constructor(private router: Router) {}
 
     public get ready() {
         if (this.data.length) {
