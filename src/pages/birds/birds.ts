@@ -13,7 +13,6 @@ import "./styles/birds.scss";
 @autoinject
 @scifeonRoute({ title: "Birds", route: "b10k/birds" })
 export class BirdsPage {
-    public loading = false;
     public listViewConfig: IListViewConfig = LIST_VIEW_CONFIG;
     public records: ITaxItemRecord[] = [];
 
@@ -25,10 +24,8 @@ export class BirdsPage {
     // Life cycle hooks.
 
     public async bind() {
-        this.loading = true;
         const taxItems = await this.data.getAllTaxonomyItems();
         const samples = await this.data.getAllSamples();
         this.records.push(...this.logic.compileRecords(taxItems, samples));
-        this.loading = false;
     }
 }

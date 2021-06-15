@@ -1,8 +1,8 @@
 import { scifeonRoute } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
-import StatsLogic from "./logic/stats.logic";
 import CommonData from "../common/data/common.data";
 import CommonLogic from "../common/logic/common.logic";
+import StatsLogic from "./logic/stats.logic";
 
 /**
  * Page for aggregated statistics of B10K progress.
@@ -10,7 +10,6 @@ import CommonLogic from "../common/logic/common.logic";
 @autoinject
 @scifeonRoute({ title: "Birds", route: "b10k/stats" })
 export class BirdsPage {
-
     constructor(
         private data: CommonData,
         private commonLogic: CommonLogic,
@@ -18,32 +17,26 @@ export class BirdsPage {
     ) {}
 
     public stats = [
-                    {
-                        x: 'Fisk',
-                        y: 44
-                    },
-                    {
-                        x: 'Fugl',
-                        y: 36
-                    },
-                    {
-                        x: 'Hammer',
-                        y: 16
-                    },
-                    {
-                        x: 'Ost',
-                        y: 96
-                    },
-                ];
+        { x: "Got samples", y: 2132 },
+        { x: "Published", y: 295 },
+        { x: "level 0", y: 1 },
+        { x: "level 1", y: 57 },
+        { x: "level 4", y: 48 },
+        { x: "level 6", y: 194 },
+    ];
 
     // Life cycle hooks.
 
-    async attached() {
+    async bind() {
         const taxItems = await this.data.getAllTaxonomyItems();
         const samples = await this.data.getAllSamples();
         const records = this.commonLogic.compileRecords(taxItems, samples);
 
         const stats = this.logic.compileStats(records);
+
+        this.stats.push(...stats)
+
+        console.log(this.stats)
 
         console.log({samples, taxItems, stats})
     }

@@ -1,6 +1,7 @@
 <template>
     <article class="b10k-progress-chart">
-        <apex-chart ready-chart.delegate="readyChartHandler($event)"
+        <loading-dots if.bind="!ready"></loading-dots>
+        <apex-chart else
                     config.bind="chartConfig"
                     chart.bind="apexChart">
         </apex-chart>

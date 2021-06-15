@@ -15,37 +15,64 @@ export class ProgressChart {
                     console.log("LIGE HER", chartContext, config, event);
                 }
             },
+            toolbar: {
+                show: false,
+            },
+        },
+        legend: {
+            show: false,
         },
         plotOptions: {
             bar: {
                 horizontal: true,
+                dataLabels: {
+                    position: 'top',
+                },
             }
         },
         dataLabels: {
-            enabled: false
+            enabled: true,
+            offsetX: -6,
+            style: {
+                fontSize: '16px',
+                colors: ['#000000']
+            }
         },
         series: [
             {
-                data: [
-                    {
-                        x: 'Apple',
-                        y: 54
-                    },
-                    {
-                        x: 'Orange',
-                        y: 66
-                    },
-                ],
+                data: [],
             },
         ],
         xaxis: {
-          type: 'category'
+          type: 'category',
+          labels: {
+            style: {
+                fontSize: '16px'
+            }
+       }
+        },
+        yaxis: {
+            max: 10000, // total number of taxItems
+            labels: {
+                style: {
+                    fontSize: '16px'
+                }
+           }
         }
     };
 
     public chart: ApexCharts;
 
-    bind() {
+    public get ready() {
+        if (this.data.length) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    attached() {
         const data =  this.chartConfig.series[0]["data"];
 
         data.splice(0, data.length, ...this.data);
