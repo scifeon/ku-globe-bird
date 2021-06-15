@@ -1,8 +1,9 @@
 import { scifeonRoute } from "@scifeon/plugins";
 import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
-import BirdsDataAPI from "./data/birds.data-api";
-import BirdsLogic from "./logic/birds.logic";
+import CommonData from "../common/data/common.data";
+import ITaxItemRecord from "../common/interfaces/tax-item-record.interface";
+import CommonLogic from "../common/logic/common.logic";
 import { LIST_VIEW_CONFIG } from "./static/birds.static";
 import "./styles/birds.scss";
 
@@ -14,19 +15,19 @@ import "./styles/birds.scss";
 export class BirdsPage {
     public loading = false;
     public listViewConfig: IListViewConfig = LIST_VIEW_CONFIG;
-    public records: any[] = [];
+    public records: ITaxItemRecord[] = [];
 
     constructor(
-        private data: BirdsDataAPI,
-        private logic: BirdsLogic,
+        private data: CommonData,
+        private logic: CommonLogic,
     ) {}
 
     // Life cycle hooks.
 
     public async bind() {
         this.loading = true;
-        const taxItems = await this.data.getAllEntities("TaxonomyItem");
-        const samples = await this.data.getAllEntities("Sample");
+        const taxItems = await this.data.getAllTaxonomyItems();
+        const samples = await this.data.getAllSamples();
         this.records.push(...this.logic.compileRecords(taxItems, samples));
         this.loading = false;
     }
