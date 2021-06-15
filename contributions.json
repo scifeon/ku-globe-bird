@@ -20,11 +20,16 @@
                 "text": "B10K",
                 "url": "/#/b10k/birds",
                 "rank": 450,
+                "iconFA": "kiwi-bird",
                 "favorite": true,
                 "items": [
                     {
                         "text": "Overview",
                         "url": "/#/b10k/birds"
+                    },
+                    {
+                        "text": "Stats",
+                        "url": "/#/b10k/stats"
                     },
                     {
                         "text": "Bird Samples",
