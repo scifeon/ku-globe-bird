@@ -1,4 +1,4 @@
-import { File, TaxonomyItem, ServerAPI } from "@scifeon/core";
+import { File, TaxonomyItem } from "@scifeon/core";
 import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
 import { Dialog } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
