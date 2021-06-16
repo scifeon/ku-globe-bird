@@ -2,8 +2,9 @@
     <article class="b10k-progress-chart">
         <loading-dots if.bind="!ready"></loading-dots>
         <apex-chart else
+                    ready-chart.delegate="readyChartHandler($event)"
                     config.bind="chartConfig"
-                    chart.bind="apexChart">
+                    chart.bind="chart">
         </apex-chart>
     </article>
 </template>

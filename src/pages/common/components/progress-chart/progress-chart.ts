@@ -1,12 +1,14 @@
 import { IApexChartConfig } from "@scifeon/ui";
 import ApexCharts from "apexcharts/dist/apexcharts.common.js";
-import { bindable, customElement, autoinject } from "aurelia-framework";
+import { autoinject, bindable, customElement } from "aurelia-framework";
 import { Router } from "aurelia-router";
 
 @customElement("progress-chart")
 @autoinject
 export class ProgressChart {
     @bindable public readonly data: any;
+
+    public chart: ApexCharts;
 
     public chartConfig: IApexChartConfig = {
         chart: {
@@ -65,8 +67,6 @@ export class ProgressChart {
         }
     };
 
-    public chart: ApexCharts;
-
     constructor(private router: Router) {}
 
     public get ready() {
@@ -77,10 +77,10 @@ export class ProgressChart {
         return false;
     }
 
-
-    attached() {
+    public readyChartHandler(event: CustomEvent) {
+        this.chart = event.detail.data.chart;
         const data =  this.chartConfig.series[0]["data"];
-
         data.splice(0, data.length, ...this.data);
+        this.chart.updateOptions(this.chartConfig);
     }
 }

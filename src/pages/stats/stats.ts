@@ -16,14 +16,7 @@ export class BirdsPage {
         private logic: StatsLogic,
     ) {}
 
-    public stats = [
-        { x: "Got samples", y: 2132 },
-        { x: "Published", y: 295 },
-        { x: "level 0", y: 1 },
-        { x: "level 1", y: 57 },
-        { x: "level 4", y: 48 },
-        { x: "level 6", y: 194 },
-    ];
+    public stats = [];
 
     public phylo = [
         { family: "a1 / 3", genus: "b1 / 2" },
