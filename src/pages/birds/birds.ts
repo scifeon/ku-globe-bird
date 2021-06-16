@@ -1,4 +1,4 @@
-import { scifeonRoute } from "@scifeon/plugins";
+import { scifeonRoute, PAGE_TYPE } from "@scifeon/plugins";
 import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import CommonData from "../common/data/common.data";
@@ -11,7 +11,11 @@ import "./styles/birds.scss";
  * Page for overview of the sequencing progress of bird genomes.
  */
 @autoinject
-@scifeonRoute({ title: "Birds", route: "b10k/birds" })
+@scifeonRoute({
+    title: "Birds",
+    route: "b10k/birds",
+    type: PAGE_TYPE.PUBLIC,
+})
 export class BirdsPage {
     public listViewConfig: IListViewConfig = LIST_VIEW_CONFIG;
     public records: ITaxItemRecord[] = [];
