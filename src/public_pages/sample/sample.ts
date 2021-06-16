@@ -9,7 +9,7 @@ import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
     type: PAGE_TYPE.PUBLIC,
     })
 export class SamplePage {
-    public async activate(params) {
+    public async init(params) {
         console.log("PARAMS", params)
     }
 }

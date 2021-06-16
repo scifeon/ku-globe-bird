@@ -2,8 +2,8 @@ import { DatamodelUtils, LoadingSpinner, ResultFlex, ServerAPI } from "@scifeon/
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewColumnInfo, IListViewConfig } from "@scifeon/ui";
 import { autoinject } from 'aurelia-framework';
-import { B10K } from "../b10k";
-import "./table-s1.scss";
+import { B10K } from "../../b10k";
+import "./styles/table-s1.scss";
 
 interface IGroup {
     selected: boolean;
