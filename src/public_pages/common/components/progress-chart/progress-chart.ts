@@ -2,6 +2,7 @@ import { IApexChartConfig } from "@scifeon/ui";
 import ApexCharts from "apexcharts/dist/apexcharts.common.js";
 import { autoinject, bindable, customElement } from "aurelia-framework";
 import { Router } from "aurelia-router";
+import { STATUS_MAP } from "./static/progress-chart.static";
 
 @customElement("progress-chart")
 @autoinject
@@ -67,6 +68,8 @@ export class ProgressChart {
         }
     };
 
+    private statusMap = STATUS_MAP;
+
     constructor(private router: Router) {}
 
     public get ready() {
@@ -77,10 +80,26 @@ export class ProgressChart {
         return false;
     }
 
+    private updateStatus(data) {
+        for (const obj of data) {
+            obj.x = this.statusMap[obj.x]
+        }
+
+        return data;
+    }
+
     public readyChartHandler(event: CustomEvent) {
         this.chart = event.detail.data.chart;
         const data =  this.chartConfig.series[0]["data"];
-        data.splice(0, data.length, ...this.data);
+
+        const newData = this.updateStatus(this.data);
+
+        data.splice(
+            0,
+            data.length,
+            ...newData,
+        );
+
         this.chart.updateOptions(this.chartConfig);
     }
 }

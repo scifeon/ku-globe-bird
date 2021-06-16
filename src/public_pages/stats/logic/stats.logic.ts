@@ -5,12 +5,12 @@ export default class StatsLogic {
         const stats = [];
         const counts = {};
 
-        stats.push(
-            {
-                x: "Got samples",
-                y: records.filter(record => record.sampleCount > 0).length,
-            }
-        );
+        // stats.push(
+        //     {
+        //         x: "Got samples",
+        //         y: records.filter(record => record.sampleCount > 0).length,
+        //     }
+        // );
 
         for (const record of records) {
             if (!record.latestSample) continue;
@@ -27,7 +27,6 @@ export default class StatsLogic {
         }
 
         const keys = Object.keys(counts)
-        keys.sort();
 
         for (const key of keys) {
             stats.push(

@@ -31,13 +31,7 @@ export class BirdsPage {
         const taxItems = await this.data.getAllTaxonomyItems();
         const samples = await this.data.getAllSamples();
         const records = this.commonLogic.compileRecords(taxItems, samples);
-
         const stats = this.logic.compileStats(records);
-
         this.stats.push(...stats)
-
-        console.log(this.stats)
-
-        console.log({samples, taxItems, stats})
     }
 }
