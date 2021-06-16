@@ -25,6 +25,13 @@ export class BirdsPage {
         { x: "level 6", y: 194 },
     ];
 
+    public phylo = [
+        { family: "a1 / 3", genus: "b1 / 2" },
+        { family: "a2 / 3", genus: "b2 / 2" },
+        { family: "a3 / 3", genus: "b3 / 2" },
+        { family: "a4 / 3", genus: "b4 / 2" },
+    ];
+
     // Life cycle hooks.
 
     async bind() {
