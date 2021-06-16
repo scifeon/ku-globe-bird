@@ -10,7 +10,8 @@
     "appDependencies": []
   },
   "dependencies": {
-    "js-base64": "2.5.2"
+    "js-base64": "2.5.2",
+    "apexcharts": "3.19.0"
   },
   "devDependencies": {
     "@scifeon/sdk": "*"
