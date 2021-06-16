@@ -16,8 +16,9 @@ export class SamplePage {
 
     constructor(private server: ServerAPI) {}
 
-    public async init(params) {
-        const sampleID = params.params.id;
+    public async init(router) {
+        console.log(router)
+        const sampleID = router.params.id;
         console.log(sampleID)
         const response = await this.server.get(`/api/Sample/${sampleID}`)
         console.log(response)
