@@ -1,19 +1,21 @@
-.picture-card {
-    .picture {
-        display: block;
-        display: flex;
-        justify-content: center;
+@import "@scifeon";
 
-        img {
-            height: 100%;
-            width: auto;
-        }
+.picture-card {
+    display: flex;
+    justify-content: center;
+    max-height: 90%;
+
+    img {
+        object-fit: contain;
+        overflow: hidden;
+        max-width: 100%;
     }
 
-    .update {
-        display: block;
+    &-footer {
         display: flex;
-        justify-content: center;
+        padding-top: $padding-default;
+
+        justify-content: flex-end;
     }
 }
 

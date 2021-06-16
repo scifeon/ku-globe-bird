@@ -1,18 +1,17 @@
 <template>
     <article class="picture-card">
-        <section class="picture">
-            <img if.bind="imageFile.id"
-                 src="/api/file/${imageFile.id}"
-                 alt.bind="taxonomyItem.name">
-            <img else src="../../assets/images/dodo.png"
-                 alt.bind="Dodo">
-        </section>
+        <img if.bind="imageFile.id"
+             src="/api/file/${imageFile.id}"
+             alt.bind="taxonomyItem.name">
+        <img else
+             src="../../assets/images/dodo.png"
+             alt.bind="Dodo">
 
-        <section class="update">
-            <button class="primary"0
-                    click.delegate="clickEditPictureHandler()">
-                Change Picture
-            </button>
-        </section>
     </article>
+    <footer class="picture-card-footer">
+        <button class="primary"
+                click.delegate="clickEditPictureHandler()">
+            Change Picture
+        </button>
+    </footer>
 </template>
