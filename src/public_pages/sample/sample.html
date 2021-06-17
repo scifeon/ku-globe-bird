@@ -1,16 +1,316 @@
 <template>
-    <page-with-header class="b10k_sample">
+    <page-with-header class="b10k-sample">
         <page-header>
             <h1>Sample ${sample.name}</h1>
         </page-header>
 
         <page-panels>
             <panel>
-                <panel-header>
-                    Header
-                </panel-header>
                 <panel-body>
-                    Body
+                    <article class="field-group-grid">
+                        <section class="field-group">
+                            <dl>
+                                <dt>Taxonomy Item</dt>
+                                <dd>
+                                    <a href="/#/b10k/TaxonomyItem/${sample.taxonomyItemID}" >
+                                        ${sample.taxonomyItemID}
+                                    </a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>Status</dt>
+                                <dd>${sample.attributes.sampleDataLevel}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Date</dt>
+                                <dd>${sample.createDate}</dd>
+                            </dl>
+                        </section>
+                        <section class="field-group">
+                            <h4>Taxonomy</h4>
+                            <dl>
+                                <dt>Common Name</dt>
+                                <dd>${sample.attributes.commonName}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Latin Name</dt>
+                                <dd>${sample.description}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Genus</dt>
+                                <dd>${sample.attributes.genus}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Order</dt>
+                                <dd>${sample.attributes.order}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Familty</dt>
+                                <dd>${sample.attributes.family}</dd>
+                            </dl>
+                        </section>
+
+                        <section class="field-group">
+                            <h4>BUSCO</h4>
+                            <dl>
+                                <dt>Complete and Duplicated BUSCOs D</dt>
+                                <dd>${sample.attributes.completeAndDuplicatedBUSCOsD}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Complete and Single Copy BUSCOs S</dt>
+                                <dd>${sample.attributes.completeAndSingleCopyBUSCOsS}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Completed BUSCOs</dt>
+                                <dd>${sample.attributes.completeBUSCOs}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Fragmented BUSCOs F</dt>
+                                <dd>${sample.attributes.fragmentedBUSCOsF}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Missing BUSCOs M</dt>
+                                <dd>${sample.attributes.missingBUSCOsM}</dd>
+                            </dl>
+                        </section>
+
+                        <section class="field-group">
+                            <h4>Tissue</h4>
+                            <dl>
+                                <dt>Tissue for Hic</dt>
+                                <dd>${sample.attributes.tissueForHic}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Tissue Preservation Condition</dt>
+                                <dd>${sample.attributes.tissuePreservationConditions}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Tissue Remain</dt>
+                                <dd>${sample.attributes.tissueRemain}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Tissue Storage Place</dt>
+                                <dd>${sample.attributes.tissueStoragePlace}</dd>
+                            </dl>
+                        </section>
+
+                        <section class="field-group">
+                            <h4>Library Preparation</h4>
+                            <dl>
+                                <dt>DNA Preservation Conditions</dt>
+                                <dd>${sample.attributes.dnaPreservationConditions}</dd>
+                            </dl>
+                            <dl>
+                                <dt>DNA Qualty Test Serial Number</dt>
+                                <dd>${sample.attributes.dnaQualityTestSerialNumber}</dd>
+                            </dl>
+                            <dl>
+                                <dt>DNA Solvent</dt>
+                                <dd>${sample.attributes.dnaSolvent}</dd>
+                            </dl>
+                            <dl>
+                                <dt>DNA Storage Date</dt>
+                                <dd>${sample.attributes.dnaStorageDate}</dd>
+                            </dl>
+                            <dl>
+                                <dt>DNA Storage Place</dt>
+                                <dd>${sample.attributes.dnaStoragePlace}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Extraction Method</dt>
+                                <dd>${sample.attributes.extractionMethod}</dd>
+                            </dl>
+                            <dl>
+                                <dt>DNA Fragment Size [bp]</dt>
+                                <dd>${sample.attributes.dnaFragmentSizeBp}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Concentration [ng/L]</dt>
+                                <dd>${sample.attributes.concentrationNgL}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Construction Library Note</dt>
+                                <dd>${sample.attributes.constructionLibraryNote}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Total Mass [ng]</dt>
+                                <dd>${sample.attributes.totalMassNg}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Volume [L]</dt>
+                                <dd>${sample.attributes.volumeL}</dd>
+                            </dl>
+                        </section>
+                        <section class="field-group">
+                            <h4>Sequencing &amp; Assembly</h4>
+                            <dl>
+                                <dt>Contig L50</dt>
+                                <dd>${sample.attributes.contigL50}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Contig N50</dt>
+                                <dd>${sample.attributes.contigN50}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Contig Num</dt>
+                                <dd>${sample.attributes.contigNum}</dd>
+                            </dl>
+                            <dl>
+                                <dt>covarisPcr300500bpWgs</dt>
+                                <dd>${sample.attributes.covarisPcr300500bpWgs}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Length of Scaffolds Longer 100bp or No Gap</dt>
+                                <dd>${sample.attributes.lenScaffoldLonger100BpOrNoGap}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Scaffold L50</dt>
+                                <dd>${sample.attributes.scaffoldL50}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Scaffold N50</dt>
+                                <dd>${sample.attributes.scaffoldN50}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Scaffold Number</dt>
+                                <dd>${sample.attributes.scaffoldNum}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Sequence Data Path</dt>
+                                <dd>${sample.attributes.sequenceDataPath}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Sequence Data Prefix</dt>
+                                <dd>${sample.attributes.sequenceDataPrefix}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Sequence Serial Number</dt>
+                                <dd>${sample.attributes.sequenceSerialNumber}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Sequence Chip Number</dt>
+                                <dd>${sample.attributes.sequencingChipNumber}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Sequencing Platform</dt>
+                                <dd>${sample.attributes.sequencingPlatform}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Total Length [bp]</dt>
+                                <dd>${sample.attributes.totalLenBp}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Assemble Prefix</dt>
+                                <dd>${sample.attributes.assemblePrefix}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Assembled</dt>
+                                <dd>${sample.attributes.assembled}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Gap Length [bp]</dt>
+                                <dd>${sample.attributes.gapLenBp}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Gap Ratio</dt>
+                                <dd>${sample.attributes.gapRatio}</dd>
+                            </dl>
+                        </section>
+                        <section class="field-group">
+                            <h4>Storage &amp; Shipping</h4>
+                            <dl>
+                                <dt>BGI ID</dt>
+                                <dd>${sample.attributes.bgiId}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Storage Batch Number</dt>
+                                <dd>${sample.attributes.storageBatchNumber}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Date Transfer to Shenzhen</dt>
+                                <dd>${sample.attributes.dateTransferToShenzhen}</dd>
+                            </dl>
+                        </section>
+                        <section class="field-group">
+                            <h4>Move these</h4>
+                            <!-- <dl>
+                                <dt></dt>
+                                <dd>${sample.attributes.10Xgenomics}</dd>
+                            </dl> -->
+                            <dl>
+                                <dt>Analyze Level</dt>
+                                <dd>${sample.attributes.analyzeLevel}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Barcode</dt>
+                                <dd>${sample.attributes.barcode}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Batch of Extract</dt>
+                                <dd>${sample.attributes.batchOfExtract}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Cites</dt>
+                                <dd>${sample.attributes.cites}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Date of Testing Accomplish</dt>
+                                <dd>${sample.attributes.dateOfTestingAccomplish}</dd>
+                            </dl>
+                            <dl>
+                                <dt>hM</dt>
+                                <dd>${sample.attributes.hM}</dd>
+                            </dl>
+                            <dl>
+                                <dt>hiC</dt>
+                                <dd>${sample.attributes.hiC}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Library ID</dt>
+                                <dd>${sample.attributes.libraryId}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Marker</dt>
+                                <dd>${sample.attributes.marker}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Match Next</dt>
+                                <dd>${sample.attributes.matchNext}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Molecule Length</dt>
+                                <dd>${sample.attributes.moleculeLen"}</dd>
+                            </dl>
+                            <dl>
+                                <dt>No</dt>
+                                <dd>${sample.attributes.no}</dd>
+                            </dl>
+                            <dl>
+                                <dt>noteOd280260</dt>
+                                <dd>${sample.attributes.noteOd280260}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Phase</dt>
+                                <dd>${sample.attributes.phase}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Report Raw Filename</dt>
+                                <dd>${sample.attributes.reportRawFileName}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Sample Integrity</dt>
+                                <dd>${sample.attributes.sampleIntegrity}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Source ID</dt>
+                                <dd>${sample.attributes.sourceId}</dd>
+                            </dl>
+                            <dl>
+                                <dt>stFLR</dt>
+                                <dd>${sample.attributes.stFLR}</dd>
+                            </dl>
+                        </section>
+                    </article>
                 </panel-body>
             </panel>
         </page-panels>

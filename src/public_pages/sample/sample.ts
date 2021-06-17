@@ -2,6 +2,7 @@ import { Sample } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
 import SampleData from "./data/sample.data";
+import "./styles/sample.scss";
 
 /**
  * Public page displaying a B10K a Sample entity.
