@@ -28,4 +28,34 @@ export default class CommonLogic {
 
         return records;
     }
+
+    public compileStats(records: ITaxItemRecord[]) {
+        const stats = [];
+        const counts = {};
+
+        for (const record of records) {
+            if (!record.latestSample) continue;
+
+            const status = record.latestSample.attributes.sampleDataLevel;
+
+            if (!status) continue;
+
+            if (!counts[status]) {
+                counts[status] = 1;
+            } else {
+                counts[status] += 1;
+            }
+        }
+
+        const keys = Object.keys(counts)
+
+        for (const key of keys) {
+            stats.push(
+                { x: key, y: counts[key] },
+            );
+        }
+
+
+        return stats;
+    }
 }

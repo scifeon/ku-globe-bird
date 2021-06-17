@@ -2,7 +2,6 @@ import { scifeonRoute } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
 import CommonData from "../common/data/common.data";
 import CommonLogic from "../common/logic/common.logic";
-import StatsLogic from "./logic/stats.logic";
 
 /**
  * Page for aggregated statistics of B10K progress.
@@ -13,7 +12,6 @@ export class BirdsPage {
     constructor(
         private data: CommonData,
         private commonLogic: CommonLogic,
-        private logic: StatsLogic,
     ) {}
 
     public stats = [];
@@ -31,7 +29,7 @@ export class BirdsPage {
         const taxItems = await this.data.getAllTaxonomyItems();
         const samples = await this.data.getAllSamples();
         const records = this.commonLogic.compileRecords(taxItems, samples);
-        const stats = this.logic.compileStats(records);
+        const stats = this.commonLogic.compileStats(records);
         this.stats.push(...stats)
     }
 }
