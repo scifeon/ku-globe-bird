@@ -9,3 +9,4 @@ Logs
 package-lock.json
 scifeon.db
 tsconfig.temp.json
+.DS_Store
