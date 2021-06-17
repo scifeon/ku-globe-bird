@@ -1,4 +1,4 @@
-import { ServerAPI, TaxonomyItem, Sample } from "@scifeon/core";
+import { Sample, ServerAPI, TaxonomyItem } from "@scifeon/core";
 import { autoinject } from "aurelia-framework";
 
 @autoinject
@@ -31,6 +31,13 @@ export default class TaxonomyItemData {
         return response.taxonomyItems[0] as TaxonomyItem;
     }
 
+    /**
+     * Get all Sample entities with a foreign key matching the given
+     * TaxonomyItemID.
+     *
+     * @param taxonomyItemID TaxonomyItem ID.
+     * @returns promise of list of Sample entities.
+     */
     public async getAllSamplesFromView(taxonomyItemID: string): Promise<Sample[]> {
         const response = await this.server.datasetQuery(
             [
@@ -43,5 +50,25 @@ export default class TaxonomyItemData {
         );
 
         return response.samples as Sample[];
+    }
+
+    /**
+     * Get latest picture file for a given TaxonomyItemID.
+     *
+     * @param taxonomyItemID TaxonomyItem ID.
+     * @returns promise of File entity.
+     */
+    public async getPictureFileFromView(taxonomyItemID: string): Promise<File> {
+        const response = await this.server.datasetQuery(
+            [
+                {
+                    view: "B10K_AllTaxItemFiles",
+                    collection: "files",
+                    filters: [{ field: "subjectID", value: taxonomyItemID }],
+                },
+            ],
+        );
+
+        return response.files[0] as File
     }
 }

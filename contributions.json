@@ -21,6 +21,11 @@
                 "name": "AllTaxonomyItems",
                 "sql": "sql/AllTaxonomyItems.sql",
                 "accessScope": "Public"
+            },
+            {
+                "name": "AllTaxItemFiles",
+                "sql": "sql/AllTaxItemFiles.sql",
+                "accessScope": "Public"
             }
         ]
     },
