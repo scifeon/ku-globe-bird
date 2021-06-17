@@ -1,6 +1,7 @@
+import { Sample } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
-import { Sample, ServerAPI } from "@scifeon/core";
+import SampleData from "./data/sample.data";
 
 /**
  * Public page displaying a B10K a Sample entity.
@@ -14,13 +15,14 @@ import { Sample, ServerAPI } from "@scifeon/core";
 export class SamplePage {
     public sample: Sample;
 
-    constructor(private server: ServerAPI) {}
+    constructor(
+        private data: SampleData,
+    ) {}
 
     public async init(router) {
-        console.log(router)
         const sampleID = router.params.id;
-        console.log(sampleID)
-        const response = await this.server.get(`/api/Sample/${sampleID}`)
-        console.log(response)
+        this.sample = await this.data.getSampleFromView(sampleID);
+
+        console.log("SAMPLE", this.sample)
     }
 }
