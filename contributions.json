@@ -16,6 +16,11 @@
                 "name": "AllSamples",
                 "sql": "sql/AllSamples.sql",
                 "accessScope": "Public"
+            },
+            {
+                "name": "AllTaxonomyItems",
+                "sql": "sql/AllTaxonomyItems.sql",
+                "accessScope": "Public"
             }
         ]
     },

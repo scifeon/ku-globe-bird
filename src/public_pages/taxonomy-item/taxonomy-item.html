@@ -1,0 +1,58 @@
+<template>
+    <page-with-header class="b10k-taxonomy-item">
+        <page-header>
+            <h1>Taxonomy Item ${taxItem.name}</h1>
+        </page-header>
+
+        <page-panels>
+            <panel>
+                <panel-body>
+                    <article class="field-group-grid">
+                        <section class="field-group">
+                            <h4>Taxonomy</h4>
+                            <dl>
+                                <dt>Common Name</dt>
+                                <dd>${taxonomyItem.attributes.speciesEnglishName}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Latin Name</dt>
+                                <dd>${taxonomyItem.genusName} ${taxonomyItem.speciesName}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Genus</dt>
+                                <dd>${taxonomyItem.genusName}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Family</dt>
+                                <dd>${taxonomyItem.familyName}</dd>
+                            </dl>
+                            <dl>
+                                <dt>Order</dt>
+                                <dd>${taxonomyItem.orderName}</dd>
+                            </dl>
+                        </section>
+
+                        <section class="field-group">
+                            <h4>Samples</h4>
+
+                            <ul>
+                                <li repeat.for="sample of samples">
+                                    <a href="/#/b10k/Sample/${sample.id}">${sample.name}</a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="field-group">
+                            <img if.bind="imageFile.id"
+                                src="/api/file/${imageFile.id}"
+                                alt.bind="taxonomyItem.name">
+                            <img else
+                                src="../../assets/images/dodo.png"
+                                alt.bind="Dodo">
+                        </section>
+                    </article>
+                </panel-body>
+            </panel>
+        </page-panels>
+    </page-with-header>
+</template>

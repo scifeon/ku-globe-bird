@@ -6,11 +6,11 @@ export default class SampleData {
     constructor(private server: ServerAPI) {}
 
     /**
-     * Get a sample via the AllSamples view matching the given id.
+     * Get a Sample entity from the AllSamples view matching the given ID.
      *
      * @param id Sample ID to get.
-     * @raise Error if sample was not found.
-     * @returns Sample Entity.
+     * @raise Error if Sample was not found.
+     * @returns promise of Sample Entity.
      */
     public async getSampleFromView(id: string): Promise<Sample> {
         const response = await this.server.datasetQuery(
