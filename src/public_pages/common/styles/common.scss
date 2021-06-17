@@ -105,7 +105,8 @@ live-notifications {
             text-decoration: none;
         }
     }
-    &-login-link {
+    &-login-link,
+    &-contact-link {
         margin: 0 0 0 auto;
         color: $white;
         transition: $transition;
