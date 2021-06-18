@@ -1,4 +1,4 @@
-import { scifeonRoute, PAGE_TYPE } from "@scifeon/plugins";
+import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import CommonData from "../common/data/common.data";
@@ -33,5 +33,12 @@ export class BirdsPage {
         const samples = await this.data.getAllSamples();
         this.records.push(...this.logic.compileRecords(taxItems, samples));
         this.stats.push(...this.logic.compileStats(this.records));
+    }
+
+    public attached() {
+        document.body.classList.add("b10k-bg");
+    }
+    public detached() {
+        document.body.classList.remove("b10k-bg");
     }
 }
