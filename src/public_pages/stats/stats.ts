@@ -32,4 +32,11 @@ export class BirdsPage {
         const stats = this.commonLogic.compileStats(records);
         this.stats.push(...stats)
     }
+
+    public attached() {
+        document.body.classList.add("b10k-bg");
+    }
+    public detached() {
+        document.body.classList.remove("b10k-bg");
+    }
 }
