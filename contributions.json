@@ -10,7 +10,7 @@
             {
                 "name": "TaxonomyItemOverview",
                 "sql": "sql/TaxonomyItemOverview.sql",
-                "accessScope": "All"
+                "accessScope": "Public"
             },
             {
                 "name": "AllSamples",
