@@ -50,6 +50,7 @@ body.b10k-bg {
 #scifeon-boot,
 #scifeon-app #scifeon-main-app {
     background-color: transparent;
+    overflow: unset !important;
 }
 
 dev-bar,
@@ -93,11 +94,16 @@ live-notifications {
         padding: 0px 16px;
         background-color: $sci-primary-color;
         background: transparent linear-gradient(270deg, #0C6465 0%, #06323380 100%) 0% 0% no-repeat padding-box;
+
+        &-nav {
+            margin: 0 0 0 auto;
+        }
     }
     &-heading {
         color: $white;
         font-weight: 600;
         transition: $transition;
+        margin-right: 8px;
 
         &:hover {
             opacity: 0.9;
@@ -106,10 +112,11 @@ live-notifications {
         }
     }
     &-login-link,
-    &-contact-link {
-        margin: 0 0 0 auto;
+    &-contact-link,
+    &-home-link {
         color: $white;
         transition: $transition;
+        margin-left: 8px;
 
         &:hover {
             color: $white;
@@ -123,10 +130,15 @@ live-notifications {
         }
 
         .far {
-            margin-right: 8px;
+            margin-right: 4px;
             color: $white;
             transition: $transition;
         }
+    }
+
+    &-contact-link::after {
+        content: "|";
+        margin-left: 8px;
     }
 
     // hero
@@ -449,7 +461,7 @@ live-notifications {
     }
 
     // branding
-    &-persistent-branding {
+    &-persistent-branding  {
         display: flex;
         justify-content: flex-end;
         align-items: center;
