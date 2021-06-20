@@ -1,16 +1,13 @@
 <template>
-    <page-with-header class="b10k-sample">
+    <main class="b10k-sample sci-main">
         <b10k-header></b10k-header>
 
         <b10k-hero></b10k-hero>
 
-        <page-header>
-            <h1>Sample ${sample.name}</h1>
-        </page-header>
+        <section class="sci-content">
+            <h2 class="sci-content-title">Sample ${sample.name}</h2>
 
-        <page-panels>
-            <panel>
-                <panel-body>
+                <div class="sci-content-body">
                     <article class="field-group-grid">
                         <section class="field-group">
                             <dl>
@@ -51,50 +48,6 @@
                             <dl>
                                 <dt>Order</dt>
                                 <dd>${sample.attributes.order}</dd>
-                            </dl>
-                        </section>
-
-                        <section class="field-group">
-                            <h4>BUSCO</h4>
-                            <dl>
-                                <dt>Complete and Duplicated BUSCOs D</dt>
-                                <dd>${sample.attributes.completeAndDuplicatedBUSCOsD}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Complete and Single Copy BUSCOs S</dt>
-                                <dd>${sample.attributes.completeAndSingleCopyBUSCOsS}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Completed BUSCOs</dt>
-                                <dd>${sample.attributes.completeBUSCOs}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Fragmented BUSCOs F</dt>
-                                <dd>${sample.attributes.fragmentedBUSCOsF}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Missing BUSCOs M</dt>
-                                <dd>${sample.attributes.missingBUSCOsM}</dd>
-                            </dl>
-                        </section>
-
-                        <section class="field-group">
-                            <h4>Tissue</h4>
-                            <dl>
-                                <dt>Tissue for Hic</dt>
-                                <dd>${sample.attributes.tissueForHic}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Tissue Preservation Condition</dt>
-                                <dd>${sample.attributes.tissuePreservationConditions}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Tissue Remain</dt>
-                                <dd>${sample.attributes.tissueRemain}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Tissue Storage Place</dt>
-                                <dd>${sample.attributes.tissueStoragePlace}</dd>
                             </dl>
                         </section>
 
@@ -145,6 +98,7 @@
                                 <dd>${sample.attributes.volumeL}</dd>
                             </dl>
                         </section>
+
                         <section class="field-group">
                             <h4>Sequencing &amp; Assembly</h4>
                             <dl>
@@ -220,21 +174,7 @@
                                 <dd>${sample.attributes.gapRatio}</dd>
                             </dl>
                         </section>
-                        <section class="field-group">
-                            <h4>Storage &amp; Shipping</h4>
-                            <dl>
-                                <dt>BGI ID</dt>
-                                <dd>${sample.attributes.bgiId}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Storage Batch Number</dt>
-                                <dd>${sample.attributes.storageBatchNumber}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Date Transfer to Shenzhen</dt>
-                                <dd>${sample.attributes.dateTransferToShenzhen}</dd>
-                            </dl>
-                        </section>
+
                         <section class="field-group">
                             <h4>Move these</h4>
                             <!-- <dl>
@@ -315,12 +255,11 @@
                             </dl>
                         </section>
                     </article>
-                </panel-body>
-            </panel>
-        </page-panels>
+                </div>
+        </section>
 
         <b10k-powered-by></b10k-powered-by>
 
         <b10k-footer></b10k-footer>
-    </page-with-header>
+    </main>
 </template>
