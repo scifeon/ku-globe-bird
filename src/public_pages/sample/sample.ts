@@ -1,8 +1,8 @@
 import { Sample } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
-import SampleData from "./data/sample.data";
 import "../common/styles/common.scss";
+import SampleData from "./data/sample.data";
 
 /**
  * Public page displaying a B10K a Sample entity.
@@ -25,5 +25,12 @@ export class SamplePage {
         this.sample = await this.data.getSampleFromView(sampleID);
 
         console.log("SAMPLE", this.sample)
+    }
+
+    public attached() {
+        document.body.classList.add("b10k-bg");
+    }
+    public detached() {
+        document.body.classList.remove("b10k-bg");
     }
 }

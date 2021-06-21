@@ -50,6 +50,7 @@ body.b10k-bg {
 #scifeon-boot,
 #scifeon-app #scifeon-main-app {
     background-color: transparent;
+    overflow: unset !important;
 }
 
 dev-bar,
@@ -93,11 +94,16 @@ live-notifications {
         padding: 0px 16px;
         background-color: $sci-primary-color;
         background: transparent linear-gradient(270deg, #0C6465 0%, #06323380 100%) 0% 0% no-repeat padding-box;
+
+        &-nav {
+            margin: 0 0 0 auto;
+        }
     }
     &-heading {
         color: $white;
         font-weight: 600;
         transition: $transition;
+        margin-right: 8px;
 
         &:hover {
             opacity: 0.9;
@@ -106,10 +112,11 @@ live-notifications {
         }
     }
     &-login-link,
-    &-contact-link {
-        margin: 0 0 0 auto;
+    &-contact-link,
+    &-home-link {
         color: $white;
         transition: $transition;
+        margin-left: 8px;
 
         &:hover {
             color: $white;
@@ -123,10 +130,15 @@ live-notifications {
         }
 
         .far {
-            margin-right: 8px;
+            margin-right: 4px;
             color: $white;
             transition: $transition;
         }
+    }
+
+    &-contact-link::after {
+        content: "|";
+        margin-left: 8px;
     }
 
     // hero
@@ -241,8 +253,9 @@ live-notifications {
 
         &-title {
             color: $b10k-primary-color;
-            font-size: 48px;
+            font-size: 40px;
             font-weight: 600;
+            text-transform: uppercase;
         }
     }
     &-content-title {
@@ -449,7 +462,7 @@ live-notifications {
     }
 
     // branding
-    &-persistent-branding {
+    &-persistent-branding  {
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -504,6 +517,12 @@ live-notifications {
         img {
             height: 40px;
         }
+    }
+
+    // figure & figcaption
+
+    &-figcaption {
+        padding: 4px 8px 8px 16px;
     }
 
     // footer
@@ -590,6 +609,33 @@ live-notifications {
     }
 }
 
+// scoped to B10K contact page
+
+.b10k_contact {
+    .sci-content-body {
+        display: flex;
+        justify-content: flex-start;
+        padding: 40px;
+
+        .left {
+            min-width: 500px;
+        }
+
+        .contact, .address {
+            padding-top: $padding-default;
+        }
+
+        img {
+            height: 200px;
+        }
+    }
+}
+//progress chart
+
+.b10k-progress-chart {
+    padding: 40px;
+}
+
 .b10k-bg > #scifeon-boot { overflow: auto; }
 
 @media(max-width: 767px) {
@@ -616,32 +662,86 @@ live-notifications {
 
 .b10k-sample,
 .b10k-taxonomy-item {
-    .field-group-grid {
-
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(unquote("min(600px, 100%)"), 1fr));
-        grid-gap: 32px;
-    }
-
-    .field-group {
-        border: 1px solid black;
-        width: 400px;
+    .sci-content-body {
+        padding: 40px;
+        // width: 450px;
 
         h4 {
             font-size: 150%;
-            display: flex;
-            justify-content: center;
+        }
+    }
+
+    .sci-content-header {
+        margin-bottom: 16px;
+        width: 500px;
+
+        dl div:hover {
+            background-color: transparent;
+        }
+    }
+    .field-group-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(450px, 500px));
+        gap: 16px;
+    }
+
+    .field-group.seq-assembly {
+        overflow-x: scroll;
+    }
+
+    .field-group-header {
+        h3 {
+            margin: 0;
+        }
+
+        dd {
+            font-size: 130%;
         }
     }
 
     dt {
-        width: 200px;
-        padding-left: 16px;
+        width: 40%;
+        padding-right: 32px;
+    }
+
+    dd {
+        width: 40%;
     }
 
     dl {
-        display: flex;
-        padding-right: 16px;;
+        div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &:hover {
+                background-color: rgba($sci-primary-faded-color, 0.3);
+            }
+        }
+    }
+
+    .sci-content-body img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .placeholder-bird {
+        position: relative;
+        &-text {
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: $sci-label-color;
+            z-index: 100;
+        }
+        &-img {
+            padding: 8px;
+            opacity: 0.2;
+            border: 5px dashed;
+        }
     }
 
 }

@@ -1,6 +1,5 @@
 import { scifeonRoute } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
-import "./styles/contact.scss";
 
 /**
  * Page for "contact us".
@@ -8,4 +7,10 @@ import "./styles/contact.scss";
 @autoinject
 @scifeonRoute({ title: "Contact Us", route: "b10k/contact" })
 export class B10KContact {
+    public attached() {
+        document.body.classList.add("b10k-bg");
+    }
+    public detached() {
+        document.body.classList.remove("b10k-bg");
+    }
 }
