@@ -3,4 +3,4 @@ SELECT
 FROM
 	Core_File cf
 WHERE
-	cf.subjectClass = "TaxonomyItem"
+	cf.subjectClass = 'TaxonomyItem'
