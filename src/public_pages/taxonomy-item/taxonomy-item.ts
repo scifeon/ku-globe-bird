@@ -34,4 +34,11 @@ export class TaxonomyItemPage {
         console.log("SAMPLES", this.samples)
         console.log("FILE", this.pictureFile)
     }
+
+    public attached() {
+        document.body.classList.add("b10k-bg");
+    }
+    public detached() {
+        document.body.classList.remove("b10k-bg");
+    }
 }

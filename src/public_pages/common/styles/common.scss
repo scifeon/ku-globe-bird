@@ -662,32 +662,86 @@ live-notifications {
 
 .b10k-sample,
 .b10k-taxonomy-item {
-    .field-group-grid {
-
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(unquote("min(600px, 100%)"), 1fr));
-        grid-gap: 32px;
-    }
-
-    .field-group {
-        border: 1px solid black;
-        width: 400px;
+    .sci-content-body {
+        padding: 40px;
+        // width: 450px;
 
         h4 {
             font-size: 150%;
-            display: flex;
-            justify-content: center;
+        }
+    }
+
+    .sci-content-header {
+        margin-bottom: 16px;
+        width: 500px;
+
+        dl div:hover {
+            background-color: transparent;
+        }
+    }
+    .field-group-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(450px, 500px));
+        gap: 16px;
+    }
+
+    .field-group.seq-assembly {
+        overflow-x: scroll;
+    }
+
+    .field-group-header {
+        h3 {
+            margin: 0;
+        }
+
+        dd {
+            font-size: 130%;
         }
     }
 
     dt {
-        width: 200px;
-        padding-left: 16px;
+        width: 40%;
+        padding-right: 32px;
+    }
+
+    dd {
+        width: 40%;
     }
 
     dl {
-        display: flex;
-        padding-right: 16px;;
+        div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &:hover {
+                background-color: rgba($sci-primary-faded-color, 0.3);
+            }
+        }
+    }
+
+    .sci-content-body img {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .placeholder-bird {
+        position: relative;
+        &-text {
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: $sci-label-color;
+            z-index: 100;
+        }
+        &-img {
+            padding: 8px;
+            opacity: 0.2;
+            border: 5px dashed;
+        }
     }
 
 }

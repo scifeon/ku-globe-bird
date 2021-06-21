@@ -7,255 +7,251 @@
         <section class="sci-content">
             <h2 class="sci-content-title">Sample ${sample.name}</h2>
 
-                <div class="sci-content-body">
-                    <article class="field-group-grid">
-                        <section class="field-group">
-                            <dl>
-                                <dt>Taxonomy Item</dt>
-                                <dd>
-                                    <a href="/#/b10k/TaxonomyItem/${sample.taxonomyItemID}" >
-                                        ${sample.taxonomyItemID}
-                                    </a>
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>Status</dt>
-                                <dd>${sample.attributes.sampleDataLevel}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Date</dt>
-                                <dd>${sample.createDate}</dd>
-                            </dl>
-                        </section>
-                        <section class="field-group">
-                            <h4>Taxonomy</h4>
-                            <dl>
-                                <dt>Common Name</dt>
-                                <dd>${sample.attributes.commonName}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Latin Name</dt>
-                                <dd>${sample.description}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Genus</dt>
-                                <dd>${sample.attributes.genus}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Family</dt>
-                                <dd>${sample.attributes.family}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Order</dt>
-                                <dd>${sample.attributes.order}</dd>
-                            </dl>
-                        </section>
+            <header class="sci-content-body sci-content-header">
+                <dl class="field-group field-group-header">
+                    <div>
+                        <dt>
+                            <h3>Taxonomy Item</h3></dt>
+                        <dd>
+                            <a href="/#/b10k/TaxonomyItem/${sample.taxonomyItemID}">
+                                ${sample.taxonomyItemID}
+                            </a>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt><h3>Status</h3></dt>
+                        <dd>${sample.attributes.sampleDataLevel}</dd>
+                    </div>
+                    <div>
+                        <dt><h3>Date</h3></dt>
+                        <dd>${sample.createDate}</dd>
+                    </div>
+                </dl>
+            </header>
 
-                        <section class="field-group">
-                            <h4>Library Preparation</h4>
-                            <dl>
-                                <dt>DNA Preservation Conditions</dt>
-                                <dd>${sample.attributes.dnaPreservationConditions}</dd>
-                            </dl>
-                            <dl>
-                                <dt>DNA Qualty Test Serial Number</dt>
-                                <dd>${sample.attributes.dnaQualityTestSerialNumber}</dd>
-                            </dl>
-                            <dl>
-                                <dt>DNA Solvent</dt>
-                                <dd>${sample.attributes.dnaSolvent}</dd>
-                            </dl>
-                            <dl>
-                                <dt>DNA Storage Date</dt>
-                                <dd>${sample.attributes.dnaStorageDate}</dd>
-                            </dl>
-                            <dl>
-                                <dt>DNA Storage Place</dt>
-                                <dd>${sample.attributes.dnaStoragePlace}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Extraction Method</dt>
-                                <dd>${sample.attributes.extractionMethod}</dd>
-                            </dl>
-                            <dl>
-                                <dt>DNA Fragment Size [bp]</dt>
-                                <dd>${sample.attributes.dnaFragmentSizeBp}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Concentration [ng/L]</dt>
-                                <dd>${sample.attributes.concentrationNgL}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Construction Library Note</dt>
-                                <dd>${sample.attributes.constructionLibraryNote}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Total Mass [ng]</dt>
-                                <dd>${sample.attributes.totalMassNg}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Volume [L]</dt>
-                                <dd>${sample.attributes.volumeL}</dd>
-                            </dl>
-                        </section>
+            <article class="field-group-grid">
+                <article class="sci-content-body">
+                    <h4>Taxonomy</h4>
+                    <dl class="field-group">
+                        <div>
+                            <dt>Common Name</dt>
+                            <dd>${sample.attributes.commonName}</dd>
+                        </div>
+                        <div>
+                            <dt>Latin Name</dt>
+                            <dd>${sample.description}</dd>
+                        </div>
+                        <div>
+                            <dt>Genus</dt>
+                            <dd>${sample.attributes.genus}</dd>
+                        </div>
+                        <div>
+                            <dt>Family</dt>
+                            <dd>${sample.attributes.family}</dd>
+                        </div>
+                        <div>
+                            <dt>Order</dt>
+                            <dd>${sample.attributes.order}</dd>
+                        </div>
+                        <div>
+                            <dt>Cites</dt>
+                            <dd>${sample.attributes.cites}</dd>
+                        </div>
+                        <div>
+                            <dt>Phase</dt>
+                            <dd>${sample.attributes.phase}</dd>
+                        </div>
+                        <div>
+                            <dt>Source ID</dt>
+                            <dd>${sample.attributes.sourceId}</dd>
+                        </div>
+                    </dl>
+                </article>
+                <article class="sci-content-body">
+                    <h4>Library Preparation</h4>
+                    <dl class="field-group">
+                        <div>
+                            <dt>DNA Preservation Conditions</dt>
+                            <dd>${sample.attributes.dnaPreservationConditions}</dd>
+                        </div>
+                        <div>
+                            <dt>Extraction Method</dt>
+                            <dd>${sample.attributes.extractionMethod}</dd>
+                        </div>
+                        <div>
+                            <dt>DNA Fragment Size [bp]</dt>
+                            <dd>${sample.attributes.dnaFragmentSizeBp}</dd>
+                        </div>
+                        <div>
+                            <dt>Concentration [ng/L]</dt>
+                            <dd>${sample.attributes.concentrationNgL}</dd>
+                        </div>
+                        <div>
+                            <dt>Construction Library Note</dt>
+                            <dd>${sample.attributes.constructionLibraryNote}</dd>
+                        </div>
+                        <div>
+                            <dt>Total Mass [ng]</dt>
+                            <dd>${sample.attributes.totalMassNg}</dd>
+                        </div>
+                        <div>
+                            <dt>Volume [L]</dt>
+                            <dd>${sample.attributes.volumeL}</dd>
+                        </div>
+                    </dl>
+                </article>
 
-                        <section class="field-group">
-                            <h4>Sequencing &amp; Assembly</h4>
-                            <dl>
-                                <dt>Contig L50</dt>
-                                <dd>${sample.attributes.contigL50}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Contig N50</dt>
-                                <dd>${sample.attributes.contigN50}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Contig Num</dt>
-                                <dd>${sample.attributes.contigNum}</dd>
-                            </dl>
-                            <dl>
-                                <dt>covarisPcr300500bpWgs</dt>
-                                <dd>${sample.attributes.covarisPcr300500bpWgs}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Length of Scaffolds Longer 100bp or No Gap</dt>
-                                <dd>${sample.attributes.lenScaffoldLonger100BpOrNoGap}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Scaffold L50</dt>
-                                <dd>${sample.attributes.scaffoldL50}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Scaffold N50</dt>
-                                <dd>${sample.attributes.scaffoldN50}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Scaffold Number</dt>
-                                <dd>${sample.attributes.scaffoldNum}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Sequence Data Path</dt>
-                                <dd>${sample.attributes.sequenceDataPath}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Sequence Data Prefix</dt>
-                                <dd>${sample.attributes.sequenceDataPrefix}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Sequence Serial Number</dt>
-                                <dd>${sample.attributes.sequenceSerialNumber}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Sequence Chip Number</dt>
-                                <dd>${sample.attributes.sequencingChipNumber}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Sequencing Platform</dt>
-                                <dd>${sample.attributes.sequencingPlatform}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Total Length [bp]</dt>
-                                <dd>${sample.attributes.totalLenBp}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Assemble Prefix</dt>
-                                <dd>${sample.attributes.assemblePrefix}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Assembled</dt>
-                                <dd>${sample.attributes.assembled}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Gap Length [bp]</dt>
-                                <dd>${sample.attributes.gapLenBp}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Gap Ratio</dt>
-                                <dd>${sample.attributes.gapRatio}</dd>
-                            </dl>
-                        </section>
+                <article class="sci-content-body">
+                    <dl class="field-group seq-assembly">
+                        <h4>Sequencing &amp; Assembly</h4>
+                        <div>
+                            <dt>Contig L50</dt>
+                            <dd>${sample.attributes.contigL50}</dd>
+                        </div>
+                        <div>
+                            <dt>Contig N50</dt>
+                            <dd>${sample.attributes.contigN50}</dd>
+                        </div>
+                        <div>
+                            <dt>Contig Num</dt>
+                            <dd>${sample.attributes.contigNum}</dd>
+                        </div>
+                        <div>
+                            <dt>covarisPcr300500bpWgs</dt>
+                            <dd>${sample.attributes.covarisPcr300500bpWgs}</dd>
+                        </div>
+                        <div>
+                            <dt>Length of Scaffolds Longer 100bp or No Gap</dt>
+                            <dd>${sample.attributes.lenScaffoldivonger100BpOrNoGap}</dd>
+                        </div>
+                        <div>
+                            <dt>Scaffold L50</dt>
+                            <dd>${sample.attributes.scaffoldiv50}</dd>
+                        </div>
+                        <div>
+                            <dt>Scaffold N50</dt>
+                            <dd>${sample.attributes.scaffoldN50}</dd>
+                        </div>
+                        <div>
+                            <dt>Scaffold Number</dt>
+                            <dd>${sample.attributes.scaffoldNum}</dd>
+                        </div>
+                        <div>
+                            <dt>Sequence Data Path</dt>
+                            <dd>${sample.attributes.sequenceDataPath}</dd>
+                        </div>
+                        <div>
+                            <dt>Sequence Data Prefix</dt>
+                            <dd>${sample.attributes.sequenceDataPrefix}</dd>
+                        </div>
+                        <div>
+                            <dt>Sequence Serial Number</dt>
+                            <dd>${sample.attributes.sequenceSerialNumber}</dd>
+                        </div>
+                        <div>
+                            <dt>Sequence Chip Number</dt>
+                            <dd>${sample.attributes.sequencingChipNumber}</dd>
+                        </div>
+                        <div>
+                            <dt>Sequencing Platform</dt>
+                            <dd>${sample.attributes.sequencingPlatform}</dd>
+                        </div>
+                        <div>
+                            <dt>Total Length [bp]</dt>
+                            <dd>${sample.attributes.totalLenBp}</dd>
+                        </div>
+                        <div>
+                            <dt>Assemble Prefix</dt>
+                            <dd>${sample.attributes.assemblePrefix}</dd>
+                        </div>
+                        <div>
+                            <dt>Assembled</dt>
+                            <dd>${sample.attributes.assembled}</dd>
+                        </div>
+                        <div>
+                            <dt>Gap Length [bp]</dt>
+                            <dd>${sample.attributes.gapLenBp}</dd>
+                        </div>
+                        <div>
+                            <dt>Gap Ratio</dt>
+                            <dd>${sample.attributes.gapRatio}</dd>
+                        </div>
+                    </dl>
+                </article>
 
-                        <section class="field-group">
-                            <h4>Move these</h4>
-                            <!-- <dl>
+                <article class="sci-content-body">
+                    <h4>Move these</h4>
+                    <dl class="field-group">
+                        <!-- <div>
                                 <dt></dt>
                                 <dd>${sample.attributes.10Xgenomics}</dd>
-                            </dl> -->
-                            <dl>
-                                <dt>Analyze Level</dt>
-                                <dd>${sample.attributes.analyzeLevel}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Barcode</dt>
-                                <dd>${sample.attributes.barcode}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Batch of Extract</dt>
-                                <dd>${sample.attributes.batchOfExtract}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Cites</dt>
-                                <dd>${sample.attributes.cites}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Date of Testing Accomplish</dt>
-                                <dd>${sample.attributes.dateOfTestingAccomplish}</dd>
-                            </dl>
-                            <dl>
-                                <dt>hM</dt>
-                                <dd>${sample.attributes.hM}</dd>
-                            </dl>
-                            <dl>
-                                <dt>hiC</dt>
-                                <dd>${sample.attributes.hiC}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Library ID</dt>
-                                <dd>${sample.attributes.libraryId}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Marker</dt>
-                                <dd>${sample.attributes.marker}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Match Next</dt>
-                                <dd>${sample.attributes.matchNext}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Molecule Length</dt>
-                                <dd>${sample.attributes.moleculeLen"}</dd>
-                            </dl>
-                            <dl>
-                                <dt>No</dt>
-                                <dd>${sample.attributes.no}</dd>
-                            </dl>
-                            <dl>
-                                <dt>noteOd280260</dt>
-                                <dd>${sample.attributes.noteOd280260}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Phase</dt>
-                                <dd>${sample.attributes.phase}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Report Raw Filename</dt>
-                                <dd>${sample.attributes.reportRawFileName}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Sample Integrity</dt>
-                                <dd>${sample.attributes.sampleIntegrity}</dd>
-                            </dl>
-                            <dl>
-                                <dt>Source ID</dt>
-                                <dd>${sample.attributes.sourceId}</dd>
-                            </dl>
-                            <dl>
-                                <dt>stFLR</dt>
-                                <dd>${sample.attributes.stFLR}</dd>
-                            </dl>
-                        </section>
-                    </article>
-                </div>
+                            </div> -->
+                        <div>
+                            <dt>Analyze Level</dt>
+                            <dd>${sample.attributes.analyzeLevel}</dd>
+                        </div>
+                        <div>
+                            <dt>Barcode</dt>
+                            <dd>${sample.attributes.barcode}</dd>
+                        </div>
+                        <div>
+                            <dt>Batch of Extract</dt>
+                            <dd>${sample.attributes.batchOfExtract}</dd>
+                        </div>
+
+                        <div>
+                            <dt>Date of Testing Accomplish</dt>
+                            <dd>${sample.attributes.dateOfTestingAccomplish}</dd>
+                        </div>
+                        <div>
+                            <dt>hM</dt>
+                            <dd>${sample.attributes.hM}</dd>
+                        </div>
+                        <div>
+                            <dt>hiC</dt>
+                            <dd>${sample.attributes.hiC}</dd>
+                        </div>
+                        <div>
+                            <dt>Library ID</dt>
+                            <dd>${sample.attributes.libraryId}</dd>
+                        </div>
+                        <div>
+                            <dt>Marker</dt>
+                            <dd>${sample.attributes.marker}</dd>
+                        </div>
+                        <div>
+                            <dt>Match Next</dt>
+                            <dd>${sample.attributes.matchNext}</dd>
+                        </div>
+                        <div>
+                            <dt>Molecule Length</dt>
+                            <dd>${sample.attributes.moleculeLen}</dd>
+                        </div>
+                        <div>
+                            <dt>No</dt>
+                            <dd>${sample.attributes.no}</dd>
+                        </div>
+                        <div>
+                            <dt>noteOd280260</dt>
+                            <dd>${sample.attributes.noteOd280260}</dd>
+                        </div>
+
+                        <div>
+                            <dt>Report Raw Filename</dt>
+                            <dd>${sample.attributes.reportRawFileName}</dd>
+                        </div>
+                        <div>
+                            <dt>Sample Integrity</dt>
+                            <dd>${sample.attributes.sampleIntegrity}</dd>
+                        </div>
+
+                        <div>
+                            <dt>stFLR</dt>
+                            <dd>${sample.attributes.stFLR}</dd>
+                        </div>
+                    </dl>
+                </article>
+              </article>
         </section>
 
         <b10k-powered-by></b10k-powered-by>
