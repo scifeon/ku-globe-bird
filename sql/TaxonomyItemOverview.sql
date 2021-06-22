@@ -1,4 +1,5 @@
 SELECT
+	tax.ID,
 	tax.Name AS LatinName,
 	tax.FamilyName,
 	tax.GenusName,
@@ -23,6 +24,7 @@ FROM
 LEFT JOIN PnS_Sample AS smp ON
 	smp.TaxonomyItemID = tax.ID
 GROUP BY
+	tax.ID,
 	tax.name,
 	tax.FamilyName,
 	tax.GenusName,
