@@ -29,8 +29,8 @@ export class BirdsPage {
     // Life cycle hooks.
 
     public async bind() {
-        const taxItems = await this.data.getAllTaxonomyItems();
-        const samples = await this.data.getAllSamples();
+        // const taxItems = await this.data.getAllTaxonomyItems();
+        // const samples = await this.data.getAllSamples();
         // this.records.push(...this.logic.compileRecords(taxItems, samples));
         // this.stats.push(...this.logic.compileStats(this.records));
     }
