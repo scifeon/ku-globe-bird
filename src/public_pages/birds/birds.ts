@@ -18,7 +18,7 @@ import "./styles/birds.scss";
 })
 export class BirdsPage {
     public listViewConfig: IListViewConfig = LIST_VIEW_CONFIG;
-    public records: ITaxItemRecord[] = [];
+    // public records: ITaxItemRecord[] = [];
     public stats = [];
 
     constructor(
@@ -31,8 +31,8 @@ export class BirdsPage {
     public async bind() {
         const taxItems = await this.data.getAllTaxonomyItems();
         const samples = await this.data.getAllSamples();
-        this.records.push(...this.logic.compileRecords(taxItems, samples));
-        this.stats.push(...this.logic.compileStats(this.records));
+        // this.records.push(...this.logic.compileRecords(taxItems, samples));
+        // this.stats.push(...this.logic.compileStats(this.records));
     }
 
     public attached() {
