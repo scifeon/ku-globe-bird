@@ -7,6 +7,7 @@ SELECT
 	COUNT(smp.ID) AS SampleCount,
 	JSON_VALUE(tax.Attributes,
 	'$.speciesEnglishName') AS SpeciesEnglishName,
+	lsmp.ID AS LatestSampleID,
 	lsmp.Name AS LatestSampleName,
 	JSON_VALUE(lsmp.Attributes,
 	'$.sampleDataLevel') AS LatestSampleDataLevel
@@ -30,5 +31,6 @@ GROUP BY
 	tax.GenusName,
 	tax.SpeciesName,
 	tax.Attributes,
+	lsmp.ID,
 	lsmp.Name,
 	lsmp.Attributes
