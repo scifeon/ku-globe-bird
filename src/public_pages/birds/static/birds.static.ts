@@ -21,7 +21,7 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         // },
         // { accessor: "record.speciesEnglishName", label: "Common Name" },
         { accessor: "record.taxonomyItem.familyName", label: "Family" },
-        { accessor: "taxonomyItem.genusName", label: "Genus" },
+        // { accessor: "taxonomyItem.genusName", label: "Genus" },
         // { accessor: "record.speciesName", label: "Species" },
         // { accessor: "record.sampleCount", type: DataType.INT },
         // { accessor: "record.latestSampleName", label: "B10K ID", ui: { render: '<a href="/#/entity/Sample/${record.latestSample.id}">${record.latestSample.name}</a>' } },
