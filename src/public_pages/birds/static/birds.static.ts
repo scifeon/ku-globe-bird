@@ -20,7 +20,7 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         //     ui: { render: '<a href="/#/entity/TaxonomyItem/${record.id}">${record.latinName}</a>' }
         // },
         // { accessor: "record.speciesEnglishName", label: "Common Name" },
-        { accessor: "record.taxonomyItem.familyName", label: "Family" },
+        { accessor: "familyName", label: "Family" },
         { accessor: "taxonomyItem.genusName", label: "Genus" },
         { accessor: "record.speciesName", label: "Species" },
         // { accessor: "record.sampleCount", type: DataType.INT },
