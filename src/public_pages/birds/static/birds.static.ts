@@ -1,4 +1,3 @@
-import { DataType } from "@scifeon/core";
 import { IListViewConfig } from "@scifeon/ui";
 
 export const LIST_VIEW_CONFIG: IListViewConfig = {
@@ -20,12 +19,12 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         //     accessor: "record.latinName",
         //     ui: { render: '<a href="/#/entity/TaxonomyItem/${record.id}">${record.latinName}</a>' }
         // },
-        { accessor: "record.speciesEnglishName", label: "Common Name" },
+        // { accessor: "record.speciesEnglishName", label: "Common Name" },
         { accessor: "record.taxonomyItem.familyName", label: "Family" },
         { accessor: "taxonomyItem.genusName", label: "Genus" },
-        { accessor: "record.speciesName", label: "Species" },
-        { accessor: "record.sampleCount", type: DataType.INT },
-        { accessor: "record.latestSampleName", label: "B10K ID", ui: { render: '<a href="/#/entity/Sample/${record.latestSample.id}">${record.latestSample.name}</a>' } },
-        { accessor: "record.latestSampleDataLevel", label: "Status" },
+        // { accessor: "record.speciesName", label: "Species" },
+        // { accessor: "record.sampleCount", type: DataType.INT },
+        // { accessor: "record.latestSampleName", label: "B10K ID", ui: { render: '<a href="/#/entity/Sample/${record.latestSample.id}">${record.latestSample.name}</a>' } },
+        // { accessor: "record.latestSampleDataLevel", label: "Status" },
     ],
 };
