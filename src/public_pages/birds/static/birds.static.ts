@@ -16,13 +16,13 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
     //     { accessor: "latestSample.attributes.sampleDataLevel", label: "Status" },
     // ],
     fields: [
-        {
-            accessor: "record.latinName",
-            ui: { render: '<a href="/#/entity/TaxonomyItem/${record.id}">${record.latinName}</a>' }
-        },
+        // {
+        //     accessor: "record.latinName",
+        //     ui: { render: '<a href="/#/entity/TaxonomyItem/${record.id}">${record.latinName}</a>' }
+        // },
         { accessor: "record.speciesEnglishName", label: "Common Name" },
-        { accessor: "record.familyName", label: "Family" },
-        { accessor: "record.genusName", label: "Genus" },
+        { accessor: "record.taxonomyItem.familyName", label: "Family" },
+        { accessor: "taxonomyItem.genusName", label: "Genus" },
         { accessor: "record.speciesName", label: "Species" },
         { accessor: "record.sampleCount", type: DataType.INT },
         { accessor: "record.latestSampleName", label: "B10K ID", ui: { render: '<a href="/#/entity/Sample/${record.latestSample.id}">${record.latestSample.name}</a>' } },
