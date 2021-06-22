@@ -5,12 +5,10 @@ SELECT
 	tax.GenusName,
 	tax.SpeciesName,
 	COUNT(smp.ID) AS SampleCount,
-	JSON_VALUE(tax.Attributes,
-	'$.speciesEnglishName') AS SpeciesEnglishName,
+	JSON_VALUE(tax.Attributes, '$.speciesEnglishName') AS SpeciesEnglishName,
 	lsmp.ID AS LatestSampleID,
 	lsmp.Name AS LatestSampleName,
-	JSON_VALUE(lsmp.Attributes,
-	'$.sampleDataLevel') AS LatestSampleDataLevel
+	JSON_VALUE(lsmp.Attributes, '$.sampleDataLevel') AS LatestSampleDataLevel
 FROM
 	Bio_TaxonomyItem AS tax CROSS APPLY (
 	SELECT
