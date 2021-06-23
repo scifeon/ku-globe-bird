@@ -1,9 +1,15 @@
 <template>
-    <a if.bind="linkExists" href.bind="url" target="_blank">
-        ERDA
-        <i class="fa fa-external-link"></i>
-    </a>
-    <h3 else>
-        &#60;No data available&#62;
-    </h3>
+    <section if.bind="linkExists">
+
+    </section>
+        <h3>View data at the Electronic Research Data Archive (ERDA)</h3>
+        <a if.bind="linkExists" href.bind="url" target="_blank">
+            Visit ERDA
+            <i class="fa fa-external-link"></i>
+        </a>
+    <section else>
+        <h3>
+            &#60;No data available&#62;
+        </h3>
+    </section>
 </template>
