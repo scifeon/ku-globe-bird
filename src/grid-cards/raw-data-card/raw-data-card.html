@@ -1,3 +1,8 @@
 <template>
-    &#60;No data available&#62;
+    <a if.bind="linkExists" href="https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${entity.name};flags=f">
+        ERDA
+    </a>
+    <h3 else>
+        &#60;No data available&#62;
+    </h3>
 </template>
