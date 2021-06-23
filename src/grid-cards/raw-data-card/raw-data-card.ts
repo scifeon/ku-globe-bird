@@ -1,5 +1,7 @@
 import { Entity } from "@scifeon/core";
 import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
+import RawDataCardData from "./data/raw-data-card.data";
+import { autoinject } from "aurelia-framework";
 
 @scifeonGridCard({
     id: "raw-data",
@@ -27,11 +29,12 @@ import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
         },
     },
 })
+@autoinject
 export class RawDataCard {
     public url: string;
     public linkExists = false;
-    private entity: Entity;
 
+    constructor(private data: RawDataCardData) {}
 
     private checkLink(url: string) {
         const request = new XMLHttpRequest();
@@ -54,9 +57,20 @@ export class RawDataCard {
     }
 
     public async init(context: PanelContext) {
-        this.entity = context.entity;
+        const entity = context.entity;
+        let id: string;
 
-        this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${context.entity.name};flags=f"`
+        if (entity.eClass === "Sample") {
+            id = entity.id
+        } else {
+            const samples = await this.data.getSamples(entity.id);
+
+            if (!samples.length) return;
+
+            id = samples.slice(-1)[0].id;
+        }
+
+        this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${id};flags=f"`
 
         this.linkExists = this.checkLink(this.url);
     }
