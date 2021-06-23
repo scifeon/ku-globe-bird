@@ -7,11 +7,13 @@ SELECT
 	COUNT(smp.ID) AS SampleCount,
 	JSON_VALUE(tax.Attributes, '$.speciesEnglishName') AS SpeciesEnglishName,
 	lsmp.Name AS LatestSampleName,
-	JSON_VALUE(lsmp.Attributes, '$.sampleDataLevel') AS LatestSampleDataLevel
+	lsmp.ID AS LatestSampleID,
+	JSON_VALUE(lsmp.Attributes,	'$.sampleDataLevel') AS LatestSampleDataLevel
 FROM
-	Bio_TaxonomyItem AS tax CROSS APPLY (
+	Bio_TaxonomyItem AS tax OUTER APPLY (
 	SELECT
-		TOP 1 latestSmp.Name,
+		TOP 1 latestSmp.ID,
+		latestSmp.Name,
 		latestSmp.Attributes
 	FROM
 		PnS_Sample AS latestSmp
@@ -29,4 +31,5 @@ GROUP BY
 	tax.SpeciesName,
 	tax.Attributes,
 	lsmp.Name,
+	lsmp.ID,
 	lsmp.Attributes
