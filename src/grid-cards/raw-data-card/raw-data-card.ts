@@ -35,25 +35,23 @@ export class RawDataCard {
 
     constructor(private data: RawDataCardData) {}
 
-    // private checkLink(url: string) {
-    //     const request = new XMLHttpRequest();
+    private checkLink(url: string) {
+        const request = new XMLHttpRequest();
 
-    //     request.open('GET', url, true);
-    //     request.onreadystatechange = () => {
-    //         if (request.readyState === 4) {
-    //             if (request.status === 404) {
-    //                 alert("Oh no, it does not exist!");
-    //                 return false;
-    //             }
-    //         }
-    //     };
+        request.open('GET', url, true);
+        request.onreadystatechange = () => {
+            if (request.readyState === 4) {
+                if (request.status === 404) {
+                    alert("Oh no, it does not exist!");
+                    return false;
+                }
+            }
+        };
 
-    //     request.send();
+        request.send();
 
-    //     console.log("REQUEST", request)
-
-    //     return true;
-    // }
+        return true;
+    }
 
     public async init(context: PanelContext) {
         const entity = context.entity;
@@ -71,7 +69,6 @@ export class RawDataCard {
 
         this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${id};flags=f`
 
-        this.linkExists = true;
-        // this.linkExists = this.checkLink(this.url);
+        this.linkExists = this.checkLink(this.url);
     }
 }
