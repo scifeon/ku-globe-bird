@@ -28,14 +28,35 @@ import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
     },
 })
 export class RawDataCard {
-    public entity: Entity;
+    public url: string;
+    private entity: Entity;
 
 
     public get linkExists() {
+        return this.checkLink(this.url);
+    }
+
+    private checkLink(url) {
+        var request = new XMLHttpRequest();
+
+        request.open('GET', url, true);
+        request.onreadystatechange = () => {
+            if (request.readyState === 4) {
+                if (request.status === 404) {
+                    alert("Oh no, it does not exist!");
+                    return false;
+                }
+            }
+        };
+
+        // request.send();
+
         return true;
     }
 
     public async init(context: PanelContext) {
         this.entity = context.entity;
+
+        this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${context.entity.name};flags=f"`
     }
 }
