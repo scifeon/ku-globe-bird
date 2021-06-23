@@ -135,6 +135,17 @@ export class B10KCustomFields {
                 label: "BUSCO Total Information",
                 group: "bioinformatics",
             },
+            {
+                match: { eClass: "Sample" },
+                accessor: "name",
+                type: DataType.STRING,
+                label: "ERDA",
+                ui: {
+                    render: 'https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${record.name};flags=f',
+                },
+                group: "bioinformatics",
+            },
+
 
             // >>>>>>>>>>>>>>>>>>>>>>>> TAXONOMY <<<<<<<<<<<<<<<<<<<<<<<<
 
