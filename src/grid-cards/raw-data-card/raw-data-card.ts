@@ -1,7 +1,6 @@
-import { Entity } from "@scifeon/core";
 import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
-import RawDataCardData from "./data/raw-data-card.data";
 import { autoinject } from "aurelia-framework";
+import RawDataCardData from "./data/raw-data-card.data";
 
 @scifeonGridCard({
     id: "raw-data",
@@ -61,16 +60,14 @@ export class RawDataCard {
         let id: string;
 
         if (entity.eClass === "Sample") {
-            id = entity.id
+            id = entity.name
         } else {
             const samples = await this.data.getSamples(entity.id);
 
             if (!samples.length) return;
 
-            id = samples.slice(-1)[0].id;
+            id = samples.slice(-1)[0].name;
         }
-
-        console.log("ID", id)
 
         this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${id};flags=f"`
 
