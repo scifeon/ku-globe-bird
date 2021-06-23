@@ -49,7 +49,9 @@ export class RawDataCard {
             }
         };
 
-        // request.send();
+        request.send();
+
+        console.log("REQUEST", request)
 
         return true;
     }
