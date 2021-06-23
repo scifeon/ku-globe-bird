@@ -70,6 +70,8 @@ export class RawDataCard {
             id = samples.slice(-1)[0].id;
         }
 
+        console.log("ID", id)
+
         this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${id};flags=f"`
 
         this.linkExists = this.checkLink(this.url);
