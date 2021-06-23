@@ -1,5 +1,5 @@
 <template>
-    <a if.bind="linkExists" href="https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${entity.name};flags=f">
+    <a if.bind="linkExists" href.bind="url">
         ERDA
     </a>
     <h3 else>
