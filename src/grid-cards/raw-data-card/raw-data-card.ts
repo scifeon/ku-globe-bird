@@ -29,15 +29,12 @@ import { PanelContext, scifeonGridCard } from "@scifeon/plugins";
 })
 export class RawDataCard {
     public url: string;
+    public linkExists = false;
     private entity: Entity;
 
 
-    public get linkExists() {
-        return this.checkLink(this.url);
-    }
-
-    private checkLink(url) {
-        var request = new XMLHttpRequest();
+    private checkLink(url: string) {
+        const request = new XMLHttpRequest();
 
         request.open('GET', url, true);
         request.onreadystatechange = () => {
@@ -60,5 +57,7 @@ export class RawDataCard {
         this.entity = context.entity;
 
         this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${context.entity.name};flags=f"`
+
+        this.linkExists = this.checkLink(this.url);
     }
 }
