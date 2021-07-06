@@ -9,7 +9,10 @@
     "runtimeVersion": "<%build_version_from_vsts%>",
     "appDependencies": []
   },
-  "dependencies": {},
+  "dependencies": {
+    "js-base64": "2.5.2",
+    "apexcharts": "3.19.0"
+  },
   "devDependencies": {
     "@scifeon/sdk": "*"
   }

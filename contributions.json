@@ -10,7 +10,22 @@
             {
                 "name": "TaxonomyItemOverview",
                 "sql": "sql/TaxonomyItemOverview.sql",
-                "accessScope": "All"
+                "accessScope": "Public"
+            },
+            {
+                "name": "AllSamples",
+                "sql": "sql/AllSamples.sql",
+                "accessScope": "Public"
+            },
+            {
+                "name": "AllTaxonomyItems",
+                "sql": "sql/AllTaxonomyItems.sql",
+                "accessScope": "Public"
+            },
+            {
+                "name": "AllTaxItemFiles",
+                "sql": "sql/AllTaxItemFiles.sql",
+                "accessScope": "Public"
             }
         ]
     },
@@ -20,6 +35,7 @@
                 "text": "B10K",
                 "url": "/#/b10k/birds",
                 "rank": 450,
+                "iconFA": "kiwi-bird",
                 "favorite": true,
                 "items": [
                     {
@@ -27,12 +43,24 @@
                         "url": "/#/b10k/birds"
                     },
                     {
+                        "text": "Stats",
+                        "url": "/#/b10k/stats"
+                    },
+                    {
                         "text": "Bird Samples",
                         "url": "/#/entity/Sample"
                     },
                     {
+                        "text": "Procedures",
+                        "url": "/#/entity/Procedure"
+                    },
+                    {
                         "text": "Nature table",
                         "url": "/#/b10k/tableS1"
+                    },
+                    {
+                        "text": "Contact Us",
+                        "url": "/#/b10k/contact"
                     }
                 ]
             }
