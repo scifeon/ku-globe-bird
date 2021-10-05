@@ -1,5 +1,5 @@
-import { IListViewConfig } from "@scifeon/ui";
 import { DataType } from "@scifeon/core";
+import { IListViewConfig } from "@scifeon/ui";
 
 export const LIST_VIEW_CONFIG: IListViewConfig = {
     // fields: [
@@ -25,7 +25,7 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         { accessor: "genusName", label: "Genus" },
         { accessor: "speciesName", label: "Species" },
         { accessor: "sampleCount", type: DataType.INT },
-        { accessor: "latestSampleName", label: "B10K ID", ui: { render: '<a href="/#/entity/Sample/${record.latestSampleId}">${record.latestSampleName}</a>' } },
+        { accessor: "latestSampleName", label: "B10K ID", ui: { render: '<a href="/#/entity/Sample/${record.latestSampleID}">${record.latestSampleName}</a>' } },
         { accessor: "latestSampleDataLevel", label: "Status" },
     ],
 };
