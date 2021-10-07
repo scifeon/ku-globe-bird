@@ -1,26 +1,25 @@
 import { Dataset, Entity, ObjectUtils } from "@scifeon/core";
 import { DataLoaderPlugin, IDataLoaderContext, scifeonDataLoader } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
-import DataLoaderVariousSamplesLogic from "../data-loader-various-samples/logic/data-loader-various-samples.logic";
-import DataLoaderMasterListDataAPI from "./data/data-loader-master-list.data-api";
-import { LISTVIEW_CONFIG_MATCHED, LISTVIEW_CONFIG_UNMATCHED } from "./static/data-loader-master-list.static";
-import "./styles/data-loader-master-list.scss";
+import DataLoaderB10KSamplesLogic from "../data-loader-various-samples/logic/data-loader-various-samples.logic";
+import DataLoaderB10KSamplesData from "./data/data-loader-b10k-samples.data";
+import { LISTVIEW_CONFIG_MATCHED, LISTVIEW_CONFIG_UNMATCHED } from "./static/data-loader-b10k-samples.static";
+import "./styles/data-loader-b10k-samples.scss";
 
 /**
- * Data loader for reading an excel files with sample information and results
- * where the results should be added to resultSets belonging to requests
- * matching the samples.
+ * Data loader for reading an Excel files with B10K Sample to be linked with
+ * TaxonomyItems on Latin name.
  *
- * @deprecated - use data-loader-b10k-samples
+ * This data loader is a replacement of the deprecated data-loader-master list.
  */
 @scifeonDataLoader({
-    name: "B10K Master List",
-    description: "Load `Master List of Sample_of_B10K_genus.xlsx`",
-    match: context => context.fileInfos[0].filename.startsWith("Master List of Sample_of_B10K_genus"),
+    name: "B10K Samples",
+    description: "Load `B10K Samples.xlsx`",
+    match: context => context.fileInfos[0].filename.startsWith("B10K Samples"),
     rank: 1,
 })
 @autoinject
-export class DataLoaderMasterList implements DataLoaderPlugin {
+export class DataLoaderB10KSamples implements DataLoaderPlugin {
     public listViewConfigMatched = LISTVIEW_CONFIG_MATCHED;
     public listViewConfigUnMatched = LISTVIEW_CONFIG_UNMATCHED;
 
@@ -30,8 +29,8 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
     private context: IDataLoaderContext;
 
     constructor(
-        private data: DataLoaderMasterListDataAPI,
-        private logic: DataLoaderVariousSamplesLogic,
+        private data: DataLoaderB10KSamplesData,
+        private logic: DataLoaderB10KSamplesLogic,
     ) { }
 
     public async readFiles() {
@@ -60,7 +59,7 @@ export class DataLoaderMasterList implements DataLoaderPlugin {
     }
 
     public entitiesView?(): string {
-        return require("./data-loader-master-list.html");
+        return require("./data-loader-b10k-samples.html");
     }
 
     public async init(context: IDataLoaderContext) {
