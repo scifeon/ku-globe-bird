@@ -35,22 +35,18 @@ export class DataLoaderB10KSamples implements DataLoaderPlugin {
 
     public async readFiles() {
         const fileInfo = this.context.fileInfos[0];
-        const sheetAll = fileInfo.wb.Sheets["Report all"];
-        const sheetSmithsonian = fileInfo.wb.Sheets["Report smithsonian"];
-        const columnNames = ["NO", "Phase", "B10K ID"];
-        const samples = await this.data.getEntities("Sample");
-        const samplesReportAll = this.data.getExcelSamples(sheetAll, columnNames);
-        const samplesReportSmithsonian = this.data.getExcelSamples(sheetSmithsonian, columnNames);
-
-        const merge1 = ObjectUtils.mergeCollections(samples, samplesReportAll, "name");
-        const merge2 = ObjectUtils.mergeCollections(merge1, samplesReportSmithsonian, "name");
-
+        const sheet = fileInfo.wb.Sheets["Samples"];
+        const columnNames = ["Species name"];
+        const oldSamples = await this.data.getEntities("Sample");
+        const newSamples = this.data.getExcelSamples(sheet, columnNames);
+        const merge = ObjectUtils.mergeCollections(oldSamples, newSamples, "name");
         const taxItems = await this.data.getEntities("TaxonomyItem");
 
-        this.entities = this.logic.linkTaxAndSamples(taxItems, merge2);
+        console.log({ oldSamples, newSamples, merge, taxItems });
+
+        this.entities = this.logic.linkTaxAndSamples(taxItems, merge);
         this.unmatched = [
-            ...this.logic.compileUnmatched(taxItems, samplesReportAll),
-            ...this.logic.compileUnmatched(taxItems, samplesReportSmithsonian),
+            ...this.logic.compileUnmatched(taxItems, newSamples),
         ];
     }
 

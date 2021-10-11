@@ -28,6 +28,7 @@ export default class DataLoaderB10KSamplesData {
             const sampleObj = this.entityMapper.generateJSONObject(propertyNames, values);
             const sample = this.mapJsonToSample(sampleObj);
 
+            if (!sample.name) continue;
             if (Object.values(sample.attributes).every(value => value === null)) continue;
 
             samples.push(sample);
@@ -49,7 +50,7 @@ export default class DataLoaderB10KSamplesData {
 
         return {
             eClass: "Sample",
-            name: obj.b10kId,
+            name: obj.b10kid,
             type: "Bird",
             description: obj.speciesName,
             attributes: obj,
