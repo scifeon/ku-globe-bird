@@ -68,7 +68,7 @@ export class ProgressChart {
         }
     };
 
-    private statusMap = STATUS_MAP;
+    // private statusMap = STATUS_MAP;
 
     constructor(private router: Router) {}
 
@@ -82,13 +82,15 @@ export class ProgressChart {
 
     private updateStatus(data) {
         for (const obj of data) {
-            obj.x = this.statusMap[obj.x]
+            // obj.x = this.statusMap[obj.x]
+            obj.x = obj.x
         }
 
         return data;
     }
 
     public readyChartHandler(event: CustomEvent) {
+        debugger
         this.chart = event.detail.data.chart;
         const data =  this.chartConfig.series[0]["data"];
 

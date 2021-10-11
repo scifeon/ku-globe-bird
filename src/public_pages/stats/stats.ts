@@ -36,6 +36,7 @@ export class BirdsPage {
     public attached() {
         document.body.classList.add("b10k-bg");
     }
+
     public detached() {
         document.body.classList.remove("b10k-bg");
     }
