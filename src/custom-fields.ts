@@ -210,6 +210,34 @@ export class B10KCustomFields {
                 label: "Assembly Status",
                 group: "status",
             },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.statusCovered",
+                type: DataType.STRING,
+                label: "Status Covered",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.statusDna",
+                type: DataType.STRING,
+                label: "Status DNA",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.statusSequencing",
+                type: DataType.STRING,
+                label: "Status Sequencing",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.statusAssembly",
+                type: DataType.STRING,
+                label: "Status Assembly",
+                group: "status",
+            },
         ];
 
         const fieldGroups: IFieldGroup[] = [
