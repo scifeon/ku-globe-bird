@@ -30,6 +30,9 @@ export class BirdsPage {
         const samples = await this.data.getAllSamples();
         const records = this.commonLogic.compileRecords(taxItems, samples);
         const stats = this.commonLogic.compileStats(records);
+
+        console.log({ taxItems, samples, records, stats })
+
         this.stats.push(...stats)
     }
 

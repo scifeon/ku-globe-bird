@@ -1,4 +1,4 @@
-import { TaxonomyItem, Sample } from "@scifeon/core";
+import { Sample, TaxonomyItem } from "@scifeon/core";
 import ITaxItemRecord from "../interfaces/tax-item-record.interface";
 
 export default class CommonLogic {
@@ -31,20 +31,22 @@ export default class CommonLogic {
 
     public compileStats(records: ITaxItemRecord[]) {
         const stats = [];
-        const counts = {};
+        const counts = {
+            statusCovered: 0,
+            statusDna: 0,
+            statusSequencing: 0,
+            statusAssembly: 0,
+        };
 
         for (const record of records) {
             if (!record.latestSample) continue;
 
-            const status = record.latestSample.attributes.sampleDataLevel;
+            const sample = record.latestSample;
 
-            if (!status) continue;
-
-            if (!counts[status]) {
-                counts[status] = 1;
-            } else {
-                counts[status] += 1;
-            }
+            if (sample.attributes.statusAssembly === "Yes") counts.statusAssembly += 1;
+            if (sample.attributes.statusCovered === "Yes") counts.statusCovered += 1;
+            if (sample.attributes.statusDna === "Yes") counts.statusDna += 1;
+            if (sample.attributes.statusSequencing === "Yes") counts.statusSequencing += 1;
         }
 
         const keys = Object.keys(counts)

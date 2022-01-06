@@ -2,7 +2,6 @@ import { IApexChartConfig } from "@scifeon/ui";
 import ApexCharts from "apexcharts/dist/apexcharts.common.js";
 import { autoinject, bindable, customElement } from "aurelia-framework";
 import { Router } from "aurelia-router";
-import { STATUS_MAP } from "./static/progress-chart.static";
 
 @customElement("progress-chart")
 @autoinject
@@ -90,7 +89,6 @@ export class ProgressChart {
     }
 
     public readyChartHandler(event: CustomEvent) {
-        debugger
         this.chart = event.detail.data.chart;
         const data =  this.chartConfig.series[0]["data"];
 
