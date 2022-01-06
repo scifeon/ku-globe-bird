@@ -21,6 +21,8 @@ export class B10KPatchDatamodel {
 
         const statusField = sampleTable.fields.find(f => f.accessor === "attributes.status");
 
+        if (!statusField) return;
+
         statusField.label = "Status";
     }
 
