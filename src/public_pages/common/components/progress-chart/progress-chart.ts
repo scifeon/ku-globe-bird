@@ -2,6 +2,7 @@ import { IApexChartConfig } from "@scifeon/ui";
 import ApexCharts from "apexcharts/dist/apexcharts.common.js";
 import { autoinject, bindable, customElement } from "aurelia-framework";
 import { Router } from "aurelia-router";
+import { STATUS_MAP } from "./static/progress-chart.static";
 
 @customElement("progress-chart")
 @autoinject
@@ -67,7 +68,7 @@ export class ProgressChart {
         }
     };
 
-    // private statusMap = STATUS_MAP;
+    private statusMap = STATUS_MAP;
 
     constructor(private router: Router) {}
 
@@ -81,7 +82,7 @@ export class ProgressChart {
 
     private updateStatus(data) {
         for (const obj of data) {
-            // obj.x = this.statusMap[obj.x]
+            obj.x = this.statusMap[obj.x]
             obj.x = obj.x
         }
 
