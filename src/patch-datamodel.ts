@@ -1,6 +1,8 @@
 import { DataModel } from "@scifeon/core";
 import { PLUGIN_TYPE, scifeonPlugin } from "@scifeon/plugins";
+import { autoinject } from "aurelia-framework";
 
+@autoinject
 @scifeonPlugin({
     type: PLUGIN_TYPE.BOOTSTRAPPER,
 })
