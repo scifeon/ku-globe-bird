@@ -21,7 +21,7 @@ export default class CommonLogic {
                 {
                     taxonomyItem: taxItem,
                     sampleCount: sortedSamples.length,
-                    latestSample: sortedSamples[sortedSamples.length - 1],
+                    latestSample: sortedSamples.slice(-1)[0],
                 }
             );
         }
