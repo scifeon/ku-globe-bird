@@ -1,4 +1,4 @@
-import { scifeonRoute } from "@scifeon/plugins";
+import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
 import CommonData from "../common/data/common.data";
 import CommonLogic from "../common/logic/common.logic";
@@ -7,7 +7,7 @@ import CommonLogic from "../common/logic/common.logic";
  * Page for aggregated statistics of B10K progress.
  */
 @autoinject
-@scifeonRoute({ title: "Birds", route: "b10k/stats" })
+@scifeonRoute({ title: "Birds", route: "b10k/stats", type: PAGE_TYPE.PUBLIC })
 export class BirdsPage {
     constructor(
         private data: CommonData,
