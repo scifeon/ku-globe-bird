@@ -26,6 +26,11 @@
                 "name": "AllTaxItemFiles",
                 "sql": "sql/AllTaxItemFiles.sql",
                 "accessScope": "Public"
+            },
+            {
+                "name": "PublicFiles",
+                "sql": "sql/PublicFiles.sql",
+                "accessScope": "Public"
             }
         ]
     },
