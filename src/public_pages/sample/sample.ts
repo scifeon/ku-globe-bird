@@ -9,7 +9,7 @@ import SampleData from "./data/sample.data";
  */
 @scifeonRoute({
     title: "Sample",
-    route: "b10k/Sample/:id",
+    route: "entity/sample/:id",
     type: PAGE_TYPE.PUBLIC,
     })
 @autoinject
