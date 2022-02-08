@@ -1,7 +1,7 @@
+import { CustomEventFactory, EventType } from "@scifeon/core";
 import { IApexChartConfig } from "@scifeon/ui";
 import ApexCharts from "apexcharts/dist/apexcharts.common.js";
 import { autoinject, bindable, customElement } from "aurelia-framework";
-import { Router } from "aurelia-router";
 import { STATUS_MAP } from "./static/progress-chart.static";
 
 @customElement("progress-chart")
@@ -16,10 +16,11 @@ export class ProgressChart {
             type: 'bar',
             height: 350,
             events: {
-                dataPointSelection: (event, chartContext, options) => {
-                    const progressStatus = this.generateFilterString(options.dataPointIndex);
+                dataPointSelection: ($event, chartContext, options) => {
+                    const progressStatus = this.findStatus(options.dataPointIndex);
 
-                    this.router.navigate(`/entity/Sample?$filter=${progressStatus}%20and%20status%20not_in%20('Canceled'%2C'Deleted'%2C'Discarded')&$select=Name%2CDescription%2CDateTaken%2CTaxonomyItemID&$orderby=Description%20asc`);
+                    const event = CustomEventFactory.create(EventType.CLICK, $event, "chart", { progressStatus });
+                    this.element.dispatchEvent(event);
                 }
             },
             toolbar: {
@@ -70,7 +71,7 @@ export class ProgressChart {
 
     private statusMap = STATUS_MAP;
 
-    constructor(private router: Router) {}
+    constructor(private element: Element) {}
 
     public get ready() {
         if (this.data.length) {
@@ -80,11 +81,9 @@ export class ProgressChart {
         return false;
     }
 
-    private generateFilterString(index: number) {
+    private findStatus(index: number) {
         const progressStates = ["statusCovered", "statusDna", "statusSequencing", "statusAssembly"];
-        const status = progressStates[index];
-
-        return `attributes.${status}%20eq%20'Yes'`
+        return progressStates[index];
     }
 
     private updateStatus(data) {

@@ -15,4 +15,5 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         { accessor: "latestSampleName", label: "B10K ID", ui: { render: '<a href="/#/entity/Sample/${record.latestSampleID}">${record.latestSampleName}</a>' } },
         { accessor: "latestStatusProgress", label: "Status", },
     ],
+    filters: [],
 };

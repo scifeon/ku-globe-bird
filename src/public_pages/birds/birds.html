@@ -12,12 +12,14 @@
                 </loading-dots>
                 <template else>
                     <section class="page-birds-chart">
-                        <progress-chart data.bind="stats">
+                        <progress-chart data.bind="stats"
+                                        click-chart.delegate="clickChartHandler($event)">
                         </progress-chart>
                     </section>
 
                     <section class="page-birds-table">
                         <sci-entity-list-view config.bind="listViewConfig"
+                                              data-source.two-way="dataSource"
                                               db-view="B10K_TaxonomyItemOverview">
                         </sci-entity-list-view>
                     </section>
