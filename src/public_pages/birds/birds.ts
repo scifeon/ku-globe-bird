@@ -2,7 +2,6 @@ import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import CommonData from "../common/data/common.data";
-import ITaxItemRecord from "../common/interfaces/tax-item-record.interface";
 import CommonLogic from "../common/logic/common.logic";
 import { LIST_VIEW_CONFIG } from "./static/birds.static";
 import "./styles/birds.scss";
@@ -28,10 +27,6 @@ export class BirdsPage {
     // Life cycle hooks.
 
     public async bind() {
-        // const taxItems = await this.data.getAllTaxonomyItems();
-        // const samples = await this.data.getAllSamples();
-        // this.records.push(...this.logic.compileRecords(taxItems, samples));
-
         const taxRecords = await this.data.getTaxonomyRecords();
         this.stats.push(...this.logic.compileStats(taxRecords));
     }
