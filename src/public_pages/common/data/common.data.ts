@@ -40,4 +40,18 @@ export default class CommonData {
 
         return response.taxItems;
     }
+
+    public async getTaxonomyRecords(): Promise<any[]> {
+        const response = await this.server.datasetQuery(
+            [
+                {
+                    view: "B10K_TaxonomyItemOverview",
+                    collection: "records"
+                }
+
+            ]
+        )
+
+        return response.records;
+    }
 }

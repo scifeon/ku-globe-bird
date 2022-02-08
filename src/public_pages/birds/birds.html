@@ -1,5 +1,5 @@
 <template>
-    <main class="sci-main">
+    <main class="sci-main page-birds">
         <b10k-header></b10k-header>
 
         <b10k-hero></b10k-hero>
@@ -10,17 +10,18 @@
             <div class="sci-content-body">
                 <loading-dots if.bind="loading">
                 </loading-dots>
-                <section else>
-                    <progress-chart data.bind="stats">
-                    </progress-chart>
-                    <!-- <sci-list-view class="sci-list-view"
-                                   config.bind="listViewConfig"
-                                   records.bind="records">
-                    </sci-list-view> -->
-                    <sci-entity-list-view config.bind="listViewConfig"
-                                          db-view="B10K_TaxonomyItemOverview">
-                    </sci-entity-list-view>
-                </section>
+                <template else>
+                    <section class="page-birds-chart">
+                        <progress-chart data.bind="stats">
+                        </progress-chart>
+                    </section>
+
+                    <section class="page-birds-table">
+                        <sci-entity-list-view config.bind="listViewConfig"
+                                              db-view="B10K_TaxonomyItemOverview">
+                        </sci-entity-list-view>
+                    </section>
+                </template>
             </div>
 
         </article>

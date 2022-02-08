@@ -31,6 +31,8 @@ export default class DataLoaderB10KSamplesData {
             if (!sample.name) continue;
             if (Object.values(sample.attributes).every(value => value === null)) continue;
 
+            this.updateStatus(sample);
+
             samples.push(sample);
         }
 
@@ -55,5 +57,26 @@ export default class DataLoaderB10KSamplesData {
             description: obj.speciesName,
             attributes: obj,
         };
+    }
+
+    private updateStatus(sample: Sample) {
+        if (sample.attributes.statusAssembly === "Yes") {
+            sample.attributes.statusProgress = "Annotated and Assembled";
+            return;
+        }
+        if (sample.attributes.statusSequencing === "Yes") {
+            sample.attributes.statusProgress = "Sequenced";
+            return;
+        }
+        if (sample.attributes.statusDna === "Yes") {
+            sample.attributes.statusProgress = "DNA extracted";
+            return;
+        }
+        if (sample.attributes.statusCovered === "Yes") {
+            sample.attributes.statusProgress = "Sample obtained";
+            return;
+        }
+
+        sample.attributes.statusProgress = "";
     }
 }

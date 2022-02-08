@@ -17,9 +17,9 @@ export class ProgressChart {
             height: 350,
             events: {
                 dataPointSelection: (event, chartContext, options) => {
-                    const status = options.w.config.series[0].data[options.dataPointIndex].x
+                    const progressStatus = this.generateFilterString(options.dataPointIndex);
 
-                    this.router.navigate(`/entity/Sample?$filter=attributes.sampleDataLevel%20in%20('${status}')%20and%20status%20not_in%20('Canceled'%2C'Deleted'%2C'Discarded')&$select=Name%2CDescription%2CDateTaken%2Cattributes.sampleDataLevel%2CTaxonomyItemID`);
+                    this.router.navigate(`/entity/Sample?$filter=${progressStatus}%20and%20status%20not_in%20('Canceled'%2C'Deleted'%2C'Discarded')&$select=Name%2CDescription%2CDateTaken%2CTaxonomyItemID&$orderby=Description%20asc`);
                 }
             },
             toolbar: {
@@ -78,6 +78,13 @@ export class ProgressChart {
         }
 
         return false;
+    }
+
+    private generateFilterString(index: number) {
+        const progressStates = ["statusCovered", "statusDna", "statusSequencing", "statusAssembly"];
+        const status = progressStates[index];
+
+        return `attributes.${status}%20eq%20'Yes'`
     }
 
     private updateStatus(data) {

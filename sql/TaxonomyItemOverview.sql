@@ -8,7 +8,11 @@ SELECT
 	JSON_VALUE(tax.Attributes, '$.speciesEnglishName') AS SpeciesEnglishName,
 	lsmp.Name AS LatestSampleName,
 	lsmp.ID AS LatestSampleID,
-	JSON_VALUE(lsmp.Attributes,	'$.sampleDataLevel') AS LatestSampleDataLevel
+	JSON_VALUE(lsmp.Attributes,	'$.statusProgress') AS LatestStatusProgress,
+	JSON_VALUE(lsmp.Attributes,	'$.statusCovered') AS LatestStatusCovered,
+	JSON_VALUE(lsmp.Attributes,	'$.statusDna') AS LatestStatusDna,
+	JSON_VALUE(lsmp.Attributes,	'$.statusSequencing') AS LatestStatusSequencing,
+	JSON_VALUE(lsmp.Attributes,	'$.statusAssembly') AS LatestStatusAssembly
 FROM
 	Bio_TaxonomyItem AS tax OUTER APPLY (
 	SELECT

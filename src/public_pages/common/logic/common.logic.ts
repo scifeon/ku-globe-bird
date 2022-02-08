@@ -29,7 +29,7 @@ export default class CommonLogic {
         return records;
     }
 
-    public compileStats(records: ITaxItemRecord[]) {
+    public compileStats(records) {
         const stats = [];
         const counts = {
             statusCovered: 0,
@@ -39,14 +39,10 @@ export default class CommonLogic {
         };
 
         for (const record of records) {
-            if (!record.latestSample) continue;
-
-            const sample = record.latestSample;
-
-            if (sample.attributes.statusAssembly === "Yes") counts.statusAssembly += 1;
-            if (sample.attributes.statusCovered === "Yes") counts.statusCovered += 1;
-            if (sample.attributes.statusDna === "Yes") counts.statusDna += 1;
-            if (sample.attributes.statusSequencing === "Yes") counts.statusSequencing += 1;
+            if (record.latestStatusCovered === "Yes") counts.statusCovered += 1;
+            if (record.latestStatusDna === "Yes") counts.statusDna += 1;
+            if (record.latestStatusSequencing === "Yes") counts.statusSequencing += 1;
+            if (record.latestStatusAssembly === "Yes") counts.statusAssembly += 1;
         }
 
         const keys = Object.keys(counts)
