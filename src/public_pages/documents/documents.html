@@ -1,0 +1,23 @@
+<template>
+    <main class="sci-main b10k_contact">
+        <b10k-header></b10k-header>
+
+        <b10k-hero></b10k-hero>
+
+        <section class="sci-content">
+            <h2 class="sci-content-title">Contact Us</h2>
+
+            <div class="sci-content-body">
+                <h2>Documents</h2>
+
+                <sci-entity-list-view db-view="B10K_PublicFiles"
+                                      config.bind="publicFilesListConfig">
+                </sci-entity-list-view>
+            </div>
+        </section>
+
+        <b10k-powered-by></b10k-powered-by>
+
+        <b10k-footer></b10k-footer>
+    </main>
+</template>

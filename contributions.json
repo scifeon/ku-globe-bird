@@ -64,6 +64,10 @@
                         "url": "/#/b10k/tableS1"
                     },
                     {
+                        "text": "Documents",
+                        "url": "/#/b10k/documents"
+                    },
+                    {
                         "text": "Contact Us",
                         "url": "/#/b10k/contact"
                     }
