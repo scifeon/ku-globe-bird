@@ -32,7 +32,6 @@ export class SamplePage {
         }
 
         this.sample = await this.data.getSampleFromView(sampleID);
-
         this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${this.sample.name};flags=f`;
     }
 
