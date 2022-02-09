@@ -1,6 +1,10 @@
 .page-birds {
     &-table {
+        display: flex;
+        justify-content: space-between;
+
         padding-left: 64px;
+        padding-right: 64px;
         padding-bottom: 42px;
     }
 }
