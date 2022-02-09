@@ -1,4 +1,4 @@
-import { ServerAPI, Sample } from "@scifeon/core";
+import { Sample, ServerAPI } from "@scifeon/core";
 import { autoinject } from "aurelia-framework";
 
 @autoinject
@@ -30,19 +30,5 @@ export default class SampleData {
         }
 
         return response.samples[0] as Sample;
-    }
-
-    public async getSamples(taxonomyItemID: string): Promise<Sample[]> {
-        const response = await this.server.datasetQuery(
-            [
-                {
-                    eClass: "Sample",
-                    collection: "samples",
-                    filters: [{ field: "taxonomyItemID", value: taxonomyItemID }],
-                },
-            ],
-        );
-
-        return response.samples;
     }
 }
