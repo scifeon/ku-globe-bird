@@ -9,7 +9,7 @@ import TaxonomyItemData from "./data/taxonomy-item.data";
  */
 @scifeonRoute({
     title: "TaxonomyItem",
-    route: "b10k/TaxonomyItem/:id",
+    route: "entity/TaxonomyItem/:id",
     type: PAGE_TYPE.PUBLIC,
     })
 @autoinject
