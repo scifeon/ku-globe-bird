@@ -1,0 +1,77 @@
+<template>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174919006-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-174919006-4');
+</script>
+
+    <main class="sci-main">
+        <b10k-header></b10k-header>
+
+        <b10k-hero></b10k-hero>
+
+        <section class="sci-content">
+            <a class="sci-content-scroll bounce" href="#" click.delegate="contentScrollHandler($event)">
+                <span class="sci-content-scroll-inner">
+                    <img src="../../assets/images/icon-scroll.svg" />
+                </span>
+            </a>
+
+            <h2 class="sci-content-title">
+                THE DATA
+            </h2>
+
+            <div class="sci-content-body">
+                <ul class="sci-content-actions">
+                    <li class="sci-content-action">
+                        <button class="sci-content-action-button" click.delegate="exportEventHandler('excel')">
+                            <i class="fas fa-arrow-down"></i>
+                            <span> Export as Excel</span>
+                        </button>
+                    </li>
+                    <li class="sci-content-action">
+                        <button class="sci-content-action-button" click.delegate="exportEventHandler('csv')">
+                            <i class="fas fa-arrow-down"></i>
+                            <span> Export as CSV</span>
+                        </button>
+                    </li>
+                    <li class="sci-content-action">
+                        <button class="sci-content-action-button" click.delegate="exportEventHandler('clipboard')">
+                            <i class="far fa-copy"></i>
+                            <span> Copy to clipboard</span>
+                        </button>
+                    </li>
+                </ul>
+
+                <sci-collapsible class="sci-collapsible" if.bind="groupsReady" active="true">
+                    <header class="sci-collapsible-header">
+                        <h4>Choose data column(s)</h4>
+                    </header>
+
+                    <div class="sci-collapsible-content">
+                        <groups class="sci-collapsible-groups">
+                            <group class="sci-collapsible-group" repeat.for="group of groups">
+                                <label class="sci-checkbox-label">
+                                    <input class="sci-checkbox" type="checkbox" checked.bind="group.selected" value.bind="group.selected" change.delegate="groupChanged()" />
+                                    <span class="sci-checkbox-text">${group.label}</span>
+                                </label>
+                            </group>
+                        </groups>
+                    </div>
+                </sci-collapsible>
+
+                <sci-list-view class="sci-list-view" view-model.ref="scilistview" if.bind="recordsReady" config.bind="listViewConfig" selected-column-infos.from-view="selectedColumnInfos" records.bind="records"></sci-list-view>
+
+                <loading-dots class="sci-loading" if.bind="!recordsReady || !groupsReady"></loading-dots>
+            </div>
+        </section>
+    </main>
+
+    <b10k-powered-by></b10k-powered-by>
+
+    <b10k-footer></b10k-footer>
+</template>

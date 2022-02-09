@@ -136,6 +136,7 @@ export class B10KCustomFields {
                 group: "bioinformatics",
             },
 
+
             // >>>>>>>>>>>>>>>>>>>>>>>> TAXONOMY <<<<<<<<<<<<<<<<<<<<<<<<
 
             {
@@ -185,7 +186,7 @@ export class B10KCustomFields {
                 match: { eClass: "Sample" },
                 accessor: "attributes.sampleStatus",
                 type: DataType.STRING,
-                label: "Sample Staus",
+                label: "Sample Status",
                 group: "status",
             },
             {
@@ -207,6 +208,34 @@ export class B10KCustomFields {
                 accessor: "attributes.assemblyStatus",
                 type: DataType.STRING,
                 label: "Assembly Status",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.statusCovered",
+                type: DataType.STRING,
+                label: "Status Covered",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.statusDna",
+                type: DataType.STRING,
+                label: "Status DNA",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.statusSequencing",
+                type: DataType.STRING,
+                label: "Status Sequencing",
+                group: "status",
+            },
+            {
+                match: { eClass: "Sample" },
+                accessor: "attributes.statusAssembly",
+                type: DataType.STRING,
+                label: "Status Assembly",
                 group: "status",
             },
         ];

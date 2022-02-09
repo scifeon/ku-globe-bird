@@ -1,0 +1,32 @@
+<template>
+    <main class="sci-main b10k_stats">
+        <b10k-header></b10k-header>
+
+        <b10k-hero></b10k-hero>
+
+        <section class="sci-content">
+
+            <h2 class="sci-content-title">
+                B10K Progress
+            </h2>
+
+            <section class="sci-content-body">
+                <panel-body>
+                    <progress-chart data.bind="stats">
+                    </progress-chart>
+                </panel-body>
+            </section>
+            <!-- <panel>
+                <panel-body>
+                    <phylogeny-table>
+
+                    </phylogeny-table>
+                </panel-body>
+            </panel> -->
+        </section>
+        <b10k-powered-by></b10k-powered-by>
+
+        <b10k-footer></b10k-footer>
+    </main>
+
+</template>

@@ -1,0 +1,21 @@
+@import "@scifeon";
+
+.picture-card {
+    display: flex;
+    justify-content: center;
+    max-height: 90%;
+
+    img {
+        object-fit: contain;
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+    &-footer {
+        display: flex;
+        padding-top: $padding-default;
+
+        justify-content: flex-end;
+    }
+}
+

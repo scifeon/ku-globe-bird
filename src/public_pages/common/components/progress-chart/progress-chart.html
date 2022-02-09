@@ -1,0 +1,13 @@
+<template>
+    <article class="b10k-progress-chart">
+        <loading-dots if.bind="!ready"></loading-dots>
+        <figure else>
+            <apex-chart ready-chart.delegate="readyChartHandler($event)"
+                        config.bind="chartConfig"
+                        chart.bind="chart">
+            </apex-chart>
+
+            <!-- <figcaption class="sci-figcaption">Horizontal bars illustrate the number of taxonomy items in each state.</figcaption> -->
+        </figure>
+    </article>
+</template>

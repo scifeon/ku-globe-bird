@@ -1,0 +1,25 @@
+<template>
+    <ux-dialog class="edit-samples-dialog">
+        <ux-dialog-header>
+            Upload a new bird photo for this Taxonomy Item
+        </ux-dialog-header>
+
+        <ux-dialog-body>
+            <section if.bind="file"
+                     class="image-preview">
+                <p>${file.name}</p>
+
+                <img src.bind="imageData" alt.bind="file.name">
+            </section>
+            <dropzone else
+                      dropfiles.delegate="dropFilesHandler($event)">
+            </dropzone>
+        </ux-dialog-body>
+
+        <ux-dialog-footer>
+            <button disabled.bind="!file" click.delegate="clickUpdateHandler()">Save</button>
+            <button click.delegate="dialog.cancel()"
+                    class="cancel">Cancel</button>
+        </ux-dialog-footer>
+    </ux-dialog>
+</template>

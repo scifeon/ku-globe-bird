@@ -10,6 +10,8 @@ import "./styles/data-loader-master-list.scss";
  * Data loader for reading an excel files with sample information and results
  * where the results should be added to resultSets belonging to requests
  * matching the samples.
+ *
+ * @deprecated - use data-loader-b10k-samples
  */
 @scifeonDataLoader({
     name: "B10K Master List",

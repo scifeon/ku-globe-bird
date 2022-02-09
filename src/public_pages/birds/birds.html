@@ -1,0 +1,47 @@
+<template>
+    <main class="sci-main page-birds">
+        <b10k-header></b10k-header>
+
+        <b10k-hero></b10k-hero>
+
+        <article class="sci-content">
+            <h2 class="sci-content-title">Bird Genome Sequencing Overview</h2>
+
+            <div class="sci-content-body">
+                <loading-dots if.bind="loading">
+                </loading-dots>
+                <template else>
+                    <section class="page-birds-chart">
+                        <progress-chart data.bind="stats"
+                                        click-chart.delegate="clickChartHandler($event)">
+                        </progress-chart>
+                    </section>
+
+                    <section class="page-birds-table">
+                        <sci-entity-list-view config.bind="listViewConfig"
+                                              data-source.two-way="dataSource"
+                                              db-view="B10K_TaxonomyItemOverview">
+                        </sci-entity-list-view>
+
+                        <sci-help-box>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore
+                            eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.
+                        </sci-help-box>
+                    </section>
+                </template>
+            </div>
+
+        </article>
+
+        <b10k-powered-by></b10k-powered-by>
+
+        <b10k-footer></b10k-footer>
+    </main>
+</template>
