@@ -29,10 +29,6 @@ export class TaxonomyItemPage {
         this.taxonomyItem = await this.data.getTaxonomyItemFromView(taxonomyItemID);
         this.samples = await this.data.getAllSamplesFromView(taxonomyItemID);
         this.pictureFile = await this.data.getPictureFileFromView(taxonomyItemID);
-
-        console.log("TAX ITEM", this.taxonomyItem)
-        console.log("SAMPLES", this.samples)
-        console.log("FILE", this.pictureFile)
     }
 
     public attached() {
