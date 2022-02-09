@@ -660,6 +660,19 @@ live-notifications {
 	}
 }
 
+.b10k-sample {
+    &-visit-erda {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid;
+    }
+
+    &-erda-link {
+        display: block;
+        margin-top: 12px;
+    }
+}
+
 .b10k-sample,
 .b10k-taxonomy-item {
     .sci-content-body {
