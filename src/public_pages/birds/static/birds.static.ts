@@ -1,4 +1,4 @@
-import { DataType } from "@scifeon/core";
+import { DataType, Sort } from "@scifeon/core";
 import { IListViewConfig } from "@scifeon/ui";
 
 export const LIST_VIEW_CONFIG: IListViewConfig = {
@@ -20,4 +20,5 @@ export const LIST_VIEW_CONFIG: IListViewConfig = {
         { accessor: "latestStatusProgress", label: "Status", },
     ],
     filters: [],
+    sorting: { field: "latinName", direction: Sort.ASC },
 };
