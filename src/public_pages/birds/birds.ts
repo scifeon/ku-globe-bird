@@ -28,6 +28,12 @@ export class BirdsPage {
 
     // Handlers
 
+    /**
+     * Event handler for clicking on the bars of the bar chart, which will
+     * filter the overview table according to status.
+     *
+     * @param event Click event.
+     */
     public async clickChartHandler(event: CustomEvent) {
         const status = event.detail.data.progressStatus;
         const newFilters = [];

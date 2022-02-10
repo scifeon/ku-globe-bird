@@ -1,5 +1,11 @@
 
 export default class BirdsLogic {
+    /**
+     * Compile stats for charting in the form of ApexChart data series.
+     *
+     * @param records Taxonomy records from TaxonomyItemOverview view.
+     * @returns list of stats objects.
+     */
     public compileStats(records) {
         const stats = [];
         const counts = {

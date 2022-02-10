@@ -17,7 +17,8 @@ export class ProgressChart {
             height: 350,
             events: {
                 dataPointSelection: ($event, chartContext, options) => {
-                    const progressStatus = this.findStatus(options.dataPointIndex);
+                    const progressStates = ["statusCovered", "statusDna", "statusSequencing", "statusAssembly"];
+                    const progressStatus = progressStates[options.dataPointIndex];
 
                     const event = CustomEventFactory.create(EventType.CLICK, $event, "chart", { progressStatus });
                     this.element.dispatchEvent(event);
@@ -73,6 +74,11 @@ export class ProgressChart {
 
     constructor(private element: Element) {}
 
+    // Getters / setters
+
+    /**
+     * Return true if data is ready for charting.
+     */
     public get ready() {
         if (this.data.length) {
             return true;
@@ -81,10 +87,7 @@ export class ProgressChart {
         return false;
     }
 
-    private findStatus(index: number) {
-        const progressStates = ["statusCovered", "statusDna", "statusSequencing", "statusAssembly"];
-        return progressStates[index];
-    }
+    // Private methods.
 
     private updateStatus(data) {
         for (const obj of data) {
@@ -95,6 +98,14 @@ export class ProgressChart {
         return data;
     }
 
+
+    // Event handlers
+
+    /**
+     * Event handler for when chart is loaded and ready
+     *
+     * @param event Custom ready event.
+     */
     public readyChartHandler(event: CustomEvent) {
         this.chart = event.detail.data.chart;
         const data =  this.chartConfig.series[0]["data"];
