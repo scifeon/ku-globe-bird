@@ -8,6 +8,9 @@ export const PUBLIC_FILES_LIST_CONFIG: IListViewConfig = {
             ui: { render: '<a href="/api/file/public/${record.id}" title="Download file">${record.name} <i class="fa fa-download"></i></a>' },
         },
         {
+            accessor: "description",
+        },
+        {
             accessor: "createdDate",
             label: "Date",
             type: DataType.DATE,
