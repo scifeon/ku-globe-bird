@@ -27,8 +27,8 @@ export class ProgressChart {
                 show: false,
             },
         },
-        legend: {
-            show: false,
+        tooltip: {
+            enabled: false,
         },
         plotOptions: {
             bar: {
