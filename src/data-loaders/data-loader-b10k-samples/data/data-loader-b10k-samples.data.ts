@@ -61,7 +61,7 @@ export default class DataLoaderB10KSamplesData {
 
     private updateStatus(sample: Sample) {
         if (sample.attributes.statusAssembly === "Yes") {
-            sample.attributes.statusProgress = "Annotated and Assembled";
+            sample.attributes.statusProgress = "Assembled and Annotated";
             return;
         }
         if (sample.attributes.statusSequencing === "Yes") {
