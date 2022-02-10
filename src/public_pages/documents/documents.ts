@@ -2,6 +2,7 @@ import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
 import { PUBLIC_FILES_LIST_CONFIG } from "./static/public-files-list-config.static";
+import "./styles/documents.scss";
 
 /**
  * Page for "documents".
