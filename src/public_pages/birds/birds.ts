@@ -1,8 +1,8 @@
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { EntityDataSource, IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
-import CommonData from "../common/data/common.data";
-import CommonLogic from "../common/logic/common.logic";
+import BirdsData from "./data/birds.data";
+import BirdsLogic from "./logic/birds.logic";
 import { LIST_VIEW_CONFIG } from "./static/birds.static";
 import "./styles/birds.scss";
 
@@ -22,8 +22,8 @@ export class BirdsPage {
     public dataSource: EntityDataSource;
 
     constructor(
-        private data: CommonData,
-        private logic: CommonLogic,
+        private data: BirdsData,
+        private logic: BirdsLogic,
     ) {}
 
     // Handlers
