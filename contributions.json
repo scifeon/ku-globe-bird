@@ -48,10 +48,6 @@
                         "url": "/#/b10k/birds"
                     },
                     {
-                        "text": "Stats",
-                        "url": "/#/b10k/stats"
-                    },
-                    {
                         "text": "Bird Samples",
                         "url": "/#/entity/Sample"
                     },
