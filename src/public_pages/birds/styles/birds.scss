@@ -1,7 +1,9 @@
 .page-birds {
     &-table {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr auto;
+
+        grid-gap: 10px;
 
         padding-left: 64px;
         padding-right: 64px;
