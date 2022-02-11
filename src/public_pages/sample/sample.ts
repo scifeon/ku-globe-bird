@@ -1,4 +1,4 @@
-import { Sample, ScifeonUser } from "@scifeon/core";
+import { Sample, ScifeonUser, TaxonomyItem } from "@scifeon/core";
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { autoinject } from "aurelia-framework";
 import { Router } from "aurelia-router";
@@ -16,6 +16,7 @@ import SampleData from "./data/sample.data";
 @autoinject
 export class SamplePage {
     public sample: Sample;
+    public taxonomyItem: TaxonomyItem;
     public url: string;
 
     constructor(
@@ -32,6 +33,9 @@ export class SamplePage {
         }
 
         this.sample = await this.data.getSampleFromView(sampleID);
+        this.taxonomyItem = await this.data.getTaxonomyItem(this.sample.taxonomyItemID);
+
+        console.log(this.taxonomyItem)
         this.url = `https://sid.erda.dk/cgi-sid/ls.py?share_id=EPIKbljMg4;current_dir=data/${this.sample.name};flags=f`;
     }
 

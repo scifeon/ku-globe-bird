@@ -1,4 +1,4 @@
-import { Sample, ServerAPI } from "@scifeon/core";
+import { Sample, ServerAPI, TaxonomyItem } from "@scifeon/core";
 import { autoinject } from "aurelia-framework";
 
 @autoinject
@@ -20,15 +20,42 @@ export default class SampleData {
                     collection: "samples",
                     filters: [
                         {field: "id", value: id },
-                    ]
-                }
+                    ],
+                },
             ],
-        )
+        );
 
         if (!response.samples.length) {
             throw new Error(`Sample with ID ${id} was not found on the server`);
         }
 
         return response.samples[0] as Sample;
+    }
+
+    /**
+     * Get the TaxonomyItem from the AllTaxonomyItems view matching the given ID.
+     *
+     * @param id TaxonomyItem ID to get
+     * @raise Error if TaxonomyItem was not found.
+     * @returns promise of Taxonomy Entity.
+     */
+    public async getTaxonomyItem(id: string): Promise<TaxonomyItem> {
+        const response = await this.server.datasetQuery(
+            [
+                {
+                    view: "B10K_AllTaxonomyItems",
+                    collection: "taxonomyItems",
+                    filters: [
+                        { field: "id", value: id },
+                    ],
+                },
+            ],
+        );
+
+        if (!response.taxonomyItems.length) {
+            throw new Error(`TaxonomyItem with ID ${id} was not found on the server`);
+        }
+
+        return response.taxonomyItems[0];
     }
 }
