@@ -7,7 +7,7 @@ export default class DataLoaderVariousSamplesLogic {
      *
      * @param taxItems List of TaxonomyItem entities.
      * @param samples  List of Sample entities.
-     * @returns List of unmatched Sample entities.
+     * @returns List of matched Sample entities.
      */
     public linkTaxAndSamples(taxItems: TaxonomyItem[], samples: Sample[]): Sample[] {
         const newSamples: Sample[] = [];

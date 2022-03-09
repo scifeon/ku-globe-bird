@@ -21,10 +21,10 @@ export default class DataLoaderB10KSamplesData {
         const samples: Sample[] = [];
 
         const headerRow = this.dataRowUtil.findRowWithKeys(sheet, columnNames);
-        const propertyNames = SpreadsheetUtils.readColTitles(sheet, headerRow, true, 30);
+        const propertyNames = SpreadsheetUtils.readColTitles(sheet, headerRow, true, 100);
 
         for (let i = headerRow + 1; i <= SpreadsheetUtils.getXlrowMax(sheet); i++) {
-            const values = SpreadsheetUtils.readColTitles(sheet, i, true, 30);
+            const values = SpreadsheetUtils.readColTitles(sheet, i, true, 100);
             const sampleObj = this.entityMapper.generateJSONObject(propertyNames, values);
             const sample = this.mapJsonToSample(sampleObj);
 
