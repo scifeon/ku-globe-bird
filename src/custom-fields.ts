@@ -273,7 +273,6 @@ export class B10KCustomFields {
 
 // no:  "NO-0423"
 // phase:  "Phase Genus"
-// b10kId:  "APP-001"
 // bgiId:  "D1907003390"
 // marker:  "Smithsonian Sample Batch 1"
 // cites:  null
