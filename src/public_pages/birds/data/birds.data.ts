@@ -1,9 +1,9 @@
-import { ServerAPI } from "@scifeon/core";
+import { Sample, ServerAPI } from "@scifeon/core";
 import { autoinject } from "aurelia-framework";
 
 @autoinject
-export default class BirdsData {
-    constructor(private server: ServerAPI) {}
+export class BirdsData {
+    constructor(private server: ServerAPI) { }
 
     /**
      * Get all taxonomy records from the TaxonomyItemOverview view.
@@ -15,12 +15,22 @@ export default class BirdsData {
             [
                 {
                     view: "B10K_TaxonomyItemOverview",
-                    collection: "records"
-                }
+                    collection: "records",
+                },
 
-            ]
-        )
+            ],
+        );
 
         return response.records;
+    }
+
+    public async fetchSamples(): Promise<Sample[]> {
+        const result = await this.server.datasetQuery([{
+            eClass: "Sample",
+            collection: "samples",
+            select: ["attributes"],
+        }]);
+
+        return result.samples;
     }
 }

@@ -1,8 +1,8 @@
 import { PAGE_TYPE, scifeonRoute } from "@scifeon/plugins";
 import { EntityDataSource, IListViewConfig } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
-import BirdsData from "./data/birds.data";
-import BirdsLogic from "./logic/birds.logic";
+import { BirdsData } from "./data/birds.data";
+import { BirdsLogic } from "./logic/birds.logic";
 import { LIST_VIEW_CONFIG } from "./static/birds.static";
 import "./styles/birds.scss";
 
@@ -24,7 +24,7 @@ export class BirdsPage {
     constructor(
         private data: BirdsData,
         private logic: BirdsLogic,
-    ) {}
+    ) { }
 
     // Handlers
 
@@ -67,8 +67,8 @@ export class BirdsPage {
     // Life cycle hooks.
 
     public async bind() {
-        const taxRecords = await this.data.getTaxonomyRecords();
-        this.stats.push(...this.logic.compileStats(taxRecords));
+        const samples = await this.data.fetchSamples();
+        this.stats.push(...this.logic.compileStats(samples));
     }
 
     public attached() {
