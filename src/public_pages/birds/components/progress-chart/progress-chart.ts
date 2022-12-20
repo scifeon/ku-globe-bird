@@ -1,16 +1,15 @@
 import { CustomEventFactory, EventType } from "@scifeon/core";
-import { IApexChartConfig } from "@scifeon/ui";
 import { autoinject, bindable, customElement } from "aurelia-framework";
 import { STATUS_MAP } from "./static/progress-chart.static";
 
 @customElement("progress-chart")
 @autoinject
 export class ProgressChart {
-    @bindable public readonly data: any;
+    @bindable public readonly data;
 
-    public chart: ApexCharts;
+    public chart;
 
-    public chartConfig: IApexChartConfig = {
+    public chartConfig/*: IApexChartConfig*/ = {
         chart: {
             type: "bar",
             height: 350,
