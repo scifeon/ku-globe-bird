@@ -1,19 +1,17 @@
 import { CustomEventFactory, EventType } from "@scifeon/core";
-import { IApexChartConfig } from "@scifeon/ui";
-import ApexCharts from "apexcharts/dist/apexcharts.common.js";
 import { autoinject, bindable, customElement } from "aurelia-framework";
 import { STATUS_MAP } from "./static/progress-chart.static";
 
 @customElement("progress-chart")
 @autoinject
 export class ProgressChart {
-    @bindable public readonly data: any;
+    @bindable public readonly data;
 
-    public chart: ApexCharts;
+    public chart;
 
-    public chartConfig: IApexChartConfig = {
+    public chartConfig/*: IApexChartConfig*/ = {
         chart: {
-            type: 'bar',
+            type: "bar",
             height: 350,
             events: {
                 dataPointSelection: ($event, chartContext, options) => {
@@ -22,7 +20,7 @@ export class ProgressChart {
 
                     const event = CustomEventFactory.create(EventType.CLICK, $event, "chart", { progressStatus });
                     this.element.dispatchEvent(event);
-                }
+                },
             },
             toolbar: {
                 show: false,
@@ -35,17 +33,17 @@ export class ProgressChart {
             bar: {
                 horizontal: true,
                 dataLabels: {
-                    position: 'top',
+                    position: "top",
                 },
-            }
+            },
         },
         dataLabels: {
             enabled: true,
             offsetX: -6,
             style: {
-                fontSize: '16px',
-                colors: ['#000000']
-            }
+                fontSize: "16px",
+                colors: ["#000000"],
+            },
         },
         series: [
             {
@@ -53,26 +51,26 @@ export class ProgressChart {
             },
         ],
         xaxis: {
-          type: 'category',
-          labels: {
-            style: {
-                fontSize: '16px'
-            }
-       }
+            type: "category",
+            labels: {
+                style: {
+                    fontSize: "16px",
+                },
+            },
         },
         yaxis: {
             max: 10000, // total number of taxItems
             labels: {
                 style: {
-                    fontSize: '16px'
-                }
-           }
-        }
+                    fontSize: "16px",
+                },
+            },
+        },
     };
 
     private statusMap = STATUS_MAP;
 
-    constructor(private element: Element) {}
+    constructor(private element: Element) { }
 
     // Getters / setters
 
@@ -91,8 +89,8 @@ export class ProgressChart {
 
     private updateStatus(data) {
         for (const obj of data) {
-            obj.x = this.statusMap[obj.x]
-            obj.x = obj.x
+            obj.x = this.statusMap[obj.x];
+            obj.x = obj.x;
         }
 
         return data;
@@ -108,7 +106,7 @@ export class ProgressChart {
      */
     public readyChartHandler(event: CustomEvent) {
         this.chart = event.detail.data.chart;
-        const data =  this.chartConfig.series[0]["data"];
+        const data = this.chartConfig.series[0].data;
 
         const newData = this.updateStatus(this.data);
 

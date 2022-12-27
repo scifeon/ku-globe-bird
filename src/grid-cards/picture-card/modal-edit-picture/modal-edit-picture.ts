@@ -2,7 +2,7 @@ import { AlertManager, File, TaxonomyItem } from "@scifeon/core";
 import { IDialogPlugin } from "@scifeon/plugins";
 import { Dialog } from "@scifeon/ui";
 import { autoinject } from "aurelia-framework";
-import ModalEditSamplesDataAPI from "./data/modal-edit-picture.data";
+import { ModalEditSamplesDataAPI } from "./data/modal-edit-picture.data";
 
 /**
  * Modal with dialog for uploading a new bird picture.
@@ -26,7 +26,7 @@ export class ModalEditPicture implements IDialogPlugin {
     public get imageData(): string {
         if (!this.file) return;
 
-        return "data:image/jpeg;base64, " + this.file.content;
+        return `data:image/jpeg;base64, ${this.file.content}`;
     }
 
     // Handlers.
@@ -45,8 +45,8 @@ export class ModalEditPicture implements IDialogPlugin {
                 {
                     text: "Bad file format",
                     description: "Only PNG or JPG picture formats accepted, please try again.",
-                }
-            )
+                },
+            );
 
             return;
         }

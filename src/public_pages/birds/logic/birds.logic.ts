@@ -1,12 +1,13 @@
+import { Sample } from "@scifeon/core";
 
-export default class BirdsLogic {
+export class BirdsLogic {
     /**
      * Compile stats for charting in the form of ApexChart data series.
      *
      * @param records Taxonomy records from TaxonomyItemOverview view.
      * @returns list of stats objects.
      */
-    public compileStats(records) {
+    public compileStats(samples: Sample[]) {
         const stats = [];
         const counts = {
             statusCovered: 0,
@@ -15,14 +16,17 @@ export default class BirdsLogic {
             statusAssembly: 0,
         };
 
-        for (const record of records) {
-            if (record.latestStatusCovered === "Yes") counts.statusCovered += 1;
-            if (record.latestStatusDna === "Yes") counts.statusDna += 1;
-            if (record.latestStatusSequencing === "Yes") counts.statusSequencing += 1;
-            if (record.latestStatusAssembly === "Yes") counts.statusAssembly += 1;
+        const filtered = samples.filter(s => s.attributes?.b10kid);
+
+        for (const sample of filtered) {
+
+            if (this.isAttributeYes(sample, "statusCovered")) counts.statusCovered += 1;
+            if (this.isAttributeYes(sample, "statusDna")) counts.statusDna += 1;
+            if (this.isAttributeYes(sample, "statusSequencing")) counts.statusSequencing += 1;
+            if (this.isAttributeYes(sample, "statusAssembly")) counts.statusAssembly += 1;
         }
 
-        const keys = Object.keys(counts)
+        const keys = Object.keys(counts);
 
         for (const key of keys) {
             stats.push(
@@ -30,7 +34,14 @@ export default class BirdsLogic {
             );
         }
 
-
         return stats;
+    }
+
+    // helpers
+
+    private isAttributeYes(sample: Sample, prop: string) {
+        if (!sample.attributes) return "";
+
+        return sample.attributes[prop]?.toLowerCase()?.trim() === "yes";
     }
 }
