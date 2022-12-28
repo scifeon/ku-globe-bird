@@ -26,7 +26,7 @@ export class BirdsData {
 
     public async fetchSamples(): Promise<Sample[]> {
         const result = await this.server.datasetQuery([{
-            eClass: "Sample",
+            view: "B10K_AllSamples",
             collection: "samples",
             select: ["attributes"],
         }]);
